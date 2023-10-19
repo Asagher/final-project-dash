@@ -7,6 +7,7 @@ $configData = Helper::appClasses();
 $customizerHidden = ($customizerHidden ?? '');
 @endphp
 
+
 @extends('layouts/commonMaster' )
 
 @section('layoutContent')
