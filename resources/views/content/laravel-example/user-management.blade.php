@@ -127,6 +127,20 @@
       </thead>
     </table>
   </div>
+  <div class="card-datatable table-responsive">
+    <table class="datatables-users table border-top">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Id</th>
+          <th>User</th>
+          <th>Email</th>
+          <th>Verified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
