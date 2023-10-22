@@ -18,3 +18,6 @@
 <!-- BEGIN: Page JS-->
 @yield('page-script')
 <!-- END: Page JS-->
+
+@stack('modals')
+@livewireScripts
