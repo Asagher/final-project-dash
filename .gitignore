@@ -9,14 +9,14 @@
 
 # .env
 .env.backup
-.env.production
+.env
 .phpunit.result.cache
 
 docker-compose.override.yml
 
 Homestead.json
 Homestead.yaml
-auth.json
+
 npm-debug.log
 /package-lock.json
 yarn-error.log
@@ -26,12 +26,11 @@ package-lock.log
 /.idea
 /.vscode
 
-/public/css
-/public/js
+
+
 /public/mix-manifest.json
 # But not these files...
 !/public/assets/*
-/public/assets/js
 /public/assets/css
 /public/assets/vendor
 .env
