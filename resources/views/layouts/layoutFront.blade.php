@@ -12,6 +12,5 @@ $isFront = true;
 <!-- Sections:Start -->
 @yield('content')
 <!-- / Sections:End -->
-
 @include('layouts/sections/footer/footer-front')
 @endsection

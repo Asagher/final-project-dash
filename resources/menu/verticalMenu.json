@@ -96,7 +96,7 @@
       "slug": "front-pages",
       "submenu": [
         {
-          "url": "front-pages/landing",
+          "url": "/",
           "name": "Landing",
           "slug": "front-pages-landing",
           "target": "_blank"

@@ -9,7 +9,8 @@
           <p>Set role permissions</p>
         </div>
         <!-- Add role form -->
-        <form id="addRoleForm" class="row g-3" onsubmit="return false">
+        <form id="addRoleForm" class="row g-3" >
+          @csrf
           <div class="col-12 mb-4">
             <label class="form-label" for="modalRoleName">Role Name</label>
             <input type="text" id="modalRoleName" name="modalRoleName" class="form-control" placeholder="Enter a role name" tabindex="-1" />
@@ -17,7 +18,7 @@
           <div class="col-12">
             <h4>Role Permissions</h4>
             <!-- Permission table -->
-            <div class="table-responsive">
+            {{-- <div class="table-responsive">
               <table class="table table-flush-spacing">
                 <tbody>
                   <tr>
@@ -258,11 +259,11 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> --}}
             <!-- Permission table -->
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit" >Submit</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </form>
@@ -272,3 +273,6 @@
   </div>
 </div>
 <!--/ Add Role Modal -->
+@section('page-script')
+<script src="{{asset('js/add-role.js')}}"></script>
+@endsection

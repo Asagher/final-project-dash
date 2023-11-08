@@ -159,10 +159,23 @@ use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
 
-// Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
-Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
-Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
+// Admin Route
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:admin',
+    'auth'
+])->group(function () {
+    Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
+    Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
+
+
+//home
+
+    Route::get('/hom',function ()   {
+      return view('home');
+    })->name('dashboard-crm');
 
 // locale
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
@@ -182,7 +195,6 @@ Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-con
 Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
 // Front Pages
-Route::get('/front-pages/landing', [Landing::class, 'index'])->name('front-pages-landing');
 Route::get('/front-pages/pricing', [Pricing::class, 'index'])->name('front-pages-pricing');
 Route::get('/front-pages/payment', [Payment::class, 'index'])->name('front-pages-payment');
 Route::get('/front-pages/checkout', [Checkout::class, 'index'])->name('front-pages-checkout');
@@ -229,7 +241,12 @@ Route::get('/app/user/view/security', [UserViewSecurity::class, 'index'])->name(
 Route::get('/app/user/view/billing', [UserViewBilling::class, 'index'])->name('app-user-view-billing');
 Route::get('/app/user/view/notifications', [UserViewNotifications::class, 'index'])->name('app-user-view-notifications');
 Route::get('/app/user/view/connections', [UserViewConnections::class, 'index'])->name('app-user-view-connections');
-Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
+
+/////Roles
+Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles.index');
+Route::post('/app/access-roles', [AccessRoles::class, 'store'])->name('app-access-roles.store');
+
+///////permissions
 Route::get('/app/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
 
 // pages
@@ -358,13 +375,8 @@ Route::get('/maps/leaflet', [Leaflet::class, 'index'])->name('maps-leaflet');
 // laravel example
 Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
 Route::resource('/user-list', UserManagement::class);
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });
+
+Route::get('/', [Landing::class, 'index'])->name('front-pages-landing');
+
+////////////////
