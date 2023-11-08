@@ -30,6 +30,41 @@ document.addEventListener('DOMContentLoaded', function (e) {
         // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         autoFocus: new FormValidation.plugins.AutoFocus()
       }
+    }).on('core.form.valid', function (e) {
+      // Get form data
+      var formData = $(this).serialize();
+      offCanvasForm = $('#offcanvasAddUser');
+      $.ajax({
+        url: ''.concat(baseUrl, 'app/access-roles'),
+        method: 'POST',
+        data: $('#addRoleForm').serialize(),
+        success: function success(status) {
+          offCanvasForm.offcanvas('hide');
+
+          scheme;
+          Copy;
+          // sweetalert
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully '.concat(status, '!'),
+            text: 'Role '.concat(status, ' Successfully.'),
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        },
+        error: function error(err) {
+          offCanvasForm.offcanvas('hide');
+          Swal.fire({
+            title: 'Duplicate Entry!',
+            text: 'Your role should be unique.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        }
+      });
     });
 
     // Select All checkbox click

@@ -18,7 +18,7 @@
           <div class="col-12">
             <h4>Role Permissions</h4>
             <!-- Permission table -->
-            {{-- <div class="table-responsive">
+            <div class="table-responsive">
               <table class="table table-flush-spacing">
                 <tbody>
                   <tr>
@@ -259,11 +259,11 @@
                   </tr>
                 </tbody>
               </table>
-            </div> --}}
+            </div>
             <!-- Permission table -->
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit" >Submit</button>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
         </form>
@@ -273,6 +273,4 @@
   </div>
 </div>
 <!--/ Add Role Modal -->
-@section('page-script')
-<script src="{{asset('js/add-role.js')}}"></script>
-@endsection
+
