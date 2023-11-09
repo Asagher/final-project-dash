@@ -37,9 +37,9 @@
 
   <p>A role provided access to predefined menus and features so that depending on <br> assigned role an administrator can have access to what user needs.</p>
   <!-- Role cards -->
-  <div class="row g-4">
-    @foreach ($roles as $role)
-      <div class="col-xl-4 col-lg-6 col-md-6">
+  <div class="row g-4 " >
+
+      <div class="col-xl-4 col-lg-6 col-md-6 ">
 
         <div class="card">
           <div class="card-body">
@@ -65,7 +65,9 @@
             </div>
             <div class="d-flex justify-content-between align-items-end">
               <div class="role-heading">
-                  <h4 class="mb-1">{{$role->name}}</h4>
+
+                  <h4 class="mb-1">ِAnas</h4>
+
                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal" class="role-edit-modal"><small>Edit Role</small></a>
               </div>
               <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
@@ -73,45 +75,45 @@
           </div>
         </div>
       </div>
-    @endforeach
-    <div class="col-xl-4 col-lg-6 col-md-6">
-      <div class="card h-100">
-        <div class="row h-100">
-          <div class="col-sm-5">
-            <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
-              <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+
+      <div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
+        <div class="card h-100">
+          <div class="row h-100">
+            <div class="col-sm-5">
+              <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
+                <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+              </div>
             </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="card-body text-sm-end text-center ps-sm-0">
-              <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Role</button>
-              <p class="mb-0">Add role, if it does not exist</p>
+            <div class="col-sm-7">
+              <div class="card-body text-sm-end text-center ps-sm-0">
+                <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Role</button>
+                <p class="mb-0">Add role, if it does not exist</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-12">
-      <!-- Role Table -->
-      <div class="card">
-        <div class="card-datatable table-responsive">
-          <table class="datatables-users table border-top">
-            <thead>
-              <tr>
-                <th></th>
-                <th>User</th>
-                <th>Role</th>
-                <th>Plan</th>
-                <th>Billing</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-          </table>
+      <div class="col-12">
+        <!-- Role Table -->
+        <div class="card">
+          <div class="card-datatable table-responsive">
+            <table class="datatables-users table border-top">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>User</th>
+                  <th>Role</th>
+                  <th>Plan</th>
+                  <th>Billing</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
+        <!--/ Role Table -->
       </div>
-      <!--/ Role Table -->
-    </div>
   </div>
 <!--/ Role cards -->
 <!-- Add Role Modal -->

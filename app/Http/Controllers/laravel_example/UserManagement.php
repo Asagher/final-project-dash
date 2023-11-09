@@ -17,8 +17,12 @@ class UserManagement extends Controller
   {
     $users = User::all();
     $userCount = $users->count();
-    $verified = User::whereNotNull('email_verified_at')->get()->count();
-    $notVerified = User::whereNull('email_verified_at')->get()->count();
+    $verified = User::whereNotNull('email_verified_at')
+      ->get()
+      ->count();
+    $notVerified = User::whereNull('email_verified_at')
+      ->get()
+      ->count();
     $usersUnique = $users->unique(['email']);
     $userDuplicates = $users->diff($usersUnique)->count();
 
@@ -133,10 +137,7 @@ class UserManagement extends Controller
 
     if ($userID) {
       // update the value
-      $users = User::updateOrCreate(
-        ['id' => $userID],
-        ['name' => $request->name, 'email' => $request->email]
-      );
+      $users = User::updateOrCreate(['id' => $userID], ['name' => $request->name, 'email' => $request->email]);
 
       // user updated
       return response()->json('Updated');
@@ -154,7 +155,7 @@ class UserManagement extends Controller
         return response()->json('Created');
       } else {
         // user already exist
-        return response()->json(['message' => "already exits"], 422);
+        return response()->json(['message' => 'already exits'], 422);
       }
     }
   }

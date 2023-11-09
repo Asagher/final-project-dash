@@ -1,5 +1,5 @@
 <!-- Add Role Modal -->
-<div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true" >
   <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">

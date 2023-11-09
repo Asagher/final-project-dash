@@ -13,7 +13,13 @@ class RoleController extends Controller
    */
   public function index()
   {
-    //
+    $data = Role::all();
+
+    if ($data) {
+      return response()->json($data);
+    } else {
+      return response()->json('null');
+    }
   }
 
   /**
@@ -29,27 +35,16 @@ class RoleController extends Controller
    */
   public function store(Request $request)
   {
-    $roleID = $request->id;
+    $roleName = Role::where('name', $request->modalRoleName)->first();
 
-    if ($roleID) {
+    if (empty($roleName)) {
       // update the value
-      $roles = Role::updateOrCreate(['id' => $roleID], ['name' => $request->modalRoleName, 'guard_name' => 'web']);
+      $roles = Role::Create(['name' => $request->modalRoleName, 'guard_name' => 'web']);
 
       // user updated
-      return response()->json('Updated');
+      return response()->json(['message' => 'Created', 'data' => $roles]);
     } else {
-      // create new one if email is unique
-      $roleName = Role::where('name', $request->name)->first();
-
-      if (empty($roleName)) {
-        $roles = Role::updateOrCreate(['id' => $roleID], ['name' => $request->name, 'guard_name' => 'web']);
-
-        // user created
-        return response()->json('Created');
-      } else {
-        // user already exist
-        return response()->json(['message' => 'already exits'], 422);
-      }
+      return response()->json(['message' => 'already exits'], 422);
     }
   }
 
@@ -66,7 +61,9 @@ class RoleController extends Controller
    */
   public function edit(string $id)
   {
-    //
+    $roles = Role::where('id', $id)->first();
+
+    return response()->json($roles);
   }
 
   /**
