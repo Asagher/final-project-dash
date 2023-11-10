@@ -35,16 +35,30 @@ class RoleController extends Controller
    */
   public function store(Request $request)
   {
-    $roleName = Role::where('name', $request->modalRoleName)->first();
+    // Controller
 
-    if (empty($roleName)) {
-      // update the value
-      $roles = Role::Create(['name' => $request->modalRoleName, 'guard_name' => 'web']);
+    if ($request->modalRoleId) {
+      // تعديل
+      $role = Role::find($request->modalRoleId);
+      $role->name = $request->modalRoleName;
+      $role->update();
 
-      // user updated
-      return response()->json(['message' => 'Created', 'data' => $roles]);
+      return response()->json(['message' => 'updated', 'data' => $role]);
     } else {
-      return response()->json(['message' => 'already exits'], 422);
+      // إضافة جديد
+
+      $roleName = Role::where('name', $request->modalRoleName)->first();
+
+      if (empty($roleName)) {
+        // update the value
+        $roles = Role::Create(['name' => $request->modalRoleName, 'guard_name' => 'web']);
+
+        // user updated
+        return response()->json(['message' => 'Created', 'data' => $roles]);
+      } else {
+        return response()->json(['message' => 'already exits'], 422);
+      }
+      return response()->json(['message' => 'Not Updated'], 422);
     }
   }
 

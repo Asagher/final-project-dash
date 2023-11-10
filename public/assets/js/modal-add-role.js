@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function (e) {
     // edit role
     $(document).on('click', '.role-edit-modal', function () {
       var role_id = $(this).data('id');
+      $('#addRoleForm')[0].reset();
 
       // get data
       $.get(''.concat(baseUrl, 'access-roles/').concat(role_id, '/edit'), function (data) {
         $('#modalRoleName').val(data.name);
+        $('#modalRoleId').val(role_id);
       });
 
       // On edit role click, update text
@@ -61,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
         success: function success(status) {
           let card = renderRoleCard(status.data);
           $('#cardsContainer').before(card);
+          $('#addRoleModal').modal('hide');
+          $('#addRoleForm')[0].reset();
 
           // sweetalert
           Swal.fire({
@@ -73,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
           });
         },
         error: function error(err) {
+          $('#addRoleModal').modal('hide');
+
           Swal.fire({
             title: 'Duplicate Entry!',
             text: 'Your role should be unique.',

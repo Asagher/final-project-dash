@@ -433,7 +433,6 @@
       $(document).on('click', '.edit-record', function () {
         var user_id = $(this).data('id'),
           dtrModal = $('.dtr-bs-modal.show');
-        console.log(user_id);
         // hide responsive modal in small screen
         if (dtrModal.length) {
           dtrModal.modal('hide');

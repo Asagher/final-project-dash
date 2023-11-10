@@ -208,6 +208,9 @@ $(function () {
       }
     });
   }
+  $('#addRoleModal').on('show.bs.modal', function () {
+    $('#addRoleForm')[0].reset();
+  });
 
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization
