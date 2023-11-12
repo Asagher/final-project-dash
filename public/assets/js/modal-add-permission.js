@@ -7,6 +7,13 @@
 // Add permission form validation
 document.addEventListener('DOMContentLoaded', function (e) {
   (function () {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });});
+
+  (function () {
     FormValidation.formValidation(document.getElementById('addPermissionForm'), {
       fields: {
         modalPermissionName: {
@@ -30,6 +37,21 @@ document.addEventListener('DOMContentLoaded', function (e) {
         // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
         autoFocus: new FormValidation.plugins.AutoFocus()
       }
+    }).on('core.form.valid', function () {
+      // Get form data
+      var n = $('#addPermissionForm').serialize();
+      console.log(n);
+
+      $.ajax({
+        data: $('#addPermissionForm').serialize(),
+        url: ''.concat(baseUrl, 'access-permission'),
+        type: 'POST',
+
+
+
+      });
     });
-  })();
+  })
+()
+
 });

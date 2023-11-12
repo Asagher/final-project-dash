@@ -8,7 +8,8 @@
           <h3>Add New Permission</h3>
           <p>Permissions you may use and assign to your users.</p>
         </div>
-        <form id="addPermissionForm" class="row" onsubmit="return false">
+        <form id="addPermissionForm" class="row">
+          @csrf
           <div class="col-12 mb-3">
             <label class="form-label" for="modalPermissionName">Permission Name</label>
             <input type="text" id="modalPermissionName" name="modalPermissionName" class="form-control" placeholder="Permission Name" autofocus />

@@ -160,6 +160,7 @@ use App\Http\Controllers\tables\DatatableExtensions;
 use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
+use Spatie\Permission\Contracts\Permission;
 
 // Admin Route
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:admin', 'auth'])->group(
@@ -285,6 +286,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     ///////permissions
     Route::get('/app/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
+    Route::post('/app/access-permission', [AccessPermission::class, 'store']);
+    Route::resource('/access-permission', PermissionController::class);
 
     // pages
     Route::get('/pages/profile-user', [UserProfile::class, 'index'])->name('pages-profile-user');
