@@ -25,11 +25,9 @@ $(function () {
         {
           data: 'name'
         },
+
         {
-          data: 'assigned_to'
-        },
-        {
-          data: 'created_date'
+          data: 'created_at'
         },
         {
           data: 'action'
@@ -60,35 +58,14 @@ $(function () {
             return '<span class="text-nowrap">' + $name + '</span>';
           }
         },
+
         {
-          // User Role
+          // remove ordering from Name
           targets: 3,
           orderable: false,
           render: function (data, type, full, meta) {
-            var $assignedTo = full['assigned_to'],
-              $output = '';
-            var roleBadgeObj = {
-              Admin: '<a href="' + userList + '"><span class="badge  bg-label-primary m-1">Administrator</span></a>',
-              Manager: '<a href="' + userList + '"><span class="badge  bg-label-warning m-1">Manager</span></a>',
-              Users: '<a href="' + userList + '"><span class="badge  bg-label-success m-1">Users</span></a>',
-              Support: '<a href="' + userList + '"><span class="badge  bg-label-info m-1">Support</span></a>',
-              Restricted:
-                '<a href="' + userList + '"><span class="badge  bg-label-danger m-1">Restricted User</span></a>'
-            };
-            for (var i = 0; i < $assignedTo.length; i++) {
-              var val = $assignedTo[i];
-              $output += roleBadgeObj[val];
-            }
-            return '<span class="text-nowrap">' + $output + '</span>';
-          }
-        },
-        {
-          // remove ordering from Name
-          targets: 4,
-          orderable: false,
-          render: function (data, type, full, meta) {
-            var $date = full['created_date'];
-            return '<span class="text-nowrap">' + $date + '</span>';
+            var $date = new Date(full['created_at']);
+            return '<span class="text-nowrap">' + $date.toDateString() + '</span>';
           }
         },
         {
