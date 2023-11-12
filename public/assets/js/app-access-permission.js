@@ -11,15 +11,29 @@ $(function () {
   // Users List datatable
   if (dataTablePermissions.length) {
     dt_permission = dataTablePermissions.DataTable({
-      ajax: assetsPath + 'json/permissions-list.json', // JSON file to add data
+      processing: true,
+      serverSide: true,
+      ajax: baseUrl + 'access-permission',
       columns: [
         // columns according to JSON
-        { data: '' },
-        { data: 'id' },
-        { data: 'name' },
-        { data: 'assigned_to' },
-        { data: 'created_date' },
-        { data: '' }
+        {
+          data: ''
+        },
+        {
+          data: 'id'
+        },
+        {
+          data: 'name'
+        },
+        {
+          data: 'assigned_to'
+        },
+        {
+          data: 'created_date'
+        },
+        {
+          data: 'action'
+        }
       ],
       columnDefs: [
         {

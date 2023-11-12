@@ -43,7 +43,7 @@ class RoleController extends Controller
       $role->name = $request->modalRoleName;
       $role->update();
 
-      return response()->json(['message' => 'updated', 'data' => $role]);
+      return response()->json(['message' => 'Updated', 'data' => $role]);
     } else {
       // إضافة جديد
 

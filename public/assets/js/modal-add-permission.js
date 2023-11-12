@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
-    });});
+    });
+  });
 
   (function () {
     FormValidation.formValidation(document.getElementById('addPermissionForm'), {
@@ -46,12 +47,33 @@ document.addEventListener('DOMContentLoaded', function (e) {
         data: $('#addPermissionForm').serialize(),
         url: ''.concat(baseUrl, 'access-permission'),
         type: 'POST',
+        success: function success(status) {
+          $('#addPermissionModal').modal('hide');
+          $('#addPermissionForm')[0].reset();
 
+          // sweetalert
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully '.concat(status.message, '!'),
+            text: 'Permission '.concat(status.message, ' Successfully.'),
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        },
+        error: function error(err) {
+          $('#addPermissionModal').modal('hide');
 
-
+          Swal.fire({
+            title: 'Duplicate Entry!',
+            text: 'Your Permission should be unique.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        }
       });
     });
-  })
-()
-
+  })();
 });

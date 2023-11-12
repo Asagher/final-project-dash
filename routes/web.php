@@ -119,7 +119,7 @@ use App\Http\Controllers\user_interface\Spinners;
 use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\my_controller\RoleController;
-
+use App\Http\Controllers\my_controller\PermissionController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
 use App\Http\Controllers\extended_ui\Avatar;
