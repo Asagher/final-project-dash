@@ -100,8 +100,13 @@ class PermissionController extends Controller
     $PermissionName = $request->modalPermissionName;
 
     // update the value
-    $Permissions = Permission::Create(['name' => $request->modalPermissionName, 'guard_name' => 'web']);
-    return response()->json(['message' => 'Created']);
+    if ($request->modalPermissionName) {
+      $Permissions = Permission::Create(['name' => $request->modalPermissionName, 'guard_name' => 'web']);
+      return response()->json(['message' => 'Created']);
+    } else {
+      return response()->json(['message' => 'oooooppo']);
+    }
+
     //     // user updated
     //     return response()->json( 'Updated' );
     // } else {
@@ -133,7 +138,9 @@ class PermissionController extends Controller
    */
   public function edit(string $id)
   {
-    //
+    $permission = Permission::where('id', $id)->first();
+
+    return response()->json($permission);
   }
 
   /**
@@ -141,7 +148,15 @@ class PermissionController extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $permission = Permission::findOrFail($id);
+
+    // Update name
+    $permission->name = $request->editPermissionName;
+
+    // Save
+    if ($permission->save()) {
+      return response()->json(['message' => 'Updated'], 200);
+    }
   }
 
   /**
@@ -149,6 +164,6 @@ class PermissionController extends Controller
    */
   public function destroy(string $id)
   {
-    //
+    $users = Permission::where('id', $id)->delete();
   }
 }

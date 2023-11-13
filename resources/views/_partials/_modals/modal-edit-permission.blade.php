@@ -15,6 +15,8 @@
         <form id="editPermissionForm" class="row" onsubmit="return false">
           <div class="col-sm-9">
             <label class="form-label" for="editPermissionName">Permission Name</label>
+            <input type="text" id="editPermissionId" name="editPermissionId" hidden/>
+
             <input type="text" id="editPermissionName" name="editPermissionName" class="form-control" placeholder="Permission Name" tabindex="-1" />
           </div>
           <div class="col-sm-3 mb-3">

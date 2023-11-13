@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
         modalRoleName: {
           validators: {
             notEmpty: {
-              message: 'Please enter role name'
+              message: 'الرجاء ادخال نوع الصلاحية'
             }
           }
         }

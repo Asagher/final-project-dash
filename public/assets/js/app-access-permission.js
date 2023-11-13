@@ -5,9 +5,13 @@
 'use strict';
 
 $(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
   var dataTablePermissions = $('.datatables-permissions'),
-    dt_permission,
-    userList = baseUrl + 'app/user/list';
+    dt_permission;
   // Users List datatable
   if (dataTablePermissions.length) {
     dt_permission = dataTablePermissions.DataTable({
@@ -60,7 +64,7 @@ $(function () {
         },
 
         {
-          // remove ordering from Name
+          //created_at
           targets: 3,
           orderable: false,
           render: function (data, type, full, meta) {
@@ -76,8 +80,14 @@ $(function () {
           orderable: false,
           render: function (data, type, full, meta) {
             return (
-              '<span class="text-nowrap"><button class="btn btn-sm btn-icon me-2" data-bs-target="#editPermissionModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="bx bx-edit"></i></button>' +
-              '<button class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i></button></span>'
+              '<span class="text-nowrap"><button  class="btn btn-sm btn-icon me-2 edit-record" data-bs-target="#editPermissionModal" data-id="'.concat(
+                full['id'],
+                '" data-bs-toggle="modal" data-bs-dismiss="modal "><i class="bx bx-edit"></i></button>'
+              ) +
+              '<button class="btn btn-sm btn-icon delete-record" data-id="'.concat(
+                full['id'],
+                '" ><i class="bx bx-trash"></i></button></span>'
+              )
             );
           }
         }
@@ -172,8 +182,215 @@ $(function () {
   }
 
   // Delete Record
-  $('.datatables-permissions tbody').on('click', '.delete-record', function () {
-    dt_permission.row($(this).parents('tr')).remove().draw();
+
+  $(document).on('click', '.edit-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+    // hide responsive modal in small screen
+    console.log(user_id + 'gg');
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // get data
+    $.get(''.concat(baseUrl, 'access-permission/').concat(user_id, '/edit'), function (data) {
+      console.log(data.name + 'gg');
+
+      $('#editPermissionId').val(user_id);
+      $('#editPermissionName').val(data.name);
+    });
+  });
+
+  //add
+
+  (function () {
+    FormValidation.formValidation(document.getElementById('addPermissionForm'), {
+      fields: {
+        modalPermissionName: {
+          validators: {
+            notEmpty: {
+              message: 'ادخل اسم الصلاحية'
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap5: new FormValidation.plugins.Bootstrap5({
+          // Use this for enabling/changing valid/invalid class
+          // eleInvalidClass: '',
+          eleValidClass: '',
+          rowSelector: '.col-12'
+        }),
+        submitButton: new FormValidation.plugins.SubmitButton(),
+        // Submit the form when all fields are valid
+        // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+        autoFocus: new FormValidation.plugins.AutoFocus()
+      }
+    }).on('core.form.valid', function () {
+      // Get form data
+      var n = $('#addPermissionForm').serialize();
+      console.log(n);
+
+      $.ajax({
+        data: $('#addPermissionForm').serialize(),
+        url: ''.concat(baseUrl, 'access-permission'),
+        type: 'POST',
+        success: function success(status) {
+          dt_permission.draw();
+          $('#addPermissionModal').modal('hide');
+          $('#addPermissionForm')[0].reset();
+
+          // sweetalert
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully '.concat(status.message, '!'),
+            text: 'Permission '.concat(status.message, ' Successfully.'),
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        },
+        error: function error(err) {
+          $('#addPermissionModal').modal('hide');
+
+          Swal.fire({
+            title: 'Duplicate Entry!',
+            text: 'Your Permission should be unique.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        }
+      });
+    });
+  })();
+
+  /// edit
+  (function () {
+    FormValidation.formValidation(document.getElementById('editPermissionForm'), {
+      fields: {
+        editPermissionName: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter permission name'
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap5: new FormValidation.plugins.Bootstrap5({
+          // Use this for enabling/changing valid/invalid class
+          // eleInvalidClass: '',
+          eleValidClass: '',
+          rowSelector: '.col-sm-9'
+        }),
+        submitButton: new FormValidation.plugins.SubmitButton(),
+        // Submit the form when all fields are valid
+        // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+        autoFocus: new FormValidation.plugins.AutoFocus()
+      }
+    }).on('core.form.valid', function () {
+      // Get form data to edit theen update
+      var n = $('#editPermissionForm').serialize();
+      console.log(n);
+      var permission_id = $('#editPermissionId').val();
+      console.log(permission_id);
+      $.ajax({
+        data: $('#editPermissionForm').serialize(),
+        url: ''.concat(baseUrl, 'access-permission/').concat(permission_id),
+        method: 'PUT',
+        success: function success(status) {
+          dt_permission.draw();
+          $('#editPermissionModal').modal('hide');
+          $('#editPermissionForm')[0].reset();
+
+          // sweetalert
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully '.concat(status.message, '!'),
+            text: 'Permission '.concat(status.message, ' Successfully.'),
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        },
+        error: function error(err) {
+          $('#editPermissionModal').modal('hide');
+
+          Swal.fire({
+            title: 'Duplicate Entry!',
+            text: 'Your Permission should be unique.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+        }
+      });
+    });
+  })();
+
+  //delete
+
+  // Delete Record
+  $(document).on('click', '.delete-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // sweetalert for confirmation of delete
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary me-3',
+        cancelButton: 'btn btn-label-secondary'
+      },
+      buttonsStyling: false
+    }).then(function (result) {
+      if (result.value) {
+        // delete the data
+        $.ajax({
+          type: 'DELETE',
+          url: ''.concat(baseUrl, 'access-permission/').concat(user_id),
+          success: function success() {
+            dt_permission.draw();
+          },
+          error: function error(_error) {
+            console.log(_error);
+          }
+        });
+
+        // success sweetalert
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'The user has been deleted!',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'Cancelled',
+          text: 'The User is not deleted!',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      }
+    });
   });
 
   // Filter form control to default size
