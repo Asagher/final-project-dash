@@ -22,12 +22,7 @@
             <div class="table-responsive">
               <table class="table table-permissions">
                 <tbody>
-                  <tr>
-                    <td class="text-nowrap fw-medium">Administrator Access <i class="bx bx-info-circle bx-xs" data-bs-toggle="tooltip" data-bs-placement="top" title="Allows a full access to the system"></i></td>
-                    <td>
-
-                    </td>
-                  </tr>
+                  
                   @foreach ($roles as $role)
                     <tr>
                       <td class="text-nowrap fw-medium">{{$role->name}} <i class="bx bx-info-circle bx-xs" data-bs-toggle="tooltip" data-bs-placement="top" title="Allows a full access to the system"></i></td>
