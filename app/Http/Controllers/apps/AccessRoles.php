@@ -4,6 +4,7 @@ namespace App\Http\Controllers\apps;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -11,32 +12,13 @@ class AccessRoles extends Controller {
     public function index() {
         $permissions = Permission::all();
         $roles = Role::all();
-        return view( 'content.apps.app-access-roles', \compact( 'permissions', 'roles' ) )->render() ;
+        foreach($roles as $role)
+        $query =DB::table('model_has_roles')->get('role_id');
+        return view( 'content.apps.app-access-roles',
+        [ 'permissions' =>$permissions,
+        'roles' =>$roles ,
+        'total'=>$query
+         ] );
     }
 
-    public function store( Request $request ) {
-        dd( $request );
-        $roleID = $request->id;
-
-        if ( $roleID ) {
-            // update the value
-            $roles = Role::updateOrCreate( [ 'id' => $roleID ], [ 'name' => $request->modalRoleName, 'guard_name' => 'web' ] );
-
-            // user updated
-            return response()->json( 'Updated' );
-        } else {
-            // create new one if email is unique
-            $roleName = Role::where( 'name', $request->name )->first();
-
-            if ( empty( $roleName ) ) {
-                $roles = Role::updateOrCreate( [ 'id' => $roleID ], [ 'name' => $request->name, 'guard_name' => 'web' ] );
-
-                // user created
-                return response()->json( 'Created' );
-            } else {
-                // user already exist
-                return response()->json( [ 'message' => 'already exits' ], 422 );
-            }
-        }
-    }
 }

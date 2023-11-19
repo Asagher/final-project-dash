@@ -26,8 +26,6 @@
 
 @section('page-script')
 <script src="{{asset('assets/js/app-access-permission.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-permission.js')}}"></script>
-<script src="{{asset('assets/js/modal-edit-permission.js')}}"></script>
 @endsection
 
 @section('content')

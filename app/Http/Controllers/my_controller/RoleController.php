@@ -2,97 +2,86 @@
 
 namespace App\Http\Controllers\my_controller;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use  App\Http\Controllers\Controller;
+use function Laravel\Prompts\select;
 
-class RoleController extends Controller
-{
-  /**
-   * Display a listing of the resource.
-   */
-  public function index()
-  {
-    $data = Role::all();
+class RoleController extends Controller {
+    /**
+    * Display a listing of the resource.
+    */
 
-    if ($data) {
-      return response()->json($data);
-    } else {
-      return response()->json('null');
+    public function index() {
+        $data = Role::all();
+
+        if ( $data ) {
+            return response()->json( $data );
+        } else {
+            return response()->json( 'null' );
+        }
     }
-  }
 
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
+    /**
+    * Show the form for creating a new resource.
+    */
 
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    // Controller
+    public function create() {
+        //
+    }
 
-    if ($request->modalRoleId) {
-      // تعديل
-      $role = Role::find($request->modalRoleId);
-      $role->name = $request->modalRoleName;
-      $role->update();
+    /**
+    * Store a newly created resource in storage.
+    */
 
-      return response()->json(['message' => 'Updated', 'data' => $role]);
-    } else {
-      // إضافة جديد
-
-      $roleName = Role::where('name', $request->modalRoleName)->first();
-
-      if (empty($roleName)) {
-        // update the value
-        $roles = Role::Create(['name' => $request->modalRoleName, 'guard_name' => 'web']);
-
+    public function store( Request $request ) {
+        $role = Role::Create( [ 'name' => $request->modalRoleName, 'guard_name' => 'web' ] )->syncPermissions( $request->permission_role );
+        if ( $role )
         // user updated
-        return response()->json(['message' => 'Created', 'data' => $roles]);
-      } else {
-        return response()->json(['message' => 'already exits'], 422);
-      }
-      return response()->json(['message' => 'Not Updated'], 422);
+        return response()->json( [ 'message' => 'created' ] );
+        else
+        return response()->json( [ 'message' => 'error' ] );
     }
-  }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(string $id)
-  {
-    //
-  }
+    /**
+    * Display the specified resource.
+    */
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(string $id)
-  {
-    $roles = Role::where('id', $id)->first();
+    public function show( string $id ) {
+        //
+    }
 
-    return response()->json($roles);
-  }
+    /**
+    * Show the form for editing the specified resource.
+    */
 
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, string $id)
-  {
-    //
-  }
+    public function edit( string $id ) {
+        $roles = Role::where( 'id', $id )->first();
 
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(string $id)
-  {
-    //
-  }
+        return response()->json( $roles );
+    }
+
+    /**
+    * Update the specified resource in storage.
+    */
+
+    public function update( Request $request, string $id ) {
+        $role = Role::findOrFail( $id );
+
+        // Update name
+        $role->name = $request->editRoleName;
+
+        // Save
+        if ( $role->save() ) {
+            return response()->json( [ 'message' => 'Updated' ], 200 );
+        }
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    */
+
+    public function destroy( string $id ) {
+        //
+    }
 }
