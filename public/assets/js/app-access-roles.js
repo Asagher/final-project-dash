@@ -314,9 +314,22 @@ $(function () {
 
     // get data
     $.get(''.concat(baseUrl, 'access-roles/').concat(role_id, '/edit'), function (data) {
-
       $('#editRoleId').val(role_id);
       $('#editRoleName').val(data.name);
+      const m=[data.permissions];
+      console.log(m);
+      let checkboxes = document.querySelectorAll('input[id="editCheckbox"]');
+            let values = [];
+            for (let j = 0; j < m[0].length; j++)
+              { 
+                values.push(m[0][j].name);
+              }
+            checkboxes.forEach(c => {
+                if(values.includes(c.value))
+                  c.checked=true;
+                else
+                  c.checked=false;
+            });
     });
   });
   ////////update///////////

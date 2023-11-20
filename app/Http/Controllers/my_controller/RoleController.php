@@ -35,8 +35,8 @@ class RoleController extends Controller {
     */
 
     public function store( Request $request ) {
-        $role = Role::Create( [ 'name' => $request->modalRoleName, 'guard_name' => 'web' ] )->syncPermissions( $request->permission_role );
-        if ( $role )
+        $roles = Role::Create( [ 'name' => $request->modalRoleName, 'guard_name' => 'web' ] )->givePermissionTo( $request->permission_role );
+        if ( $roles )
         // user updated
         return response()->json( [ 'message' => 'created' ] );
         else
@@ -57,8 +57,9 @@ class RoleController extends Controller {
 
     public function edit( string $id ) {
         $roles = Role::where( 'id', $id )->first();
-
-        return response()->json( $roles );
+        if ( $roles->permissions ) {
+            return response()->json( $roles );
+        }
     }
 
     /**
@@ -67,10 +68,9 @@ class RoleController extends Controller {
 
     public function update( Request $request, string $id ) {
         $role = Role::findOrFail( $id );
-
         // Update name
         $role->name = $request->editRoleName;
-
+        $role->syncPermissions( $request->editCheckbox );
         // Save
         if ( $role->save() ) {
             return response()->json( [ 'message' => 'Updated' ], 200 );

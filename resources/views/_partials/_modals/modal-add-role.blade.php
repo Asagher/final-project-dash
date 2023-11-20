@@ -20,36 +20,16 @@
             <h4>Role Permissions</h4>
             <!-- Permission table -->
             <div class="table-responsive">
-              <table class="table table-permissions">
-                <tbody>
-                  @foreach ($roles as $role)
-                    <tr>
-                      <td class="text-nowrap fw-medium">{{$role->name}} <i class="bx bx-info-circle bx-xs" data-bs-toggle="tooltip" data-bs-placement="top" title="Allows a full access to the system"></i></td>
-                      <td>
-                        <div class="d-flex">
-                          @if ($role->name=='admin')
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="selectAll" />
-                              <label class="form-check-label" for="selectAll">
-                                Select All
-                              </label>
-                            </div>
-                            @else
-                              @foreach ($permissions as $permission)
-                                <div class="form-check me-3 me-lg-5">
-                                  <input class="form-check-input" type="checkbox" id="permission_role" name="permission_role[]" value="{{$permission->name}}" />
-                                  <label class="form-check-label" for="permission">
-                                    {{$permission->name}}
-                                  </label>
-                                </div>
-                              @endforeach
-                          @endif
+                <div class="d-flex">
+                      @foreach ($permissions as $permission)
+                        <div class="form-check me-3 me-lg-5">
+                          <input class="form-check-input" type="checkbox" id="permission_role" name="permission_role[]" value="{{$permission->name}}" />
+                          <label class="form-check-label" for="permission">
+                            {{$permission->name}}
+                          </label>
                         </div>
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                      @endforeach
+                </div>
             </div>
             <!-- Permission table -->
           </div>
