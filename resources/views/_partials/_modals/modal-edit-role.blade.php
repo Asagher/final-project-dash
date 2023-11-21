@@ -20,20 +20,21 @@
                     <div class="col-12">
                         <h4>Role Permissions</h4>
                         <!-- Permission table -->
-                        <div class="table-responsive">
-                          <div class="d-flex">
+
+                          <div class="d-flex flex-wrap row gx-4 row gap-2">
                             @foreach ($permissions as $permission)
-                            <div class="form-check me-3 me-lg-5 item">
-                                <input class="form-check-input" type="checkbox"id="editCheckbox"  name="editCheckbox[]" value="{{$permission->name}}"/>
+                            <div class="form-check me-3 me-lg-5 item col">
+                                <input class="form-check-input " type="checkbox"id="editCheckbox"  name="editCheckbox[]" value="{{$permission->name}}"/>
                                 <label class="form-check-label" for="userManagementRead">
                                     {{$permission->name}}
                                 </label>
                             </div>
                             @endforeach
                           </div>
-                        </div>
+
                         <!-- Permission table -->
                     </div>
+
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
                         <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal"
