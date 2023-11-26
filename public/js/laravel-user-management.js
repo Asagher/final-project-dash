@@ -23,7 +23,8 @@
       var dt_user_table = $('.datatables-users'),
         select2 = $('.select2'),
         userView = baseUrl + 'app/user/view/account',
-        offCanvasForm = $('#offcanvasAddUser');
+        offCanvasForm = $('#offcanvasAddUser'),
+        offCanvasFormEdit = $('#offcanvasEditUser');
       if (select2.length) {
         var $this = select2;
         $this.wrap('<div class="position-relative"></div>').select2({
@@ -157,7 +158,7 @@
                   '<div class="d-inline-block text-nowrap">' +
                   '<button class="btn btn-sm btn-icon edit-record" data-id="'.concat(
                     full['id'],
-                    '" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="bx bx-edit"></i></button>'
+                    '" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditUser"><i class="bx bx-edit"></i></button>'
                   ) +
                   '<button class="btn btn-sm btn-icon delete-record" data-id="'.concat(
                     full['id'],
@@ -371,84 +372,6 @@
         });
       }
 
-      // Delete Record
-      $(document).on('click', '.delete-record', function () {
-        var user_id = $(this).data('id'),
-          dtrModal = $('.dtr-bs-modal.show');
-
-        // hide responsive modal in small screen
-        if (dtrModal.length) {
-          dtrModal.modal('hide');
-        }
-
-        // sweetalert for confirmation of delete
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, delete it!',
-          customClass: {
-            confirmButton: 'btn btn-primary me-3',
-            cancelButton: 'btn btn-label-secondary'
-          },
-          buttonsStyling: false
-        }).then(function (result) {
-          if (result.value) {
-            // delete the data
-            $.ajax({
-              type: 'DELETE',
-              url: ''.concat(baseUrl, 'user-list/').concat(user_id),
-              success: function success() {
-                dt_user.draw();
-              },
-              error: function error(_error) {
-                console.log(_error);
-              }
-            });
-
-            // success sweetalert
-            Swal.fire({
-              icon: 'success',
-              title: 'Deleted!',
-              text: 'The user has been deleted!',
-              customClass: {
-                confirmButton: 'btn btn-success'
-              }
-            });
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire({
-              title: 'Cancelled',
-              text: 'The User is not deleted!',
-              icon: 'error',
-              customClass: {
-                confirmButton: 'btn btn-success'
-              }
-            });
-          }
-        });
-      });
-
-      // edit record
-      $(document).on('click', '.edit-record', function () {
-        var user_id = $(this).data('id'),
-          dtrModal = $('.dtr-bs-modal.show');
-        // hide responsive modal in small screen
-        if (dtrModal.length) {
-          dtrModal.modal('hide');
-        }
-
-        // changing the title of offcanvas
-        $('#offcanvasAddUserLabel').html('Edit User');
-
-        // get data
-        $.get(''.concat(baseUrl, 'user-list/').concat(user_id, '/edit'), function (data) {
-          $('#user_id').val(data.id);
-          $('#add-user-fullname').val(data.name);
-          $('#add-user-email').val(data.email);
-        });
-      });
-
       // changing the title
       $('.add-new').on('click', function () {
         $('#user_id').val(''); //reseting input field
@@ -459,13 +382,11 @@
       // ? setTimeout used for multilingual table initialization
       setTimeout(function () {
         $('.dataTables_filter .form-control').removeClass('form-control-sm');
-        $('.dataTables_length .form-select').removeClass('form-select-sm');
+        $('.dataTables_length .form-check-input').removeClass('form-check-input-sm');
       }, 300);
 
       // validating form and updating user's data
       var addNewUserForm = document.getElementById('addNewUserForm');
-
-      // user form validation
       var fv = FormValidation.formValidation(addNewUserForm, {
         fields: {
           name: {
@@ -475,6 +396,7 @@
               }
             }
           },
+
           email: {
             validators: {
               notEmpty: {
@@ -485,10 +407,23 @@
               }
             }
           },
-          userContact: {
+          contact: {
             validators: {
               notEmpty: {
                 message: 'Please enter your contact'
+              }
+            }
+          },
+          password: {
+            validators: {
+              notEmpty: {
+                message: 'Please enter password'
+              }
+            }
+          },password_confirmation: {
+            validators: {
+              notEmpty: {
+                message: 'Please enter password_confirmation'
               }
             }
           },
@@ -524,12 +459,11 @@
           success: function success(status) {
             dt_user.draw();
             offCanvasForm.offcanvas('hide');
-
-            // sweetalert
+                    // sweetalert
             Swal.fire({
               icon: 'success',
-              title: 'Successfully '.concat(status, '!'),
-              text: 'User '.concat(status, ' Successfully.'),
+              title: 'Successfully '.concat(status.message, '!'),
+              text: 'User '.concat(status.message, ' Successfully.'),
               customClass: {
                 confirmButton: 'btn btn-success'
               }
@@ -549,23 +483,224 @@
         });
       });
 
-      // clearing form data when offcanvas hidden
+  // edit record///////////
+  $(document).on('click', '.edit-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // get data
+    $.get(''.concat(baseUrl, 'user-list/').concat(user_id, '/edit'), function (data) {
+      $('#edit_id').val(data.id);
+      $('#edit-user-fullname').val(data.name);
+      $('#edit-user-email').val(data.email);
+      $('#edit-contact').val(data.contact);
+      const m=[data.roles];
+
+      let checkboxes = document.querySelectorAll('input[id="editCheckbox"]');
+            let values = [];
+            for (let j = 0; j < m[0].length; j++)
+              {
+                values.push(m[0][j].name);
+              }
+            checkboxes.forEach(c => {
+                if(values.includes(c.value))
+                  c.checked=true;
+                else
+                  c.checked=false;
+            });
+
+    });
+  });
+
+///uodate//////
+  (function () {
+      var addNewUserForm = document.getElementById('editNewUserForm');
+      FormValidation.formValidation(addNewUserForm,  {
+        fields: {
+            name: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter fullname'
+                }
+              }
+            },
+
+            email: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter your email'
+                },
+                emailAddress: {
+                  message: 'The value is not a valid email address'
+                }
+              }
+            },
+            contact: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter your contact'
+                }
+              }
+            },
+            password: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter password'
+                }
+              }
+            },password_confirmation: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter password_confirmation'
+                }
+              }
+            },
+            company: {
+              validators: {
+                notEmpty: {
+                  message: 'Please enter your company'
+                }
+              }
+            }
+          },
+          plugins: {
+            trigger: new FormValidation.plugins.Trigger(),
+            bootstrap5: new FormValidation.plugins.Bootstrap5({
+              // Use this for enabling/changing valid/invalid class
+              eleValidClass: '',
+              rowSelector: function rowSelector(field, ele) {
+                // field is the field name & ele is the field element
+                return '.mb-3';
+              }
+            }),
+            submitButton: new FormValidation.plugins.SubmitButton(),
+            // Submit the form when all fields are valid
+            // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+            autoFocus: new FormValidation.plugins.AutoFocus()
+          }
+      }).on('core.form.valid', function () {
+        // Get form data
+        var user_id = $('#edit_id').val();
+
+        $.ajax({
+          data: $('#editNewUserForm').serialize(),
+          url: ''.concat(baseUrl, 'user-list/').concat(user_id),
+          method: 'PUT',
+          success: function success(status) {
+              dt_user.draw();
+              offCanvasFormEdit.offcanvas('hide');
+
+              // sweetalert
+              Swal.fire({
+                icon: 'success',
+                title: 'Successfully '.concat(status.message, '!'),
+                text: 'User '.concat(status.message, ' Successfully.'),
+                customClass: {
+                  confirmButton: 'btn btn-success'
+                }
+              });
+            },
+            error: function error(err) {
+              offCanvasFormEdit.offcanvas('hide');
+              Swal.fire({
+                title: 'Duplicate Entry!',
+                text: 'Your email should be unique.',
+                icon: 'error',
+                customClass: {
+                  confirmButton: 'btn btn-success'
+                }
+              });
+            }
+        });
+      });
+    })();
+
+  // Delete Record
+  $(document).on('click', '.delete-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // sweetalert for confirmation of delete
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      customClass: {
+        confirmButton: 'btn btn-primary me-3',
+        cancelButton: 'btn btn-label-secondary'
+      },
+      buttonsStyling: false
+    }).then(function (result) {
+      if (result.value) {
+        // delete the data
+        $.ajax({
+          type: 'DELETE',
+          url: ''.concat(baseUrl, 'user-list/').concat(user_id),
+          success: function success() {
+            dt_user.draw();
+          },
+          error: function error(_error) {
+            console.log(_error);
+          }
+        });
+
+        // success sweetalert
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'The user has been deleted!',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'Cancelled',
+          text: 'The User is not deleted!',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      }
+    });
+  });
+
+  // clearing form data when offcanvas hidden
       offCanvasForm.on('hidden.bs.offcanvas', function () {
         fv.resetForm(true);
       });
-      var phoneMaskList = document.querySelectorAll('.phone-mask');
+      // var phoneMaskList = document.querySelectorAll('.phone-mask');
 
-      // Phone Number
-      if (phoneMaskList) {
-        phoneMaskList.forEach(function (phoneMask) {
-          new Cleave(phoneMask, {
-            phone: true,
-            phoneRegionCode: 'US'
-          });
-        });
-      }
+      // // Phone Number
+      // if (phoneMaskList) {
+      //   phoneMaskList.forEach(function (phoneMask) {
+      //     new Cleave(phoneMask, {
+      //       phone: true,
+      //       phoneRegionCode: 'US'
+      //     });
+      //   });
+      // }
     });
     /******/ return __webpack_exports__;
     /******/
   })();
+
+
 });
+
+
+
+
+

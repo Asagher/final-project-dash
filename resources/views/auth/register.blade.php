@@ -50,6 +50,15 @@ $customizerHidden = 'customizer-hide';
             @enderror
           </div>
           <div class="mb-3">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact" name="contact" placeholder="+1 (609) 988-44-11" autofocus value="{{ old('contact') }}" />
+            @error('contact')
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
+            @enderror
+          </div>
+          <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{ old('email') }}" />
             @error('email')
