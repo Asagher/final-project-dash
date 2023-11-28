@@ -21,6 +21,8 @@ if (commentEditor) {
 // Datatable (jquery)
 
 $(function () {
+
+
   let borderColor, bodyBg, headingColor;
 
   if (isDarkStyle) {
@@ -34,7 +36,8 @@ $(function () {
   }
 
   // Variable declaration for category list table
-  var dt_category_list_table = $('.datatables-category-list');
+  var dt_category_list_table = $('.datatables-category-list'),
+  offCanvasForm = $('#offcanvasEcommerceCategoryList');
 
   //select2 for dropdowns in offcanvas
 
@@ -48,7 +51,10 @@ $(function () {
       });
     });
   }
-
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }});
   // Customers List Datatable
 
   if (dt_category_list_table.length) {
@@ -242,20 +248,23 @@ $(function () {
     dt_category.row($(this).parents('tr')).remove().draw();
   });
 
+    $('.add-new').on('click', function () {
+    $('#user_id').val(''); //reseting input field
+    $('#offcanvasEcommerceCategoryListLabel').html('Add Category');
+  });
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization
   setTimeout(() => {
     $('.dataTables_filter .form-control').removeClass('form-control-sm');
     $('.dataTables_length .form-select').removeClass('form-select-sm');
   }, 300);
-});
 
-//For form validation
-(function () {
-  const eCommerceCategoryListForm = document.getElementById('eCommerceCategoryListForm');
+
+  //For form validation
+
 
   //Add New customer Form Validation
-  const fv = FormValidation.formValidation(eCommerceCategoryListForm, {
+  const fv = FormValidation.formValidation(document.getElementById('eCommerceCategoryListForm'), {
     fields: {
       categoryTitle: {
         validators: {
@@ -263,11 +272,12 @@ $(function () {
             message: 'Please enter category title'
           }
         }
-      },
-      slug: {
+      }
+      ,
+      price_per_weight: {
         validators: {
           notEmpty: {
-            message: 'Please enter slug'
+            message: 'Please enter category img'
           }
         }
       }
@@ -287,5 +297,46 @@ $(function () {
       // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
       autoFocus: new FormValidation.plugins.AutoFocus()
     }
+  }).on('core.form.valid', function () {
+    // adding or updating user when form successfully validate
+    var form=$('#eCommerceCategoryListForm').serialize();
+    $.ajax({
+      data:form,
+      url:  ''.concat(baseUrl, 'product-category'),
+      type: 'POST',
+      success: function (status) {
+        dt_category.draw();
+        offCanvasForm.offcanvas('hide');
+        //sweetalert
+        Swal.fire({
+            icon: 'success',
+            title: 'Successfully '.concat(status.message, '!'),
+            text: 'Role '.concat(status.message, ' Successfully.'),
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+      },
+      error: function (err) {
+        offCanvasForm.offcanvas('hide');
+        Swal.fire({
+            title: 'Duplicate Entry!',
+            text: 'Your role should be unique.',
+            icon: 'error',
+            customClass: {
+              confirmButton: 'btn btn-success'
+            }
+          });
+      }
+    });
+
   });
-})();
+  // clearing form data when offcanvas hidden
+  offCanvasForm.on('hidden.bs.offcanvas', function () {
+    fv.resetForm(true);
+  });
+
+
+
+});
+

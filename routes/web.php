@@ -119,6 +119,7 @@ use App\Http\Controllers\user_interface\Spinners;
 use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\my_controller\RoleController;
+use App\Http\Controllers\my_controller\CategoryController;
 use App\Http\Controllers\my_controller\PermissionController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
@@ -216,6 +217,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
       'app-ecommerce-product-category'
     );
+    Route::resource('/product-category', CategoryController::class);
+
     Route::get('/app/ecommerce/order/list', [EcommerceOrderList::class, 'index'])->name('app-ecommerce-order-list');
     Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name(
       'app-ecommerce-order-details'

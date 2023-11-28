@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/typography.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/quill/editor.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+
 @endsection
 
 @section('page-style')
@@ -26,6 +28,11 @@
 <script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/quill/quill.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+
 @endsection
 
 @section('page-script')
@@ -58,40 +65,24 @@
   <!-- Offcanvas to add new customer -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList" aria-labelledby="offcanvasEcommerceCategoryListLabel">
     <!-- Offcanvas Header -->
-    <div class="offcanvas-header py-4">
-      <h5 id="offcanvasEcommerceCategoryListLabel" class="offcanvas-title">Add Category</h5>
+    <div class="offcanvas-header py-4" id="offcanvasEcommerceCategoryListLabel">
+      <h5  class="offcanvas-title">Add Category</h5>
       <button type="button" class="btn-close bg-label-secondary text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <!-- Offcanvas Body -->
     <div class="offcanvas-body border-top">
-      <form class="pt-0" id="eCommerceCategoryListForm" onsubmit="return true">
+      <form class="pt-0" id="eCommerceCategoryListForm">
         <!-- Title -->
         <div class="mb-3">
           <label class="form-label" for="ecommerce-category-title">Title</label>
           <input type="text" class="form-control" id="ecommerce-category-title" placeholder="Enter category title" name="categoryTitle" aria-label="category title">
         </div>
-        <!-- Slug -->
-        <div class="mb-3">
-          <label class="form-label" for="ecommerce-category-slug">Slug</label>
-          <input type="text" id="ecommerce-category-slug" class="form-control" placeholder="Enter slug" aria-label="slug" name="slug">
-        </div>
+
         <!-- Image -->
-        <div class="mb-3">
+        {{-- <div class="mb-3">
           <label class="form-label" for="ecommerce-category-image">Attachment</label>
-          <input class="form-control" type="file" id="ecommerce-category-image">
-        </div>
-        <!-- Parent category -->
-        <div class="mb-3 ecommerce-select2-dropdown">
-          <label class="form-label" for="ecommerce-category-parent-category">Parent category</label>
-          <select id="ecommerce-category-parent-category" class="select2 form-select" data-placeholder="Select parent category">
-            <option value="">Select parent Category</option>
-            <option value="Household">Household</option>
-            <option value="Management">Management</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Office">Office</option>
-            <option value="Automotive">Automotive</option>
-          </select>
-        </div>
+          <input class="form-control" type="file" id="ecommerce-category-image" name="img">
+        </div> --}}
         <!-- Description -->
         <div class="mb-3">
           <label class="form-label">Description</label>
@@ -114,16 +105,12 @@
           </div>
 
         </div>
-        <!-- Status -->
-        <div class="mb-4 ecommerce-select2-dropdown">
-          <label class="form-label">Select category status</label>
-          <select id="ecommerce-category-status" class="select2 form-select" data-placeholder="Select category status">
-            <option value="">Select category status</option>
-            <option value="Scheduled">Scheduled</option>
-            <option value="Publish">Publish</option>
-            <option value="Inactive">Inactive</option>
-          </select>
+        <!-- price -->
+        <div class="mb-3">
+          <label class="form-label" for="ecommerce-category-title">Price per weight</label>
+          <input type="text" class="form-control" id="ecommerce-category-title" placeholder="Enter category title" name="price_per_weight" aria-label="category title">
         </div>
+
         <!-- Submit and reset -->
         <div class="mb-3">
           <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Add</button>
