@@ -5,17 +5,30 @@
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/form-wizard-icons.js')}}"></script>
+{{-- <script src="{{asset('assets/js/form-wizard-icons.js')}}"></script> --}}
+<script src="{{asset('js/myform-wizard-icons.js')}}"></script>
+
 @endsection
 
 @section('content')
@@ -32,7 +45,8 @@
   <!-- Default Icons Wizard -->
   <div class="col-12 mb-4">
     <small class="text-light fw-medium">Basic Icons</small>
-    <div class="bs-stepper wizard-icons wizard-icons-example mt-2">
+
+    <div  class="bs-stepper wizard-icons wizard-icons-example mt-2">
 
       <div class="bs-stepper-header">
         <div class="step" data-target="#account-details">
@@ -42,7 +56,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-account.svg#wizardAccount')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Account Details</span>
+            <span class="bs-stepper-label">Sender Info</span>
           </button>
         </div>
         <div class="line">
@@ -55,7 +69,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-personal.svg#wizardPersonal')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Personal Info</span>
+            <span class="bs-stepper-label">Reciver Info</span>
           </button>
         </div>
         <div class="line">
@@ -68,10 +82,10 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-address.svg#wizardAddress')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Address</span>
+            <span class="bs-stepper-label">Shipment Info</span>
           </button>
         </div>
-        <div class="line">
+        {{-- <div class="line">
           <i class="bx bx-chevron-right"></i>
         </div>
         <div class="step" data-target="#social-links">
@@ -83,7 +97,7 @@
             </span>
             <span class="bs-stepper-label">Social Links</span>
           </button>
-        </div>
+        </div> --}}
         <div class="line">
           <i class="bx bx-chevron-right"></i>
         </div>
@@ -99,36 +113,44 @@
         </div>
       </div>
       <div class="bs-stepper-content">
-        <form onSubmit="return false">
+        {{-- myformmm --}}
+        <form onSubmit="return false" id="wizard-validation-form" >
           <!-- Account Details -->
           <div id="account-details" class="content">
             <div class="content-header mb-3">
-              <h6 class="mb-0">Account Details</h6>
-              <small>Enter Your Account Details.</small>
+              <h6 class="mb-0">Sender Info</h6>
+              <small>Enter Sender Info.</small>
             </div>
             <div class="row g-3">
-              <div class="col-sm-6">
-                <label class="form-label" for="username">Username</label>
-                <input type="text" id="username" class="form-control" placeholder="johndoe" />
+              <div class="col-sm-4">
+                <label class="form-label" for="first_name_s">First Name</label>
+                <input type="text" id="first_name_s" name="first_name_s" class="form-control" placeholder="johndoe" />
               </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="email">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
+              <div class="col-sm-4">
+                <label class="form-label" for="middle_name_s">Middle Name</label>
+                <input type="text" id="middle_name_s" name="middle_name_s" class="form-control" placeholder="johndoe" />
               </div>
-              <div class="col-sm-6 form-password-toggle">
-                <label class="form-label" for="password">Password</label>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password2" />
-                  <span class="input-group-text cursor-pointer" id="password2"><i class="bx bx-hide"></i></span>
+              <div class="col-sm-4">
+                <label class="form-label" for="last_name_s">Last Name</label>
+                <input type="text" id="last_name_s" name="last_name_s" class="form-control" placeholder="johndoe" />
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="national_id_s">National Id</label>
+                <input type="text" id="national_id_s" name="national_id_s" class="form-control" placeholder="National Id" />
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="phone_s">Phone</label>
+                <input type="text" id="phone_s" name="phone_s" class="form-control" placeholder="johndoe" />
+              </div>
+                <div class="col-sm-4">
+                  <label class="form-label" for="email_s">Email</label>
+                  <input type="email" id="email_s" name="email_s" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
                 </div>
-              </div>
-              <div class="col-sm-6 form-password-toggle">
-                <label class="form-label" for="confirm-password">Confirm Password</label>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="confirm-password2" />
-                  <span class="input-group-text cursor-pointer" id="confirm-password2"><i class="bx bx-hide"></i></span>
+                <div class="col-sm-12">
+                  <label class="form-label" for="address_s">Address</label>
+                  <input type="text" id="address_s" name="address_s" class="form-control" placeholder="Enter Address" />
                 </div>
-              </div>
+
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-label-secondary btn-prev" disabled>
                   <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
@@ -144,37 +166,36 @@
           <!-- Personal Info -->
           <div id="personal-info" class="content">
             <div class="content-header mb-3">
-              <h6 class="mb-0">Personal Info</h6>
-              <small>Enter Your Personal Info.</small>
+              <h6 class="mb-0">Reciver Info</h6>
+              <small>Enter Reciver Info.</small>
             </div>
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label class="form-label" for="first-name">First Name</label>
-                <input type="text" id="first-name" class="form-control" placeholder="John" />
+            <div class="row g-3"> <div class="col-sm-4">
+              <label class="form-label" for="first_name_r">First Name</label>
+              <input type="text" id="first_name_r" name="first_name_r" class="form-control" placeholder="johndoe" />
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="middle_name_r">Middle Name</label>
+              <input type="text" id="middle_name_r" name="middle_name_r" class="form-control" placeholder="johndoe" />
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="last_name_r">Last Name</label>
+              <input type="text" id="last_name_r" name="last_name_r" class="form-control" placeholder="johndoe" />
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="national_id_r">National Id</label>
+              <input type="text" id="national_id_r" name="national_id_r" class="form-control" placeholder="National Id" />
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="phone_r">Phone</label>
+              <input type="text" id="phone_r" name="phone_r" class="form-control" placeholder="johndoe" />
+            </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="email_r">Email</label>
+                <input type="email" id="email_r" name="email_r" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
               </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="last-name">Last Name</label>
-                <input type="text" id="last-name" class="form-control" placeholder="Doe" />
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="country">Country</label>
-                <select class="select2" id="country">
-                  <option label=" "></option>
-                  <option>UK</option>
-                  <option>USA</option>
-                  <option>Spain</option>
-                  <option>France</option>
-                  <option>Italy</option>
-                  <option>Australia</option>
-                </select>
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="language">Language</label>
-                <select class="selectpicker w-auto" id="language" data-style="btn-transparent" data-icon-base="bx" data-tick-icon="bx-check text-white" multiple>
-                  <option>English</option>
-                  <option>French</option>
-                  <option>Spanish</option>
-                </select>
+              <div class="col-sm-12">
+                <label class="form-label" for="address_r">Address</label>
+                <input type="text" id="address_r" name="address_r" class="form-control" placeholder="Enter Address" />
               </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
@@ -188,29 +209,50 @@
               </div>
             </div>
           </div>
-          <!-- Address -->
+          <!-- Shipment info -->
           <div id="address" class="content">
-            <div class="content-header mb-3">
-              <h6 class="mb-0">Address</h6>
-              <small>Enter Your Address.</small>
+            <div class="content-header justify-content-between mb-3 d-flex">
+              <div>
+                <h6 class="mb-0">Shipment</h6>
+              <small>Enter Shipment info.</small>
+              </div>
+              <div class="d-flex justify-content-end">
+                 <button class="btn btn-primary  addRowBtn">Add order +</button>
+              </div>
+
             </div>
             <div class="row g-3">
+             <div class="row g-3 shipment-line" >
+
               <div class="col-sm-6">
-                <label class="form-label" for="address-input">Address</label>
-                <input type="text" class="form-control" id="address-input" placeholder="98  Borough bridge Road, Birmingham">
+                <label class="form-label" for="category">Category</label>
+                <select class="form-select   myCategory" name="category[]" >
+                  <option label=" "></option>
+                  @foreach ($categorys as $category )
+                  <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
+
+                  @endforeach
+                </select>
               </div>
+
               <div class="col-sm-6">
-                <label class="form-label" for="landmark">Landmark</label>
-                <input type="text" class="form-control" id="landmark" placeholder="Borough bridge">
+                <label class="form-label" for="quantity">Quantity</label>
+                <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
               </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="pincode">Pincode</label>
-                <input type="text" class="form-control" id="pincode" placeholder="658921">
+              <div class="col-sm-4">
+                <label class="form-label" for="price_for_wight">Price For kg</label>
+                <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
               </div>
-              <div class="col-sm-6">
-                <label class="form-label" for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="Birmingham">
+              <div class="col-sm-4">
+                <label class="form-label" for="total_wight">Total Wight</label>
+                <input type="text" name="total_wight[]" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
               </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="line_total_cost">Line Total Cost</label>
+                <input type="text" name="line_total_cost[]" class="form-control line_total_cost" id="line_total_cost" placeholder="Birmingham">
+              </div>
+                      <hr>
+            </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
                   <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
@@ -224,7 +266,7 @@
             </div>
           </div>
           <!-- Social Links -->
-          <div id="social-links" class="content">
+          {{-- <div id="social-links" class="content">
             <div class="content-header mb-3">
               <h6 class="mb-0">Social Links</h6>
               <small>Enter Your Social Links.</small>
@@ -232,19 +274,19 @@
             <div class="row g-3">
               <div class="col-sm-6">
                 <label class="form-label" for="twitter">Twitter</label>
-                <input type="text" id="twitter" class="form-control" placeholder="https://twitter.com/abc" />
+                <input type="text" name="twitter" id="twitter" class="form-control" placeholder="https://twitter.com/abc" />
               </div>
               <div class="col-sm-6">
                 <label class="form-label" for="facebook">Facebook</label>
-                <input type="text" id="facebook" class="form-control" placeholder="https://facebook.com/abc" />
+                <input type="text" name="facebook" id="facebook" class="form-control" placeholder="https://facebook.com/abc" />
               </div>
               <div class="col-sm-6">
                 <label class="form-label" for="google">Google+</label>
-                <input type="text" id="google" class="form-control" placeholder="https://plus.google.com/abc" />
+                <input type="text" name="google" id="google" class="form-control" placeholder="https://plus.google.com/abc" />
               </div>
               <div class="col-sm-6">
                 <label class="form-label" for="linkedin">Linkedin</label>
-                <input type="text" id="linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
+                <input type="text" name="linkedIn" id="linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
               </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
@@ -257,39 +299,47 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- Review -->
           <div id="review-submit" class="content">
 
-            <p class="fw-medium mb-2">Account</p>
+            <p class="fw-medium mb-2">Sender Info</p>
             <ul class="list-unstyled">
-              <li>Username</li>
-              <li>exampl@email.com</li>
+              <li id="review-national-id-s"></li>
+              <li>
+                <span id="review-first-s"></span>
+                <span id="review-middle-s"></span>
+                <span id="review-last-s"></span>
+              </li>
+              <li id="review-email-s"></li>
+              <li id="review-phone-s"></li>
+              <li id="review-address-s"></li>
             </ul>
             <hr>
-            <p class="fw-medium mb-2">Personal Info</p>
+            <p class="fw-medium mb-2">Reciver Info</p>
             <ul class="list-unstyled">
-              <li>First Name</li>
-              <li>Last Name</li>
-              <li>Country</li>
-              <li>Language</li>
+              <li id="review-national-id-r"></li>
+              <li>
+                <span id="review-first-r"></span>
+                <span id="review-middle-r"></span>
+                <span id="review-last-r"></span>
+              </li>
+              <li id="review-email-r"></li>
+              <li id="review-phone-r"></li>
+              <li id="review-address-r"></li>
             </ul>
             <hr>
-            <p class="fw-medium mb-2">Address</p>
+            <p class="fw-medium mb-2">Shipment</p>
             <ul class="list-unstyled">
-              <li>Address</li>
-              <li>Landmark</li>
-              <li>Pincode</li>
-              <li>City</li>
+              <li id="review-quantity"></li>
+              <li id="review-category"></li>
+              <li id="review-price_for_wight"></li>
+              <li id="review-line_total_cost"></li>
+              <li id="review-total_wight"></li>
+
             </ul>
             <hr>
-            <p class="fw-medium mb-2">Social Links</p>
-            <ul class="list-unstyled">
-              <li>https://twitter.com/abc</li>
-              <li>https://facebook.com/abc</li>
-              <li>https://plus.google.com/abc</li>
-              <li>https://linkedin.com/abc</li>
-            </ul>
+
             <div class="col-12 d-flex justify-content-between">
               <button class="btn btn-primary btn-prev">
                 <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>

@@ -17,7 +17,10 @@ class Invoice extends Model
     'due_date',
     'total_amount',
     'payer',
+    'invoice_date',
   ];
+  protected $dates = ['invoice_date'];
+
   protected $primaryKey = 'invoice_id';
 
   public function shippingRequest()

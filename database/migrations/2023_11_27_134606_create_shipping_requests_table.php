@@ -12,20 +12,20 @@ return new class extends Migration {
   {
     Schema::create('shipping_requests', function (Blueprint $table) {
       $table->id('request_id');
-      $table->string('sender_customer_id', 15);
-      $table->string('receiver_customer_id', 15);
+      $table->unsignedBigInteger('sender_customer_id');
+      $table->unsignedBigInteger('receiver_customer_id');
       $table->double('total_weight', 10, 2);
       $table->double('total_shipping_cost', 10, 2);
-      $table->timestamp('created_at');
+      $table->timestamp('shipping_date');
       $table->unsignedBigInteger('status_id');
       $table
         ->foreign('sender_customer_id')
-        ->references('national_id')
+        ->references('id')
         ->on('customers')
         ->onDelete('cascade');
       $table
         ->foreign('receiver_customer_id')
-        ->references('national_id')
+        ->references('id')
         ->on('customers')
         ->onDelete('cascade');
 
@@ -34,6 +34,7 @@ return new class extends Migration {
         ->references('status_id')
         ->on('request_statuses')
         ->onDelete('cascade');
+      $table->timestamps();
     });
   }
 

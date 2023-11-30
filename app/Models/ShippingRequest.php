@@ -18,6 +18,7 @@ class ShippingRequest extends Model
     'status_id',
   ];
   protected $primaryKey = 'request_id';
+  protected $dates = ['created_at'];
 
   public function sender()
   {
@@ -31,7 +32,7 @@ class ShippingRequest extends Model
 
   public function shipmentLines()
   {
-    return $this->hasMany(ShipmentLine::class);
+    return $this->hasMany(ShipmentLine::class, 'request_id');
   }
 
   public function invoice()

@@ -15,23 +15,25 @@ return new class extends Migration {
 
       $table->unsignedBigInteger('request_id');
 
-      $table->string('sender_customer_id', 15);
-      $table->string('receiver_customer_id', 15);
+      $table->unsignedBigInteger('sender_customer_id');
+      $table->unsignedBigInteger('receiver_customer_id');
 
       $table->timestamp('invoice_date');
+
       $table->date('due_date');
       $table->double('total_amount', 10, 2);
       $table->string('payer');
+      $table->timestamps();
 
       $table
         ->foreign('sender_customer_id')
-        ->references('national_id')
+        ->references('id')
         ->on('customers')
         ->onDelete('cascade');
 
       $table
         ->foreign('receiver_customer_id')
-        ->references('national_id')
+        ->references('id')
         ->on('customers')
         ->onDelete('cascade');
 

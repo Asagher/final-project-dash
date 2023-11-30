@@ -118,9 +118,11 @@ use App\Http\Controllers\user_interface\Progress;
 use App\Http\Controllers\user_interface\Spinners;
 use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\user_interface\Toasts;
+// myContro
 use App\Http\Controllers\my_controller\RoleController;
-use App\Http\Controllers\my_controller\CategoryController;
 use App\Http\Controllers\my_controller\PermissionController;
+use App\Http\Controllers\my_controller\OrderShipController;
+
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
 use App\Http\Controllers\extended_ui\Avatar;
@@ -161,6 +163,7 @@ use App\Http\Controllers\tables\DatatableExtensions;
 use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
+use App\Http\Controllers\my_controller\CategoryController;
 use Spatie\Permission\Contracts\Permission;
 
 // Admin Route
@@ -420,6 +423,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // form wizards
     Route::get('/form/wizard-numbered', [FormWizardNumbered::class, 'index'])->name('form-wizard-numbered');
     Route::get('/form/wizard-icons', [FormWizardIcons::class, 'index'])->name('form-wizard-icons');
+
+    Route::post('/form/wizard-icons/price', [FormWizardIcons::class, 'getCategoryPrice']);
+    // get categoryis
+
+    Route::get('/myCategories', [FormWizardIcons::class, 'getCategories']);
     Route::get('/form/validation', [Validation::class, 'index'])->name('form-validation');
 
     // tables
@@ -442,6 +450,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
       'laravel-example-user-management'
     );
     Route::resource('/user-list', UserManagement::class);
+    Route::resource('/order-ship', OrderShipController::class);
+    Route::resource('/category', CategoryController::class);
   }
 );
 

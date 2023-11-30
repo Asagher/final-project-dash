@@ -11,7 +11,7 @@ return new class extends Migration {
   public function up(): void
   {
     Schema::create('customers', function (Blueprint $table) {
-      $table->primary('national_id');
+      $table->id();
       $table->string('national_id', 15);
       $table->string('first_name', 50);
       $table->string('middle_name', 50);
@@ -20,6 +20,7 @@ return new class extends Migration {
       $table->string('phone', 15);
       $table->string('email', 50);
       $table->timestamp('date_created');
+      $table->timestamps();
     });
   }
 

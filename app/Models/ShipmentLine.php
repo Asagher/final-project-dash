@@ -20,7 +20,7 @@ class ShipmentLine extends Model
   ];
   public function shippingRequest()
   {
-    return $this->belongsTo(ShippingRequest::class);
+    return $this->belongsTo(ShippingRequest::class, 'request_id');
   }
 
   public function category()
