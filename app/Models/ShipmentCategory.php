@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShipmentCategory extends Model
-{
-  use HasFactory;
-  public $timestamps = false;
-  protected $primaryKey = 'category_id';
+class ShipmentCategory extends Model {
+    use HasFactory;
+    public $timestamps = false;
+    protected $primaryKey = 'category_id';
 
-  protected $fillable = ['category_id', 'category_name', 'price_per_weight'];
+    protected $fillable = [ 'category_id', 'category_name', 'photo', 'price_per_weight' ];
 }

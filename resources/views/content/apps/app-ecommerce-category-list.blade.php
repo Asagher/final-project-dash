@@ -1,3 +1,6 @@
+@php
+  $configData = Helper::appClasses();
+@endphp
 @extends('layouts/layoutMaster')
 
 @section('title', 'eCommerce Product Category - Apps')
@@ -32,6 +35,7 @@
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.6.3.min.js">
 
 @endsection
 
@@ -43,81 +47,126 @@
 <h4 class="py-3 mb-4">
   <span class="text-muted fw-light">eCommerce /</span> Category List
 </h4>
+{{-- show category --}}
+  <div class="row g-4 " id="categories">
+    @foreach ($categories as $category)
+      <div class="col-xl-4 col-lg-6 col-md-6 ">
+          <div class="card" >
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <h2 class="fw-normal">{{$category->category_name}}</h2>
+              </div>
+              <div class="d-flex justify-content-between align-items-end">
+                <div class="role-heading">
 
-<div class="app-ecommerce-category">
-  <!-- Category List Table -->
-  <div class="card">
-    <div class="card-datatable table-responsive">
-      <table class="datatables-category-list table border-top">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th>Categories</th>
-            <th class="text-nowrap text-sm-end">Total Products &nbsp;</th>
-            <th class="text-nowrap text-sm-end">Total Earning</th>
-            <th class="text-lg-center">Actions</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
-  <!-- Offcanvas to add new customer -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEcommerceCategoryList" aria-labelledby="offcanvasEcommerceCategoryListLabel">
-    <!-- Offcanvas Header -->
-    <div class="offcanvas-header py-4" id="offcanvasEcommerceCategoryListLabel">
-      <h5  class="offcanvas-title">Add Category</h5>
-      <button type="button" class="btn-close bg-label-secondary text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <!-- Offcanvas Body -->
-    <div class="offcanvas-body border-top">
-      <form class="pt-0" id="eCommerceCategoryListForm">
-        <!-- Title -->
-        <div class="mb-3">
-          <label class="form-label" for="ecommerce-category-title">Title</label>
-          <input type="text" class="form-control" id="ecommerce-category-title" placeholder="Enter category title" name="categoryTitle" aria-label="category title">
-        </div>
+                    <h5 class="mb-1">{{$category->price_per_weight}}</h5>
 
-        <!-- Image -->
-        {{-- <div class="mb-3">
-          <label class="form-label" for="ecommerce-category-image">Attachment</label>
-          <input class="form-control" type="file" id="ecommerce-category-image" name="img">
-        </div> --}}
-        <!-- Description -->
-        <div class="mb-3">
-          <label class="form-label">Description</label>
-          <div class="form-control p-0 pt-1">
-            <div class="comment-editor border-0" id="ecommerce-category-description">
-            </div>
-            <div class="comment-toolbar border-0 rounded">
-              <div class="d-flex justify-content-end">
-                <span class="ql-formats me-0">
-                  <button class="ql-bold"></button>
-                  <button class="ql-italic"></button>
-                  <button class="ql-underline"></button>
-                  <button class="ql-list" value="ordered"></button>
-                  <button class="ql-list" value="bullet"></button>
-                  <button class="ql-link"></button>
-                  <button class="ql-image"></button>
-                </span>
+                  <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>Edit Category</small></a>
+                </div>
+                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
               </div>
             </div>
           </div>
+      </div>
+    @endforeach
 
+    <div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
+      <div class="card h-100">
+        <div class="row h-100">
+          <div class="col-sm-5">
+            <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
+              <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="card-body text-sm-end text-center ps-sm-0">
+              <button data-bs-target="#addModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Category</button>
+              <p class="mb-0">Add Category, if it does not exist</p>
+            </div>
+          </div>
         </div>
-        <!-- price -->
-        <div class="mb-3">
-          <label class="form-label" for="ecommerce-category-title">Price per weight</label>
-          <input type="text" class="form-control" id="ecommerce-category-title" placeholder="Enter category title" name="price_per_weight" aria-label="category title">
-        </div>
+      </div>
+    </div>
 
-        <!-- Submit and reset -->
-        <div class="mb-3">
-          <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Add</button>
-          <button type="reset" class="btn bg-label-danger" data-bs-dismiss="offcanvas">Discard</button>
+  </div>
+ 
+    <!-- Add Category Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
+      <div class="modal-content p-3 p-md-5">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="text-center mb-4">
+            <h3 class="role-title">Add New Category</h3>
+          </div>
+          <!-- Add role form -->
+          <form id="addForm" class="row g-3" >
+            @csrf
+            <!-- Title -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">Title</label>
+              <input type="hidden" id="modalRoleId" name="modalRoleId">
+              <input type="text" id="ecommerce-category-title" name="categoryTitle" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+            </div>
+            <!-- Image -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">photo</label>
+              <input type="file" id="ecommerce-category-image" name="img" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+            </div>
+            <!-- price -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">Price per weight</label>
+              <input type="text" id="price_per_weight" name="price_per_weight" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+            </div>
+            
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+          <!--/ Add role form -->
         </div>
-      </form>
+      </div>
     </div>
   </div>
-</div>
+    
+<!-- edit Category Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true" >
+    <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
+      <div class="modal-content p-3 p-md-5">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="text-center mb-4">
+            <h3 class="role-title">Edit Category</h3>
+          </div>
+          <form id="editForm" class="row g-3" >
+            @csrf
+            <!-- Title -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">Title</label>
+              <input type="hidden" id="editId" name="editId">
+              <input type="text" id="Etitle" name="categoryTitle" class="form-control" placeholder="Enter a category name" tabindex="-1" />
+            </div>
+            <!-- Image -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">photo</label>
+              <input type="file" id="Eimage" name="img" class="form-control" placeholder="Enter category image" tabindex="-1" />
+            </div>
+            <!-- price -->
+            <div class="col-12 mb-4">
+              <label class="form-label" for="modalRoleName">Price per weight</label>
+              <input type="text" id="Eprice" name="price_per_weight" class="form-control" placeholder="Enter a price per wight" tabindex="-1" />
+            </div>
+            
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </form>
+          <!--/ Add role form -->
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection

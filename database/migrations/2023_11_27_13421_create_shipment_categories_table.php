@@ -13,6 +13,7 @@ return new class extends Migration {
     Schema::create('shipment_categories', function (Blueprint $table) {
       $table->id('category_id');
       $table->string('category_name');
+      $table->string('photo');
       $table->double('price_per_weight', 10, 2);
     });
   }

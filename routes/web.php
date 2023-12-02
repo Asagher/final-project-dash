@@ -163,7 +163,7 @@ use App\Http\Controllers\tables\DatatableExtensions;
 use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
-use App\Http\Controllers\my_controller\CategoryController;
+use App\Http\Controllers\my_controller\ShipmentCategoryController;
 use Spatie\Permission\Contracts\Permission;
 
 // Admin Route
@@ -220,7 +220,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
       'app-ecommerce-product-category'
     );
-    Route::resource('/product-category', CategoryController::class);
+    Route::resource('/product-category', ShipmentCategoryController::class);
 
     Route::get('/app/ecommerce/order/list', [EcommerceOrderList::class, 'index'])->name('app-ecommerce-order-list');
     Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name(
