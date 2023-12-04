@@ -9,12 +9,12 @@ use App\Models\ShipmentCategory;
 
 class Icons extends Controller {
     public function index() {
-        $categories = Category::all();
+        $categories = ShipmentCategory::all();
         return view( 'content.form-wizard.form-wizard-icons', compact( 'categories' ) );
     }
 
     public function getCategories() {
-        $categories = Category::all();
+        $categories = ShipmentCategory::all();
 
         return response()->json( $categories );
     }
@@ -22,7 +22,7 @@ class Icons extends Controller {
     public function getCategoryPrice( Request $request ) {
         $categoryId = $request->categoryName;
 
-        $categoryName = Category::where( 'category_name', $categoryId )->first();
+        $categoryName = ShipmentCategory::where( 'category_name', $categoryId )->first();
         return response()->json( [
             'price' => $categoryName->price_per_weight,
         ] );

@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 $(function () {
   const select2 = $('.select2'),
     selectPicker = $('.selectpicker');

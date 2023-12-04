@@ -228,7 +228,7 @@
                 <label class="form-label" for="category">Category</label>
                 <select class="form-select   myCategory" name="category[]" >
                   <option label=" "></option>
-                  @foreach ($categorys as $category )
+                  @foreach ($categories as $category )
                   <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
 
                   @endforeach
