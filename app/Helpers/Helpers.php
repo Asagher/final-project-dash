@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use Config;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Config;
 
 class Helpers
 {
@@ -32,7 +32,7 @@ class Helpers
       'menuFlipped' => false,
       // 'menuOffcanvas' => false,
       'customizerControls' => [
-        'rtl',
+        'ltr',
       'style',
       'headerType',
       'contentLayout',
