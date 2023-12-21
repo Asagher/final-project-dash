@@ -44,52 +44,51 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">eCommerce /</span> Category List
-</h4>
+  <h4 class="py-3 mb-4">
+    <span class="text-muted fw-light">eCommerce /</span> Category List
+  </h4>
 {{-- show category --}}
   <div class="row g-4 " id="categories">
     @foreach ($categories as $category)
       <div class="col-xl-4 col-lg-6 col-md-6 ">
-          <div class="card" >
-            <div class="card-body">
-              <div class="d-flex justify-content-between mb-2">
-                <h2 class="fw-normal">{{$category->category_name}}</h2>
+        <div class="card">
+          <div class="card-body">
+            <img src="{{asset('assets/img/category/'.$category->photo )}}"class="img-fluid d-flex mx-auto my-4 rounded" alt="...">
+            <div class="d-flex justify-content-between align-items-end">
+              <div class="role-heading">
+                <h5 class="card-title">{{$category->category_name}}</h5>
+                <p class="card-text">
+                  {{$category->price_per_weight}}
+                </p>
+                <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>Edit Category</small></a>
               </div>
-              <div class="d-flex justify-content-between align-items-end">
-                <div class="role-heading">
-
-                    <h5 class="mb-1">{{$category->price_per_weight}}</h5>
-
-                  <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>Edit Category</small></a>
-                </div>
-                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
-              </div>
-            </div>
-          </div>
-      </div>
-    @endforeach
-
-    <div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
-      <div class="card h-100">
-        <div class="row h-100">
-          <div class="col-sm-5">
-            <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
-              <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
-            </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="card-body text-sm-end text-center ps-sm-0">
-              <button data-bs-target="#addModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Category</button>
-              <p class="mb-0">Add Category, if it does not exist</p>
+              <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    @endforeach
 
   </div>
- 
+<br>
+<div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
+  <div class="card h-100">
+    <div class="row h-100">
+      <div class="col-sm-5">
+        <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
+          <img class="card-img-top" src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="card-body text-sm-end text-center ps-sm-0">
+          <button data-bs-target="#addModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Category</button>
+          <p class="mb-0">Add Category, if it does not exist</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
     <!-- Add Category Modal -->
   <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true" >
     <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
@@ -118,7 +117,7 @@
               <label class="form-label" for="modalRoleName">Price per weight</label>
               <input type="text" id="price_per_weight" name="price_per_weight" class="form-control" placeholder="Enter a role name" tabindex="-1" />
             </div>
-            
+
             <div class="col-12 text-center">
               <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
               <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
@@ -129,7 +128,7 @@
       </div>
     </div>
   </div>
-    
+
 <!-- edit Category Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true" >
     <div class="modal-dialog modal-lg modal-simple modal-dialog-centered modal-add-new-role">
@@ -157,7 +156,7 @@
               <label class="form-label" for="modalRoleName">Price per weight</label>
               <input type="text" id="Eprice" name="price_per_weight" class="form-control" placeholder="Enter a price per wight" tabindex="-1" />
             </div>
-            
+
             <div class="col-12 text-center">
               <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
               <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>

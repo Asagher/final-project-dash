@@ -13,13 +13,7 @@ class RoleController extends Controller {
     */
 
     public function index() {
-        $data = Role::all();
-
-        if ( $data ) {
-            return response()->json( $data );
-        } else {
-            return response()->json( 'null' );
-        }
+        //
     }
 
     /**
@@ -81,7 +75,7 @@ class RoleController extends Controller {
     * Remove the specified resource from storage.
     */
 
-    public function destroy( string $id ) {
-        //
+    public function destroy(string  $id ) {
+      $roles = Role::where( 'id', $id )->delete();
     }
 }

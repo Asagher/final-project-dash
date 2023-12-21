@@ -164,10 +164,12 @@ use App\Http\Controllers\charts\ApexCharts;
 use App\Http\Controllers\charts\ChartJs;
 use App\Http\Controllers\maps\Leaflet;
 use App\Http\Controllers\my_controller\ShipmentCategoryController;
+use App\Http\Controllers\my_controller\UserController;
+use App\Models\ShipmentCategory;
 use Spatie\Permission\Contracts\Permission;
 
 // Admin Route
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:admin', 'auth'])->group(
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:المشرف|إدارة طلبات الشحن', 'auth'])->group(
   function () {
     Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
     Route::get('/dashboard/crm', [Crm::class, 'index'])->name('dashboard-crm');
@@ -276,17 +278,20 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/app/invoice/print', [InvoicePrint::class, 'index'])->name('app-invoice-print');
     Route::get('/app/invoice/edit', [InvoiceEdit::class, 'index'])->name('app-invoice-edit');
     Route::get('/app/invoice/add', [InvoiceAdd::class, 'index'])->name('app-invoice-add');
+    ///////users
     Route::get('/app/user/list', [UserList::class, 'index'])->name('app-user-list');
-    Route::get('/app/user/view/account', [UserViewAccount::class, 'index'])->name('app-user-view-account');
-    Route::get('/app/user/view/security', [UserViewSecurity::class, 'index'])->name('app-user-view-security');
-    Route::get('/app/user/view/billing', [UserViewBilling::class, 'index'])->name('app-user-view-billing');
+    Route::resource('/user/list', UserController::class);
+
+    Route::get('/app/user/view/account', [UserViewAccount::class, 'index'])->name('app-users-view-account');
+    Route::get('/app/user/view/security', [UserViewSecurity::class, 'index'])->name('app-users-view-security');
+    Route::get('/app/user/view/billing', [UserViewBilling::class, 'index'])->name('app-users-view-billing');
     Route::get('/app/user/view/notifications', [UserViewNotifications::class, 'index'])->name(
-      'app-user-view-notifications'
+      'app-users-view-notifications'
     );
-    Route::get('/app/user/view/connections', [UserViewConnections::class, 'index'])->name('app-user-view-connections');
+    Route::get('/app/user/view/connections', [UserViewConnections::class, 'index'])->name('app-users-view-connections');
 
     /////Roles
-    Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles.index');
+    Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
     Route::post('/app/access-roles', [AccessRoles::class, 'store']);
     Route::resource('/access-roles', RoleController::class);
 
@@ -446,12 +451,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/maps/leaflet', [Leaflet::class, 'index'])->name('maps-leaflet');
 
     // laravel example
-    Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name(
-      'laravel-example-user-management'
+    Route::get('/user-management', [UserManagement::class, 'UserManagement'])->name(
+      'app-users-user-management'
     );
     Route::resource('/user-list', UserManagement::class);
     Route::resource('/order-ship', OrderShipController::class);
-    Route::resource('/category', CategoryController::class);
+    Route::resource('/category', ShipmentCategory::class);
   }
 );
 

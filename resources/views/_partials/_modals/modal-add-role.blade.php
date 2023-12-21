@@ -5,19 +5,19 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="role-title">Add New Role</h3>
-          <p>Set role permissions</p>
+          <h3 class="role-title">إضافة دور جديد</h3>
+          <p> تعيين صلاحيات الدور</p>
         </div>
         <!-- Add role form -->
         <form id="addRoleForm" class="row g-3" >
           @csrf
           <div class="col-12 mb-4">
-            <label class="form-label" for="modalRoleName">Role Name</label>
+            <label class="form-label" for="modalRoleName">اسم الدور</label>
             <input type="hidden" id="modalRoleId" name="modalRoleId">
-            <input type="text" id="modalRoleName" name="modalRoleName" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+            <input type="text" id="modalRoleName" name="modalRoleName" class="form-control" placeholder="ادخل اسم الدور " tabindex="-1" />
           </div>
           <div class="col-12">
-            <h4>Role Permissions</h4>
+            <h4> صلاحيات الدور</h4>
             <!-- Permission table -->
             <div class="table-responsive">
                 <div class="d-flex">
@@ -34,8 +34,8 @@
             <!-- Permission table -->
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
-            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="submit" class="btn btn-primary me-sm-3 me-1" >إرسال</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
           </div>
         </form>
         <!--/ Add role form -->

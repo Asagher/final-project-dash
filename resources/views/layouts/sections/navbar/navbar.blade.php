@@ -76,6 +76,11 @@ $navbarDetached = ($navbarDetached ?? '');
               </a>
             </li>
             <li>
+              <a class="dropdown-item {{ app()->getLocale() === 'ar' ? 'active' : '' }}" href="{{url('lang/ar')}}" data-language="ar">
+                <span class="align-middle">العربية</span>
+              </a>
+            </li>
+            <li>
               <a class="dropdown-item {{ app()->getLocale() === 'fr' ? 'active' : '' }}" href="{{url('lang/fr')}}" data-language="fr">
                 <span class="align-middle">French</span>
               </a>

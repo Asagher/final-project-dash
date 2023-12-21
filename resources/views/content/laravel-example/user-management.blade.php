@@ -111,18 +111,18 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header">
-    <h5 class="card-title mb-0">Search Filter</h5>
+    <h5 class="card-title mb-0">قائمة المستخدمين :</h5>
   </div>
   <div class="card-datatable table-responsive">
     <table class="datatables-users table border-top" id="table">
       <thead>
         <tr>
           <th></th>
-          <th>Id</th>
-          <th>User</th>
-          <th>Email</th>
-          <th>Verified</th>
-          <th>Actions</th>
+          <th>التسلسل</th>
+          <th>اسم المستخدم</th>
+          <th>الإيميل</th>
+          <th>التحقق</th>
+          <th>الإجراءات</th>
         </tr>
       </thead>
     </table>
@@ -131,30 +131,30 @@
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Add User</h5>
+      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة مستخدم</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
       <form class="add-new-user pt-0" id="addNewUserForm">
         <input type="hidden" name="id" id="user_id">
         <div class="mb-3">
-          <label class="form-label" for="add-user-fullname">Full Name</label>
-          <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe" />
+          <label class="form-label" for="add-user-fullname">الاسم الكامل</label>
+          <input type="text" class="form-control" id="add-user-fullname" placeholder="الاسم و الكنية" name="name" aria-label="John Doe" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="add-user-email">Email</label>
+          <label class="form-label" for="add-user-email">الإيميل</label>
           <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="add-user-contact">Contact</label>
+          <label class="form-label" for="add-user-contact">رقم الهاتف المحمول</label>
           <input type="text" id="contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="contact" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="password">Password</label>
+          <label class="form-label" for="password">كلمة السر</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-label="jdoe1" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="password-confirm">Confirm Password</label>
+          <label class="form-label" for="password-confirm">تأكيد كلمة السر</label>
           <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
         </div>
 
@@ -171,8 +171,8 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">إرسال</button>
+        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">إلفاء</button>
       </form>
     </div>
   </div>

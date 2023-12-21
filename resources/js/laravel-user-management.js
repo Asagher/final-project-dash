@@ -100,6 +100,7 @@ $(function () {
             return $row_output;
           }
         },
+
         {
           // User email
           targets: 3,

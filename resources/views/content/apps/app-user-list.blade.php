@@ -25,7 +25,6 @@
 @section('page-script')
 <script src="{{asset('assets/js/app-user-list.js')}}"></script>
 @endsection
-
 @section('content')
 
 <div class="row g-4 mb-4">
@@ -34,18 +33,16 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Session</span>
+            <span>Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h4 class="mb-0 me-2">21,459</h4>
-              <small class="text-success">(+29%)</small>
+              <h3 class="mb-0 me-2">{{$totalUser}}</h3>
+              <small class="text-success">(100%)</small>
             </div>
-            <p class="mb-0">Total Users</p>
+            <small>Total Users</small>
           </div>
-          <div class="avatar">
-            <span class="avatar-initial rounded bg-label-primary">
-              <i class="bx bx-user bx-sm"></i>
-            </span>
-          </div>
+          <span class="badge bg-label-primary rounded p-2">
+            <i class="bx bx-user bx-sm"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -55,18 +52,16 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Paid Users</span>
+            <span>Verified Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h4 class="mb-0 me-2">4,567</h4>
-              <small class="text-success">(+18%)</small>
+              <h3 class="mb-0 me-2">{{$verified}}</h3>
+              <small class="text-success">(+95%)</small>
             </div>
-            <p class="mb-0">Last week analytics </p>
+            <small>Recent analytics </small>
           </div>
-          <div class="avatar">
-            <span class="avatar-initial rounded bg-label-danger">
-              <i class="bx bx-user-check bx-sm"></i>
-            </span>
-          </div>
+          <span class="badge bg-label-success rounded p-2">
+            <i class="bx bx-user-check bx-sm"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -76,18 +71,16 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Active Users</span>
+            <span>Duplicate Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h4 class="mb-0 me-2">19,860</h4>
-              <small class="text-danger">(-14%)</small>
+              <h3 class="mb-0 me-2">{{$userDuplicates}}</h3>
+              <small class="text-success">(0%)</small>
             </div>
-            <p class="mb-0">Last week analytics</p>
+            <small>Recent analytics</small>
           </div>
-          <div class="avatar">
-            <span class="avatar-initial rounded bg-label-success">
-              <i class="bx bx-group bx-sm"></i>
-            </span>
-          </div>
+          <span class="badge bg-label-danger rounded p-2">
+            <i class="bx bx-group bx-sm"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -97,18 +90,16 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Pending Users</span>
+            <span>Verification Pending</span>
             <div class="d-flex align-items-end mt-2">
-              <h4 class="mb-0 me-2">237</h4>
-              <small class="text-success">(+42%)</small>
+              <h3 class="mb-0 me-2">{{$notVerified}}</h3>
+              <small class="text-danger">(+6%)</small>
             </div>
-            <p class="mb-0">Last week analytics</p>
+            <small>Recent analytics</small>
           </div>
-          <div class="avatar">
-            <span class="avatar-initial rounded bg-label-warning">
-              <i class="bx bx-user-voice bx-sm"></i>
-            </span>
-          </div>
+          <span class="badge bg-label-warning rounded p-2">
+            <i class="bx bx-user-voice bx-sm"></i>
+          </span>
         </div>
       </div>
     </div>
@@ -116,29 +107,24 @@
 </div>
 <!-- Users List Table -->
 <div class="card">
-  <div class="card-header border-bottom">
-    <h5 class="card-title">Search Filter</h5>
-    <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
-      <div class="col-md-4 user_role"></div>
-      <div class="col-md-4 user_plan"></div>
-      <div class="col-md-4 user_status"></div>
-    </div>
+  <div class="card-header">
+    <h5 class="card-title mb-0">Search Filter</h5>
   </div>
   <div class="card-datatable table-responsive">
-    <table class="datatables-users table border-top">
+    <table class="datatables-users table border-top" id="table">
       <thead>
         <tr>
           <th></th>
+          <th>Id</th>
           <th>User</th>
-          <th>Role</th>
-          <th>Plan</th>
-          <th>Billing</th>
-          <th>Status</th>
+          <th>Email</th>
+          <th>Verified</th>
           <th>Actions</th>
         </tr>
       </thead>
     </table>
   </div>
+
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
@@ -146,77 +132,86 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="add-new-user pt-0" id="addNewUserForm" onsubmit="return false">
+      <form class="add-new-user pt-0" id="addNewUserForm">
+        <input type="hidden" name="id" id="user_id">
         <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Full Name</label>
-          <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe" name="userFullname" aria-label="John Doe" />
+          <input type="text" class="form-control" id="add-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe" />
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-email">Email</label>
-          <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="userEmail" />
+          <input type="text" id="add-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email" />
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-contact">Contact</label>
-          <input type="text" id="add-user-contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="userContact" />
+          <input type="text" id="contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="contact" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="add-user-company">Company</label>
-          <input type="text" id="add-user-company" class="form-control" placeholder="Web Developer" aria-label="jdoe1" name="companyName" />
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-label="jdoe1" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="country">Country</label>
-          <select id="country" class="select2 form-select">
-            <option value="">Select</option>
-            <option value="Australia">Australia</option>
-            <option value="Bangladesh">Bangladesh</option>
-            <option value="Belarus">Belarus</option>
-            <option value="Brazil">Brazil</option>
-            <option value="Canada">Canada</option>
-            <option value="China">China</option>
-            <option value="France">France</option>
-            <option value="Germany">Germany</option>
-            <option value="India">India</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Israel">Israel</option>
-            <option value="Italy">Italy</option>
-            <option value="Japan">Japan</option>
-            <option value="Korea">Korea, Republic of</option>
-            <option value="Mexico">Mexico</option>
-            <option value="Philippines">Philippines</option>
-            <option value="Russia">Russian Federation</option>
-            <option value="South Africa">South Africa</option>
-            <option value="Thailand">Thailand</option>
-            <option value="Turkey">Turkey</option>
-            <option value="Ukraine">Ukraine</option>
-            <option value="United Arab Emirates">United Arab Emirates</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="United States">United States</option>
-          </select>
+          <label class="form-label" for="password-confirm">Confirm Password</label>
+          <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex flex-wrap row gx-4 row gap-2">
+            @foreach ($roles as $role)
+            <div class="form-check me-3 me-lg-5 item col">
+                <input class="form-check-input " type="checkbox"id="addCheckbox"  name="types[]" value="{{$role->name}}"/>
+                <label class="form-check-label" for="userManagementRead">
+                    {{$role->name}}
+                </label>
+            </div>
+            @endforeach
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
+        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Offcanvas to edit new user -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" aria-labelledby="offcanvasEditUserLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasEditUserLabel" class="offcanvas-title">Edit User</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body mx-0 flex-grow-0">
+      <form class="add-new-user pt-0" id="editNewUserForm">
+        <input type="text" hidden name="id" id="edit_id">
+        <div class="mb-3">
+          <label class="form-label" for="add-user-fullname">Full Name</label>
+          <input type="text" class="form-control" id="edit-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="user-role">User Role</label>
-          <select id="user-role" class="form-select">
-            <option value="subscriber">Subscriber</option>
-            <option value="editor">Editor</option>
-            <option value="maintainer">Maintainer</option>
-            <option value="author">Author</option>
-            <option value="admin">Admin</option>
-          </select>
+          <label class="form-label" for="add-user-email">Email</label>
+          <input type="text" id="edit-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email" />
         </div>
-        <div class="mb-4">
-          <label class="form-label" for="user-plan">Select Plan</label>
-          <select id="user-plan" class="form-select">
-            <option value="basic">Basic</option>
-            <option value="enterprise">Enterprise</option>
-            <option value="company">Company</option>
-            <option value="team">Team</option>
-          </select>
+        <div class="mb-3">
+          <label class="form-label" for="add-user-contact">Contact</label>
+          <input type="text" id="edit-contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="contact" />
         </div>
+        <div class="mb-3">
+          <div class="d-flex flex-wrap row gx-4 row gap-2">
+            @foreach ($roles as $role)
+            <div class="form-check me-3 me-lg-5 item col">
+                <input class="form-check-input " type="checkbox"id="editCheckbox"  name="types[]" value="{{$role->name}}"/>
+                <label class="form-check-label" for="userManagementRead">
+                    {{$role->name}}
+                </label>
+            </div>
+            @endforeach
+          </div>
+        </div>
+
         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
         <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
       </form>
     </div>
   </div>
 </div>
-
 @endsection
