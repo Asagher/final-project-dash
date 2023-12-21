@@ -13,10 +13,7 @@ return new class extends Migration {
     Schema::create('invoices', function (Blueprint $table) {
       $table->id('invoice_id');
 
-      $table->unsignedBigInteger('request_id');
-
-      $table->unsignedBigInteger('sender_customer_id');
-      $table->unsignedBigInteger('receiver_customer_id');
+      $table->unsignedBigInteger('shipment_line_id');
 
       $table->timestamp('invoice_date');
 
@@ -26,21 +23,9 @@ return new class extends Migration {
       $table->timestamps();
 
       $table
-        ->foreign('sender_customer_id')
-        ->references('id')
-        ->on('customers')
-        ->onDelete('cascade');
-
-      $table
-        ->foreign('receiver_customer_id')
-        ->references('id')
-        ->on('customers')
-        ->onDelete('cascade');
-
-      $table
-        ->foreign('request_id')
-        ->references('request_id')
-        ->on('shipping_requests')
+        ->foreign('shipment_line_id')
+        ->references('shipment_line_id')
+        ->on('shipment_lines')
         ->onDelete('cascade');
     });
   }

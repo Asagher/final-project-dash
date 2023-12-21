@@ -27,4 +27,8 @@ class ShipmentLine extends Model
   {
     return $this->belongsTo(ShipmentCategory::class, 'category_id');
   }
+  public function invoice()
+  {
+    return $this->hasOne(Invoice::class, 'shipment_line_id');
+  }
 }

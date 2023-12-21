@@ -44,10 +44,10 @@ $configData = Helper::appClasses();
         </div>
         <div id="heroDashboardAnimation" class="hero-animation-img">
           <a href="{{url('/app/ecommerce/dashboard')}}" target="_blank">
-            <div id="heroAnimationImg" class="position-relative hero-dashboard-img">
+            {{-- <div id="heroAnimationImg" class="position-relative hero-dashboard-img">
               <img src="{{asset('assets/img/front-pages/landing-page/hero-dashboard-'.$configData['style'].'.png')}}" alt="hero dashboard" class="animation-img" data-app-light-img="front-pages/landing-page/hero-dashboard-light.png" data-app-dark-img="front-pages/landing-page/hero-dashboard-dark.png" />
               <img src="{{asset('assets/img/front-pages/landing-page/hero-elements-'.$configData['style'].'.png')}}" alt="hero elements" class="position-absolute hero-elements-img animation-img top-0 start-0" data-app-light-img="front-pages/landing-page/hero-elements-light.png" data-app-dark-img="front-pages/landing-page/hero-elements-dark.png" />
-            </div>
+            </div> --}}
           </a>
         </div>
       </div>
@@ -827,9 +827,9 @@ $configData = Helper::appClasses();
           <p class="fw-medium mb-4">Start your project with a 14-day free trial</p>
           <a href="{{url('/front-pages/payment')}}" class="btn btn-primary">Get Started</a>
         </div>
-        <div class="col-lg-6 pt-lg-5 text-center text-lg-end">
+        {{-- <div class="col-lg-6 pt-lg-5 text-center text-lg-end">
           <img src="{{asset('assets/img/front-pages/landing-page/cta-dashboard.png')}}" alt="cta dashboard" class="img-fluid" />
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>

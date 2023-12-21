@@ -14,6 +14,7 @@ class ShippingRequest extends Model
     'receiver_customer_id',
     'total_weight',
     'total_shipping_cost',
+    'shipping_delivery',
     'created_at',
     'status_id',
   ];
@@ -33,11 +34,6 @@ class ShippingRequest extends Model
   public function shipmentLines()
   {
     return $this->hasMany(ShipmentLine::class, 'request_id');
-  }
-
-  public function invoice()
-  {
-    return $this->hasOne(Invoice::class);
   }
 
   public function status()

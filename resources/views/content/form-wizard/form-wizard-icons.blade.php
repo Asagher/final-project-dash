@@ -222,6 +222,10 @@
 
             </div>
             <div class="row g-3">
+              <div class="col-sm-4">
+                <label class="form-label" for="Delivery">Delivery Date</label>
+                <input class="form-control" type="date"  name="shipping_delivery" id="shipping_delivery"  />
+              </div>
              <div class="row g-3 shipment-line" >
 
               <div class="col-sm-6">
@@ -239,6 +243,7 @@
                 <label class="form-label" for="quantity">Quantity</label>
                 <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
               </div>
+
               <div class="col-sm-4">
                 <label class="form-label" for="price_for_wight">Price For kg</label>
                 <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
@@ -355,7 +360,7 @@
   <!-- /Default Icons Wizard -->
 
   <!-- Vertical Icons Wizard -->
-  <div class="col-12 mb-4">
+  {{-- <div class="col-12 mb-4">
     <small class="text-light fw-medium">Vertical Icons</small>
     <div class="bs-stepper wizard-vertical vertical wizard-vertical-icons-example mt-2">
       <div class="bs-stepper-header">
@@ -520,14 +525,14 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- /Vertical Icons Wizard -->
 </div>
 
 <hr class="container-m-nx mb-5">
 
 <!-- Modern -->
-<div class="row">
+{{-- <div class="row">
   <div class="col-12">
     <h5>Modern</h5>
   </div>
@@ -973,5 +978,5 @@
     </div>
   </div>
   <!-- /Modern Vertical Icons Wizard -->
-</div>
+</div> --}}
 @endsection

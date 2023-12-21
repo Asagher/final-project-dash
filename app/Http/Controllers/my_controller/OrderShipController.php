@@ -83,6 +83,7 @@ class OrderShipController extends Controller
         'status_id' => 1,
         'total_weight' => $totalWeight,
         'total_shipping_cost' => $totalCost,
+        'shipping_delivery' => $request->shipping_delivery,
       ]);
 
       foreach ($request->lines as $line) {

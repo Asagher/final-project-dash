@@ -17,6 +17,7 @@ return new class extends Migration {
       $table->double('total_weight', 10, 2);
       $table->double('total_shipping_cost', 10, 2);
       $table->timestamp('shipping_date');
+      $table->date('shipping_delivery');
       $table->unsignedBigInteger('status_id');
       $table
         ->foreign('sender_customer_id')

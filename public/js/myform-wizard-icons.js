@@ -500,6 +500,7 @@ $(function () {
         phone_r: $('#phone_r').val(),
         email_r: $('#email_r').val(),
         address_r: $('#address_r').val(),
+        shipping_delivery: $('#shipping_delivery').val(),
 
         // Shipment lines
         lines: []

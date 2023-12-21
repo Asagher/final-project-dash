@@ -8,24 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
   use HasFactory;
-  protected $fillable = [
-    'invoice_id',
-    'request_id',
-    'sender_customer_id',
-    'receiver_customer_id',
-    'invoice_date',
-    'due_date',
-    'total_amount',
-    'payer',
-    'invoice_date',
-  ];
+  protected $fillable = ['invoice_id', 'shipment_line_id', 'invoice_date', 'due_date', 'total_amount', 'payer'];
   protected $dates = ['invoice_date'];
 
   protected $primaryKey = 'invoice_id';
 
-  public function shippingRequest()
+  public function shippingLines()
   {
-    return $this->belongsTo(ShippingRequest::class);
+    return $this->belongsTo(shippingLines::class, 'shipment_line_id');
   }
 
   public function sender()
