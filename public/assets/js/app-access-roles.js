@@ -43,16 +43,17 @@ $(function () {
 
     // sweetalert for confirmation of delete
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: ' هل أنت متأكد من ذلك؟',
+      text: " لن تكون قادرا على التراجع عن هذا!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: ' نعم ، احذفه!',
+      cancelButtonText: 'إلغاء',
       customClass: {
         confirmButton: 'btn btn-primary me-3',
         cancelButton: 'btn btn-label-secondary'
       },
-      buttonsStyling: false
+      buttonsStyling: true
     }).then(function (result) {
       if (result.value) {
         // delete the data
@@ -70,16 +71,16 @@ $(function () {
         // success sweetalert
         Swal.fire({
           icon: 'success',
-          title: 'Deleted!',
-          text: 'The user has been deleted!',
+          title: 'حذف!',
+          text: ' تم حذف الدور',
           customClass: {
             confirmButton: 'btn btn-success'
           }
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
-          title: 'Cancelled',
-          text: 'The User is not deleted!',
+          title: 'ألغيت',
+          text: 'لم  يتم حذف الدور',
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-success'
