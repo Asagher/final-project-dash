@@ -306,15 +306,33 @@
             }
           ]
         },
+
         {
-          "name": "Users",
-          "slug": "app-user",
-          "icon": "menu-icon tf-icons bx bx-user",
+          "name": "Roles & Permissions",
+          "slug": "app-access",
+          "icon": "menu-icon tf-icons bx bx-check-shield",
           "submenu": [
             {
-              "url": "app/user/list",
-              "name": "List",
-              "slug": "app-user-list"
+              "url": "app/access-roles",
+              "name": "Roles",
+              "slug": "app-access-roles"
+            },
+            {
+              "url": "app/access-permission",
+              "name": "Permission",
+              "slug": "app-access-permission"
+            }
+          ]
+        },
+        {
+          "name": "Users",
+          "icon": "menu-icon tf-icons bx bx-user",
+          "slug": "laravel-example",
+          "submenu": [
+            {
+              "url": "laravel/user-management",
+              "name": "User Management",
+              "slug": "laravel-example-user-management"
             },
             {
               "name": "View",
@@ -346,35 +364,6 @@
                   "slug": "app-user-view-connections"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Roles & Permissions",
-          "slug": "app-access",
-          "icon": "menu-icon tf-icons bx bx-check-shield",
-          "submenu": [
-            {
-              "url": "app/access-roles",
-              "name": "Roles",
-              "slug": "app-access-roles"
-            },
-            {
-              "url": "app/access-permission",
-              "name": "Permission",
-              "slug": "app-access-permission"
-            }
-          ]
-        },
-        {
-          "name": "Laravel Example",
-          "slug": "laravel-example",
-          "icon": "menu-icon tf-icons bx bxl-php",
-          "submenu": [
-            {
-              "url": "laravel/user-management",
-              "name": "User Management",
-              "slug": "laravel-example-user-management"
             }
           ]
         }

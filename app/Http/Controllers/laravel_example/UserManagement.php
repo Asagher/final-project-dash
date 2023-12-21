@@ -97,7 +97,6 @@ class UserManagement extends Controller {
                 $nestedData[ 'name' ] = $user->name;
                 $nestedData[ 'email' ] = $user->email;
                 $nestedData[ 'email_verified_at' ] = $user->email_verified_at;
-
                 $data[] = $nestedData;
             }
         }

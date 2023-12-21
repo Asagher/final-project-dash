@@ -79,7 +79,6 @@
           </script>
         </span>
         <a href="{{config('variables.creatorUrl')}}" target="_blank" class="fw-medium text-white footer-link">{{config('variables.creatorName')}},</a>
-        <span class="footer-text"> Made with ❤️ for a better web.</span>
       </div>
       <div>
         <a href="{{config('variables.githubUrl')}}" class="footer-link me-3" target="_blank">

@@ -13,11 +13,7 @@
         <button class="navbar-toggler border-0 px-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="tf-icons bx bx-menu bx-sm align-middle"></i>
         </button>
-        <!-- Mobile menu toggle: End-->
-        <a href="{{url('front-pages/landing')}}" class="app-brand-link">
-          <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
-          <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">Shipment</span>
-        </a>
+
       </div>
       <!-- Menu logo wrapper: End -->
       <!-- Menu wrapper: Start -->
@@ -213,18 +209,16 @@
             </div>
           </li>
           <li class="nav-item">
-          @role('admin')
-            <a class="nav-link fw-medium" href="{{url('/dashboard/analytics')}}" target="_blank">Admin</a>
-          @endrole
+            @php
+                $roles = ['المشرف', 'إدارة طلبات الشحن'];
+            @endphp
+            @if (Auth::check())
+              @if (Auth::user()->hasRole($roles))
+              <a class="nav-link fw-medium" href="{{url('/dashboard/analytics')}}" target="_blank">إدارة الأعمال</a>
+              @endif
+            @endif
           </li>
-        </ul>
-      </div>
-      <div class="landing-menu-overlay d-lg-none"></div>
-      <!-- Menu wrapper: End -->
-      <!-- Toolbar: Start -->
-      <ul class="navbar-nav flex-row align-items-center ms-auto">
-        @if($configData['hasCustomizer'] == true)
-        <!-- Style Switcher -->
+          @if($configData['hasCustomizer'] == true)
         <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
             <i class='bx bx-sm'></i>
@@ -309,6 +303,22 @@
             </ul>
           </li>
         <!-- navbar button: End -->
+        <!-- Style Switcher -->
+        </ul>
+      </div>
+      <div class="landing-menu-overlay d-lg-none"></div>
+      <!-- Menu wrapper: End -->
+      <!-- Toolbar: Start -->
+      <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+        <li>
+          <!-- Mobile menu toggle: End-->
+          <a href="{{url('front-pages/landing')}}" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">SpeedyShip
+            </span>
+            <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
+          </a>
+        </li>
       </ul>
       <!-- Toolbar: End -->
     </div>

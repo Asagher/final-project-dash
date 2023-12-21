@@ -32,17 +32,16 @@
 @endsection
 
 @section('content')
-  <h4 class="py-3 mb-2">Roles List</h4>
+  <h4 class="py-3 mb-2">قائمة الأدوار :</h4>
 
-  <p>A role provided access to predefined menus and features so that depending on <br> assigned role an administrator can have access to what user needs.</p>
   <!-- Role cards -->
   <div class="row g-4 " id="roles">
-      @foreach ($roles as $role)
+      @foreach ($counts as $role)
         <div class="col-xl-4 col-lg-6 col-md-6 ">
             <div class="card" >
               <div class="card-body">
                 <div class="d-flex justify-content-between mb-2">
-                  <h6 class="fw-normal">Total {{$role->name}}</h6>
+                  <h6 class="fw-normal">العدد الكلي {{$role['count'] }}</h6>
                   <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                     <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Jimmy Ressula" class="avatar avatar-sm pull-up">
                       <img class="rounded-circle" src="{{asset('assets/img/avatars/4.png')}}" alt="Avatar">
@@ -64,11 +63,11 @@
                 <div class="d-flex justify-content-between align-items-end">
                   <div class="role-heading">
 
-                      <h4 class="mb-1">{{$role->name}}</h4>
+                      <h4 class="mb-1">{{$role['name'] }}</h4>
 
-                    <a href="javascript:;"  data-bs-target="#editRoleModal"  class="role-edit-modal" data-id={{$role->id}} data-bs-toggle="modal" ><small>Edit Role</small></a>
+                    <a href="javascript:;"  data-bs-target="#editRoleModal"  class="role-edit-modal" data-id={{$role['id']}} data-bs-toggle="modal" ><small>تعديل الدور</small></a>
                   </div>
-                  <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
+                  <a href="javascript:;" class="delete-record" data-id={{$role['id']}}  class="text-muted"><i class="bx bx-trash"></i></a>
                 </div>
               </div>
             </div>
@@ -80,39 +79,21 @@
           <div class="row h-100">
             <div class="col-sm-5">
               <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
-                <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+                <div class="col-sm-7">
+                    <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">إضافة دور جديد</button>
+                </div>
               </div>
             </div>
             <div class="col-sm-7">
               <div class="card-body text-sm-end text-center ps-sm-0">
-                <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Role</button>
-                <p class="mb-0">Add role, if it does not exist</p>
+                <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <!-- Role Table -->
-        <div class="card">
-          <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>User</th>
-                  <th>Role</th>
-                  <th>Plan</th>
-                  <th>Billing</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-        <!--/ Role Table -->
-      </div>
+
   </div>
 <!--/ Role cards -->
 <!-- Add Role Modal -->

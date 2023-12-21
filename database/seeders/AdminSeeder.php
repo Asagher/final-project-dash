@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AdminSeeder extends Seeder {
     /**
@@ -14,9 +15,8 @@ class AdminSeeder extends Seeder {
     */
 
     public function run(): void {
-
         $user = User::create( [
-            'name' => 'admin',
+            'name' => 'أحمد',
             'contact'=>'12345',
             'email' =>  'admin@gmail.com',
             'email_verified_at' => now(),
@@ -26,7 +26,7 @@ class AdminSeeder extends Seeder {
             'remember_token' => Str::random( 10 ),
             'profile_photo_path' => null,
             'current_team_id' => null,
-        ] )->assignRole( 'user', 'admin' );
+        ] )->assignRole( 'المشرف' )->givePermissionTo(Permission::all());
         Team::create( [
             'name' => explode( ' ', $user->name, 2 )[ 0 ]."'s Team",
             'user_id' => $user->id,

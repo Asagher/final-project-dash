@@ -1,7 +1,6 @@
 <?php
 // Variables
 return [
-  'creatorName' => 'Abdullatif sagher',
   'creatorUrl' => '',
   'templateName' => 'Sneat',
   'templateSuffix' => 'Bootstrap 5 HTML Admin Template - Pro',

@@ -76,7 +76,7 @@ $(function () {
           // Actions
           targets: -1,
           searchable: false,
-          title: 'Actions',
+          title: 'الإجراءات',
           orderable: false,
           render: function (data, type, full, meta) {
             return (
@@ -104,13 +104,13 @@ $(function () {
         '>',
       language: {
         sLengthMenu: '_MENU_',
-        search: 'Search',
-        searchPlaceholder: 'Search..'
+        search: 'بحث',
+        searchPlaceholder: 'بحث...'
       },
       // Buttons with Dropdown
       buttons: [
         {
-          text: 'Add Permission',
+          text: 'إضافة صلاحية',
           className: 'add-new btn btn-primary mb-3 mb-md-0',
           attr: {
             'data-bs-toggle': 'modal',
