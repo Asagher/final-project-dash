@@ -5,31 +5,25 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3>Edit Permission</h3>
-          <p>Edit permission as per your requirements.</p>
+          <h3>تعديل الصلاحية</h3>
         </div>
         <div class="alert alert-warning" role="alert">
-          <h6 class="alert-heading mb-2">Warning</h6>
-          <p class="mb-0">By editing the permission name, you might break the system permissions functionality. Please ensure you're absolutely certain before proceeding.</p>
+          <h6 class="alert-heading mb-2">تحذير</h6>
+          <p class="mb-0">
+            عند  تعديل اسم الصلاحية ، قد يحدث خلل في  صلاحيات النظام. يرجى التأكد من أنك متأكد تماما قبل المتابعة.
+          </p>
         </div>
         <form id="editPermissionForm" class="row" onsubmit="return false">
           <div class="col-sm-9">
-            <label class="form-label" for="editPermissionName">Permission Name</label>
+            <label class="form-label" for="editPermissionName">اسم الصلاحية</label>
             <input type="text" id="editPermissionId" name="editPermissionId" hidden/>
 
             <input type="text" id="editPermissionName" name="editPermissionName" class="form-control" placeholder="Permission Name" tabindex="-1" />
           </div>
-          <div class="col-sm-3 mb-3">
-            <label class="form-label invisible d-none d-sm-inline-block">Button</label>
-            <button type="submit" class="btn btn-primary mt-1 mt-sm-0">Update</button>
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="editCorePermission" />
-              <label class="form-check-label" for="editCorePermission">
-                Set as core permission
-              </label>
-            </div>
+
+          <div class="col-12 text-center demo-vertical-spacing">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">إرسال</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
           </div>
         </form>
       </div>

@@ -29,10 +29,7 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-2">Permissions List</h4>
-
-<p class="mb-4">Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
-
+<h4 class="py-3 mb-2">قائمة الصلاحيات :</h4>
 
 <!-- Permission Table -->
 <div class="card">
@@ -42,10 +39,9 @@
         <tr>
           <th></th>
           <th></th>
-          <th>Name</th>
-
-          <th>Created Date</th>
-          <th>Actions</th>
+          <th>اسم الصلاحية</th>
+          <th>تاريخ الإنشاء</th>
+          <th>الإجراءات</th>
         </tr>
       </thead>
     </table>

@@ -110,16 +110,8 @@
                 // Creates full output for row
                 var $row_output =
                   '<div class="d-flex justify-content-start align-items-center user-name">' +
-                  '<div class="avatar-wrapper">' +
-                  '<div class="avatar avatar-sm me-3">' +
-                  $output +
-                  '</div>' +
-                  '</div>' +
                   '<div class="d-flex flex-column">' +
-                  '<a href="' +
-                  userView +
-                  '" class="text-body text-truncate"><span class="fw-medium">' +
-                  $name +
+                    $name +
                   '</span></a>' +
                   '</div>' +
                   '</div>';
@@ -150,7 +142,7 @@
             {
               // Actions
               targets: -1,
-              title: 'Actions',
+              title: 'الإجراءات',
               searchable: false,
               orderable: false,
               render: function render(data, type, full, meta) {
@@ -188,20 +180,20 @@
             '>',
           language: {
             sLengthMenu: '_MENU_',
-            search: '',
-            searchPlaceholder: 'Search..'
+            search: 'بحث',
+            searchPlaceholder: 'بحث..'
           },
           // Buttons with Dropdown
           buttons: [
             {
               extend: 'collection',
               className: 'btn btn-label-secondary dropdown-toggle mx-3',
-              text: '<i class="bx bx-export me-2"></i>Export',
+              text: '<i class="bx bx-export me-2"></i>تصدير',
               buttons: [
                 {
                   extend: 'print',
                   title: 'Users',
-                  text: '<i class="bx bx-printer me-2" ></i>Print',
+                  text: '<i class="bx bx-printer me-2" ></i>طباعة',
                   className: 'dropdown-item',
                   exportOptions: {
                     columns: [2, 3],
@@ -237,7 +229,7 @@
                 {
                   extend: 'csv',
                   title: 'Users',
-                  text: '<i class="bx bx-file me-2" ></i>Csv',
+                  text: '<i class="bx bx-file me-2" ></i>excel',
                   className: 'dropdown-item',
                   exportOptions: {
                     columns: [2, 3],
@@ -306,7 +298,7 @@
                 {
                   extend: 'copy',
                   title: 'Users',
-                  text: '<i class="bx bx-copy me-2" ></i>Copy',
+                  text: '<i class="bx bx-copy me-2" ></i>نسخ',
                   className: 'dropdown-item',
                   exportOptions: {
                     columns: [2, 3],
@@ -329,7 +321,7 @@
               ]
             },
             {
-              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">Add New User</span>',
+              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">إضافة مستخدم جديد</span>',
               className: 'add-new btn btn-primary',
               attr: {
                 'data-bs-toggle': 'offcanvas',
@@ -375,7 +367,7 @@
       // changing the title
       $('.add-new').on('click', function () {
         $('#user_id').val(''); //reseting input field
-        $('#offcanvasAddUserLabel').html('Add User');
+        $('#offcanvasAddUserLabel').html('إضافة مستخدم');
       });
 
       // Filter form control to default size

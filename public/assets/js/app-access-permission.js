@@ -76,7 +76,7 @@ $(function () {
           // Actions
           targets: -1,
           searchable: false,
-          title: 'Actions',
+          title: 'الإجراءات',
           orderable: false,
           render: function (data, type, full, meta) {
             return (
@@ -104,13 +104,13 @@ $(function () {
         '>',
       language: {
         sLengthMenu: '_MENU_',
-        search: 'Search',
-        searchPlaceholder: 'Search..'
+        search: 'بحث',
+        searchPlaceholder: 'بحث...'
       },
       // Buttons with Dropdown
       buttons: [
         {
-          text: 'Add Permission',
+          text: 'إضافة صلاحية',
           className: 'add-new btn btn-primary mb-3 mb-md-0',
           attr: {
             'data-bs-toggle': 'modal',
@@ -181,9 +181,10 @@ $(function () {
     });
   }
 
-  // Delete Record
+  // edit Record
 
   $(document).on('click', '.edit-record', function () {
+
     var user_id = $(this).data('id'),
       dtrModal = $('.dtr-bs-modal.show');
     // hide responsive modal in small screen
@@ -267,7 +268,7 @@ $(function () {
     });
   })();
 
-  /// edit
+  /// update
   (function () {
     FormValidation.formValidation(document.getElementById('editPermissionForm'), {
       fields: {
@@ -337,60 +338,60 @@ $(function () {
 
   // Delete Record
   $(document).on('click', '.delete-record', function () {
-    var user_id = $(this).data('id'),
+    var permission_id = $(this).data('id'),
       dtrModal = $('.dtr-bs-modal.show');
 
     // hide responsive modal in small screen
     if (dtrModal.length) {
       dtrModal.modal('hide');
     }
-
-    // sweetalert for confirmation of delete
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      customClass: {
-        confirmButton: 'btn btn-primary me-3',
-        cancelButton: 'btn btn-label-secondary'
+// sweetalert for confirmation of delete
+Swal.fire({
+  title: ' هل أنت متأكد من ذلك؟',
+  text: " لن تكون قادرا على التراجع عن هذا!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: ' نعم ، احذفه!',
+  cancelButtonText: 'إلغاء',
+  customClass: {
+    confirmButton: 'btn btn-primary me-3',
+    cancelButton: 'btn btn-label-secondary'
+  },
+  buttonsStyling: true
+}).then(function (result) {
+  if (result.value) {
+    // delete the data
+    $.ajax({
+      type: 'DELETE',
+      url: ''.concat(baseUrl, 'access-permission/').concat(permission_id),
+      success: function () {
+        dt_permission.draw();
       },
-      buttonsStyling: false
-    }).then(function (result) {
-      if (result.value) {
-        // delete the data
-        $.ajax({
-          type: 'DELETE',
-          url: ''.concat(baseUrl, 'access-permission/').concat(user_id),
-          success: function success() {
-            dt_permission.draw();
-          },
-          error: function error(_error) {
-            console.log(_error);
-          }
-        });
-
-        // success sweetalert
-        Swal.fire({
-          icon: 'success',
-          title: 'Deleted!',
-          text: 'The user has been deleted!',
-          customClass: {
-            confirmButton: 'btn btn-success'
-          }
-        });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire({
-          title: 'Cancelled',
-          text: 'The User is not deleted!',
-          icon: 'error',
-          customClass: {
-            confirmButton: 'btn btn-success'
-          }
-        });
+      error: function (error) {
+        console.log(error);
       }
     });
+
+    // success sweetalert
+    Swal.fire({
+      icon: 'success',
+      title: 'حذف!',
+      text: ' تم حذف الصلاحية',
+      customClass: {
+        confirmButton: 'btn btn-success'
+      }
+    });
+  } else if (result.dismiss === Swal.DismissReason.cancel) {
+    Swal.fire({
+      title: 'ألغيت',
+      text: 'لم  يتم حذف الصلاحية',
+      icon: 'error',
+      customClass: {
+        confirmButton: 'btn btn-success'
+      }
+    });
+  }
+});
   });
 
   // Filter form control to default size
