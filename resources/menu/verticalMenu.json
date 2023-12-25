@@ -4,10 +4,7 @@
       "name": "Dashboards",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard",
-      "badge": [
-        "danger",
-        "5"
-      ],
+      "badge": ["danger", "5"],
       "submenu": [
         {
           "url": "/",
@@ -369,13 +366,10 @@
       ]
     },
     {
-      "name": "Invoice",
+      "name": "الفواتير",
       "icon": "menu-icon tf-icons bx bx-food-menu",
       "slug": "app-invoice",
-      "badge": [
-        "success",
-        "4"
-      ],
+      "badge": ["success", "4"],
       "submenu": [
         {
           "url": "app/invoice/list",
@@ -394,7 +388,7 @@
         },
         {
           "url": "app/invoice/add",
-          "name": "Add",
+          "name": "انشاء فاتورة",
           "slug": "app-invoice-add"
         }
       ]
@@ -677,10 +671,7 @@
       "name": "Cards",
       "icon": "menu-icon tf-icons bx bx-collection",
       "slug": "cards",
-      "badge": [
-        "danger",
-        "6"
-      ],
+      "badge": ["danger", "6"],
       "submenu": [
         {
           "url": "cards/basic",
@@ -994,7 +985,7 @@
       ]
     },
     {
-      "name": "Form Wizard",
+      "name": "طلب شحن",
       "icon": "menu-icon tf-icons bx bx-carousel",
       "slug": "form-wizard",
       "submenu": [
@@ -1005,7 +996,7 @@
         },
         {
           "url": "form/wizard-icons",
-          "name": "Icons",
+          "name": "انشاء شحنة",
           "slug": "form-wizard-icons"
         }
       ]

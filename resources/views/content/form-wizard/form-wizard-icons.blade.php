@@ -56,7 +56,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-account.svg#wizardAccount')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Sender Info</span>
+            <span class="bs-stepper-label">معلومات المرسل</span>
           </button>
         </div>
         <div class="line">
@@ -69,7 +69,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-personal.svg#wizardPersonal')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Reciver Info</span>
+            <span class="bs-stepper-label">معلومات المستلم</span>
           </button>
         </div>
         <div class="line">
@@ -82,7 +82,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-address.svg#wizardAddress')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Shipment Info</span>
+            <span class="bs-stepper-label">معلومات الشحن</span>
           </button>
         </div>
         {{-- <div class="line">
@@ -108,7 +108,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-submit.svg#wizardSubmit')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">Review & Submit</span>
+            <span class="bs-stepper-label">المراجعة والتقديم</span>
           </button>
         </div>
       </div>
@@ -118,46 +118,46 @@
           <!-- Account Details -->
           <div id="account-details" class="content">
             <div class="content-header mb-3">
-              <h6 class="mb-0">Sender Info</h6>
-              <small>Enter Sender Info.</small>
+              <h6 class="mb-0">معلومات المرسل</h6>
+              <small>أدخل معلومات المرسل.</small>
             </div>
             <div class="row g-3">
               <div class="col-sm-4">
-                <label class="form-label" for="first_name_s">First Name</label>
+                <label class="form-label" for="first_name_s">الأسم الأول </label>
                 <input type="text" id="first_name_s" name="first_name_s" class="form-control" placeholder="johndoe" />
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="middle_name_s">Middle Name</label>
+                <label class="form-label" for="middle_name_s">الأسم الأوسط</label>
                 <input type="text" id="middle_name_s" name="middle_name_s" class="form-control" placeholder="johndoe" />
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="last_name_s">Last Name</label>
+                <label class="form-label" for="last_name_s">الأسم الأخير</label>
                 <input type="text" id="last_name_s" name="last_name_s" class="form-control" placeholder="johndoe" />
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="national_id_s">National Id</label>
+                <label class="form-label" for="national_id_s">الرقم الوطني</label>
                 <input type="text" id="national_id_s" name="national_id_s" class="form-control" placeholder="National Id" />
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="phone_s">Phone</label>
+                <label class="form-label" for="phone_s">رقم الهاتف </label>
                 <input type="text" id="phone_s" name="phone_s" class="form-control" placeholder="johndoe" />
               </div>
                 <div class="col-sm-4">
-                  <label class="form-label" for="email_s">Email</label>
+                  <label class="form-label" for="email_s">الايميل</label>
                   <input type="email" id="email_s" name="email_s" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
                 </div>
                 <div class="col-sm-12">
-                  <label class="form-label" for="address_s">Address</label>
+                  <label class="form-label" for="address_s">العنوان</label>
                   <input type="text" id="address_s" name="address_s" class="form-control" placeholder="Enter Address" />
                 </div>
 
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-label-secondary btn-prev" disabled>
                   <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  <span class="align-middle d-sm-inline-block d-none">السابق</span>
                 </button>
                 <button class="btn btn-primary btn-next">
-                  <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                  <span class="align-middle d-sm-inline-block d-none me-sm-1">القادم</span>
                   <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                 </button>
               </div>
@@ -166,44 +166,44 @@
           <!-- Personal Info -->
           <div id="personal-info" class="content">
             <div class="content-header mb-3">
-              <h6 class="mb-0">Reciver Info</h6>
-              <small>Enter Reciver Info.</small>
+              <h6 class="mb-0">معلومات المستلم</h6>
+              <small>أدخل معلومات المستلم.</small>
             </div>
             <div class="row g-3"> <div class="col-sm-4">
-              <label class="form-label" for="first_name_r">First Name</label>
+              <label class="form-label" for="first_name_r">الأسم الأول </label>
               <input type="text" id="first_name_r" name="first_name_r" class="form-control" placeholder="johndoe" />
             </div>
             <div class="col-sm-4">
-              <label class="form-label" for="middle_name_r">Middle Name</label>
+              <label class="form-label" for="middle_name_r">الأسم الأوسط</label>
               <input type="text" id="middle_name_r" name="middle_name_r" class="form-control" placeholder="johndoe" />
             </div>
             <div class="col-sm-4">
-              <label class="form-label" for="last_name_r">Last Name</label>
+              <label class="form-label" for="last_name_r">الأسم الأخير</label>
               <input type="text" id="last_name_r" name="last_name_r" class="form-control" placeholder="johndoe" />
             </div>
             <div class="col-sm-4">
-              <label class="form-label" for="national_id_r">National Id</label>
+              <label class="form-label" for="national_id_r">الرقم الوطني</label>
               <input type="text" id="national_id_r" name="national_id_r" class="form-control" placeholder="National Id" />
             </div>
             <div class="col-sm-4">
-              <label class="form-label" for="phone_r">Phone</label>
+              <label class="form-label" for="phone_r">رقم الهاتف </label>
               <input type="text" id="phone_r" name="phone_r" class="form-control" placeholder="johndoe" />
             </div>
               <div class="col-sm-4">
-                <label class="form-label" for="email_r">Email</label>
+                <label class="form-label" for="email_r">الايميل</label>
                 <input type="email" id="email_r" name="email_r" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
               </div>
               <div class="col-sm-12">
-                <label class="form-label" for="address_r">Address</label>
+                <label class="form-label" for="address_r">العنوان</label>
                 <input type="text" id="address_r" name="address_r" class="form-control" placeholder="Enter Address" />
               </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
                   <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  <span class="align-middle d-sm-inline-block d-none">السابق</span>
                 </button>
                 <button class="btn btn-primary btn-next">
-                  <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                  <span class="align-middle d-sm-inline-block d-none me-sm-1">القادم</span>
                   <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                 </button>
               </div>
@@ -213,23 +213,32 @@
           <div id="address" class="content">
             <div class="content-header justify-content-between mb-3 d-flex">
               <div>
-                <h6 class="mb-0">Shipment</h6>
-              <small>Enter Shipment info.</small>
+                <h6 class="mb-0">الشحنة</h6>
+                <small>أدخل معلومات الشحنة.</small>
               </div>
               <div class="d-flex justify-content-end">
-                 <button class="btn btn-primary  addRowBtn">Add order +</button>
+                 <button class="btn btn-primary  addRowBtn">أضافة طلب اضافي +</button>
               </div>
 
             </div>
             <div class="row g-3">
               <div class="col-sm-4">
-                <label class="form-label" for="Delivery">Delivery Date</label>
+                <label class="form-label" for="Delivery">وقت التسليم</label>
                 <input class="form-control" type="date"  name="shipping_delivery" id="shipping_delivery"  />
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="address">وجهة الشحن</label>
+                <select class="form-select   myAddress" name="address" >
+                  <option label=" "></option>
+                  @foreach ($addresses as $address )
+                  <option value="{{$address->id}}" label=" ">{{ $address->location}}</option>
+                  @endforeach
+                </select>
               </div>
              <div class="row g-3 shipment-line" >
 
               <div class="col-sm-6">
-                <label class="form-label" for="category">Category</label>
+                <label class="form-label" for="category">فئات الشحن</label>
                 <select class="form-select   myCategory" name="category[]" >
                   <option label=" "></option>
                   @foreach ($categories as $category )
@@ -240,31 +249,35 @@
               </div>
 
               <div class="col-sm-6">
-                <label class="form-label" for="quantity">Quantity</label>
+                <label class="form-label" for="quantity">الكمية</label>
                 <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
               </div>
 
               <div class="col-sm-4">
-                <label class="form-label" for="price_for_wight">Price For kg</label>
+                <label class="form-label" for="price_for_wight">السعر للفئة</label>
                 <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="total_wight">Total Wight</label>
+                <label class="form-label" for="total_wight">اجمالي الوزن</label>
                 <input type="text" name="total_wight[]" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="line_total_cost">Line Total Cost</label>
+                <label class="form-label" for="line_total_cost">التكلفة</label>
                 <input type="text" name="line_total_cost[]" class="form-control line_total_cost" id="line_total_cost" placeholder="Birmingham">
+              </div>
+              <div>
+                <label for="description" class="form-label">تفاصيل عن الشحنة</label>
+                <textarea class="form-control description" name="description" id="description" rows="3"></textarea>
               </div>
                       <hr>
             </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">
                   <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  <span class="align-middle d-sm-inline-block d-none">السابق</span>
                 </button>
                 <button class="btn btn-primary btn-next">
-                  <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                  <span class="align-middle d-sm-inline-block d-none me-sm-1">القادم</span>
                   <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
                 </button>
               </div>
@@ -308,7 +321,7 @@
           <!-- Review -->
           <div id="review-submit" class="content">
 
-            <p class="fw-medium mb-2">Sender Info</p>
+            <p class="fw-medium mb-2">معلومات المرسل</p>
             <ul class="list-unstyled">
               <li id="review-national-id-s"></li>
               <li>
@@ -321,7 +334,7 @@
               <li id="review-address-s"></li>
             </ul>
             <hr>
-            <p class="fw-medium mb-2">Reciver Info</p>
+            <p class="fw-medium mb-2">معلومات المستقبل</p>
             <ul class="list-unstyled">
               <li id="review-national-id-r"></li>
               <li>
@@ -334,7 +347,7 @@
               <li id="review-address-r"></li>
             </ul>
             <hr>
-            <p class="fw-medium mb-2">Shipment</p>
+            <p class="fw-medium mb-2">الشحنة</p>
             <ul class="list-unstyled">
               <li id="review-quantity"></li>
               <li id="review-category"></li>
@@ -348,9 +361,9 @@
             <div class="col-12 d-flex justify-content-between">
               <button class="btn btn-primary btn-prev">
                 <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
-                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                <span class="align-middle d-sm-inline-block d-none">السابق</span>
               </button>
-              <button class="btn btn-success btn-submit">Submit</button>
+              <button class="btn btn-success btn-submit">تاكيد</button>
             </div>
           </div>
         </form>

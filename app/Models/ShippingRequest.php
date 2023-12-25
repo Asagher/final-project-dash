@@ -12,15 +12,18 @@ class ShippingRequest extends Model
     'request_id',
     'sender_customer_id',
     'receiver_customer_id',
-    'total_weight',
-    'total_shipping_cost',
     'shipping_delivery',
     'created_at',
     'status_id',
+    'address_id',
   ];
   protected $primaryKey = 'request_id';
   protected $dates = ['created_at'];
 
+  public function addresses()
+  {
+    return $this->belongsTo(Address::class, 'address_id');
+  }
   public function sender()
   {
     return $this->belongsTo(Customer::class, 'sender_customer_id');
@@ -39,5 +42,9 @@ class ShippingRequest extends Model
   public function status()
   {
     return $this->belongsTo(RequestStatus::class, 'status_id');
+  }
+  public function invoice()
+  {
+    return $this->hasOne(Invoice::class, 'request_id');
   }
 }

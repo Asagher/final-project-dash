@@ -34,7 +34,7 @@
           <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
             <div>
               <h3 class="mb-1">24</h3>
-              <p class="mb-0">Clients</p>
+              <p class="mb-0">العملاء</p>
             </div>
             <div class="avatar me-sm-4">
               <span class="avatar-initial rounded bg-label-secondary">
@@ -48,7 +48,7 @@
           <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
             <div>
               <h3 class="mb-1">165</h3>
-              <p class="mb-0">Invoices</p>
+              <p class="mb-0">الفواتير</p>
             </div>
             <div class="avatar me-lg-4">
               <span class="avatar-initial rounded bg-label-secondary">
@@ -62,7 +62,7 @@
           <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
             <div>
               <h3 class="mb-1">$2.46k</h3>
-              <p class="mb-0">Paid</p>
+              <p class="mb-0">المدفوعات</p>
             </div>
             <div class="avatar me-sm-4">
               <span class="avatar-initial rounded bg-label-secondary">
@@ -75,7 +75,7 @@
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <h3 class="mb-1">$876</h3>
-              <p class="mb-0">Unpaid</p>
+              <p class="mb-0">غير مدفوع</p>
             </div>
             <div class="avatar">
               <span class="avatar-initial rounded bg-label-secondary">
@@ -96,14 +96,14 @@
       <thead>
         <tr>
           <th></th>
-          <th>#ID</th>
-          <th><i class='bx bx-trending-up'></i></th>
-          <th>Client</th>
-          <th>Total</th>
-          <th class="text-truncate">Issued Date</th>
-          <th>Balance</th>
+          <th>#رقم الفاتورة</th>
+          <th>رقم الشحنة</i></th>
+          <th>اسم المرسل</th>
+          <th>اجمالي المبلغ</th>
+          <th class="text-truncate"> تاريخ الفاتورة</th>
+          <th>جهة التحصيل</th>
           <th>Invoice Status</th>
-          <th class="cell-fit">Actions</th>
+          <th>الاجرائات</th>
         </tr>
       </thead>
     </table>
