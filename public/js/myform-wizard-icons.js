@@ -539,7 +539,7 @@ $(function () {
                 // Redirect to a specific URL
                 setTimeout(function () {
                   window.location.href = ''.concat(baseUrl, 'app/invoice/add?id='.concat(status.id));
-                }, 3000);
+                }, 200);
               }
             }
           });
