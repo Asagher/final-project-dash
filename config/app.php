@@ -163,6 +163,7 @@ return [
       /*
        * Application Service Providers...
        */
+      SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
       Spatie\Permission\PermissionServiceProvider::class,
       App\Providers\AppServiceProvider::class,
       App\Providers\AuthServiceProvider::class,
@@ -172,7 +173,6 @@ return [
       App\Providers\FortifyServiceProvider::class,
       App\Providers\JetstreamServiceProvider::class,
       App\Providers\MenuServiceProvider::class,
-
     ])
     ->toArray(),
 
@@ -191,6 +191,7 @@ return [
     ->merge([
       // 'Example' => App\Facades\Example::class,
       'Helper' => App\Helpers\Helpers::class,
+      'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ])
     ->toArray(),
 ];

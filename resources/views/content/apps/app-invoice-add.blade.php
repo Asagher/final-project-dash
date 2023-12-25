@@ -206,8 +206,16 @@
             </div>
           </div>
         </div>
-
         <hr class="my-4" />
+        <div  class="row py-sm-3 justify-content-between d-flex">
+          <div class="col-md-6 mb-md-0 mb-3">
+          <p>  جميع الحقوق محفوظة لشركة </p>
+
+          </div>
+          <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex"> {!! QrCode::size(100)->generate($uniqueId) !!}</div>
+
+
+        </div>
 
 
       </div>

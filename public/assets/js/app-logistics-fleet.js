@@ -7,8 +7,8 @@
   // Mapbox Access Token
 
   //!YOUR_MAPBOX_ACCESS_TOKEN_HERE!
-  // mapboxgl.accessToken =
-  //   '';
+  mapboxgl.accessToken =
+    '';
 
   const geojson = {
     type: 'FeatureCollection',
@@ -21,7 +21,7 @@
         },
         geometry: {
           type: 'Point',
-          coordinates: [36.181655, 37.111797]
+          coordinates: [-73.999024, 40.75249842]
         }
       },
       {
@@ -32,7 +32,7 @@
         },
         geometry: {
           type: 'Point',
-          coordinates: [36.222772, 37.167522]
+          coordinates: [-74.03, 40.75699842]
         }
       },
       {
@@ -43,7 +43,7 @@
         },
         geometry: {
           type: 'Point',
-          coordinates: [36.198542, 37.177493]
+          coordinates: [-73.967524, 40.7599842]
         }
       },
       {
@@ -54,17 +54,18 @@
         },
         geometry: {
           type: 'Point',
-          coordinates: [36.207694, 37.118604]
+          coordinates: [-74.0325, 40.742992]
         }
       }
     ]
   };
 
-  const map = new maplibregl.Map({
+  const map = new mapboxgl.Map({
     container: 'map',
-    style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
-    center: [36.207031, 37.147575], // starting position [lng, lat]
-    zoom: 12 // starting zoom
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [-73.999024, 40.75249842],
+    zoom: 12.25
   });
 
   // Add markers to the map and thier functionality
@@ -87,7 +88,7 @@
     el.style.cursor = 'pointer';
 
     // Add markers to the map.
-    new maplibregl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
+    new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
 
     // Select Accordion for respective Marker
     const element = document.getElementById('fl-' + marker.properties.message);

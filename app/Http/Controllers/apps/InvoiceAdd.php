@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\ShippingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 use Illuminate\Support\Str;
 class InvoiceAdd extends Controller
@@ -37,8 +38,7 @@ class InvoiceAdd extends Controller
         return $line->weight * $line->quantity * $line->category->price_per_weight;
       });
     }
-    $jj = ShippingRequest::find('5JDONM');
 
-    return view('content.apps.app-invoice-add', compact('shipment', 'uniqueId', 'lines', 'total', 'jj'));
+    return view('content.apps.app-invoice-add', compact('shipment', 'uniqueId', 'lines', 'total'));
   }
 }
