@@ -500,7 +500,9 @@ $(function () {
         phone_r: $('#phone_r').val(),
         email_r: $('#email_r').val(),
         address_r: $('#address_r').val(),
+        // anthor
         shipping_delivery: $('#shipping_delivery').val(),
+        address: $('.myAddress').val(),
 
         // Shipment lines
         lines: []
@@ -509,10 +511,9 @@ $(function () {
       $('.shipment-line').each(function () {
         var line = {
           category: $(this).find('.myCategory').val(),
+          description: $(this).find('.description').val(),
           quantity: $(this).find('.quantity').val(),
-          price_for_wight: $(this).find('.price_for_wight').val(),
-          total_wight: $(this).find('.total_wight').val(),
-          line_total_cost: $(this).find('.line_total_cost').val()
+          total_wight: $(this).find('.total_wight').val()
         };
 
         formData.lines.push(line);
@@ -528,16 +529,24 @@ $(function () {
           // sweetalert
           Swal.fire({
             icon: 'success',
-            title: 'Successfully '.concat(status.message, '!'),
-            text: 'Order '.concat(status.message, ' Successfully.'),
+            title: 'تم بنجاح '.concat(status.message, '!'),
+            text: 'الطلب '.concat(status.message, ' تم بنجاح.'),
             customClass: {
               confirmButton: 'btn btn-success'
+            },
+            willClose: function (willConfirm) {
+              if (willConfirm) {
+                // Redirect to a specific URL
+                setTimeout(function () {
+                  window.location.href = ''.concat(baseUrl, 'app/invoice/add?id='.concat(status.id));
+                }, 200);
+              }
             }
           });
         },
         error: function error(err) {
           Swal.fire({
-            title: 'Duplicate Entry!',
+            title: 'خطأ',
             text: err.message,
             icon: 'error',
             customClass: {

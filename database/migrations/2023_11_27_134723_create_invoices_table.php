@@ -11,21 +11,21 @@ return new class extends Migration {
   public function up(): void
   {
     Schema::create('invoices', function (Blueprint $table) {
-      $table->id('invoice_id');
+      $table->string('invoice_id', 6)->primary();
 
-      $table->unsignedBigInteger('shipment_line_id');
+      $table->unsignedBigInteger('request_id');
 
-      $table->timestamp('invoice_date');
+      $table->date('invoice_date');
 
       $table->date('due_date');
-      $table->double('total_amount', 10, 2);
+      $table->double('amount', 10, 2);
       $table->string('payer');
       $table->timestamps();
 
       $table
-        ->foreign('shipment_line_id')
-        ->references('shipment_line_id')
-        ->on('shipment_lines')
+        ->foreign('request_id')
+        ->references('request_id')
+        ->on('shipping_requests')
         ->onDelete('cascade');
     });
   }

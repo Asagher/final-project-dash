@@ -45,8 +45,29 @@
 
 @section('content')
   <h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">eCommerce /</span> Category List
+    <span class="text-muted fw-light">التجارة الإلكترونية/المنتجات و الأصناف /</span>  قائمة الأصناف
   </h4>
+
+  <div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
+    <div class="card h-100">
+      <div class="row h-100">
+        <div class="col-sm-5">
+          <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
+            <div class="col-sm-7">
+                <button data-bs-target="#addModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">إضافة صنف جديد</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="card-body text-sm-end text-center ps-sm-0">
+            <img src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" class="img-fluid" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
 {{-- show category --}}
   <div class="row g-4 " id="categories">
     @foreach ($categories as $category)
@@ -60,9 +81,9 @@
                 <p class="card-text">
                   {{$category->price_per_weight}}
                 </p>
-                <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>Edit Category</small></a>
+                <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>تعديل الصنف</small></a>
               </div>
-              <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
+              <a href="javascript:void(0);" data-id={{$category->category_id}} class="delete-record"><i class="bx bx-trash"></i></a>
             </div>
           </div>
         </div>
@@ -71,23 +92,7 @@
 
   </div>
 <br>
-<div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
-  <div class="card h-100">
-    <div class="row h-100">
-      <div class="col-sm-5">
-        <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
-          <img class="card-img-top" src="{{asset('assets/img/illustrations/sitting-girl-with-laptop-'.$configData['style'].'.png')}}" alt="Image" width="120" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png">
-        </div>
-      </div>
-      <div class="col-sm-7">
-        <div class="card-body text-sm-end text-center ps-sm-0">
-          <button data-bs-target="#addModal" data-bs-toggle="modal" class="btn btn-primary mb-3 text-nowrap add-new-role">Add New Category</button>
-          <p class="mb-0">Add Category, if it does not exist</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
     <!-- Add Category Modal -->
   <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true" >
@@ -96,31 +101,25 @@
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="role-title">Add New Category</h3>
+            <h3 class="role-title">إضافة صنف جديد :</h3>
           </div>
           <!-- Add role form -->
           <form id="addForm" class="row g-3" >
-            @csrf
             <!-- Title -->
             <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">Title</label>
+              <label class="form-label" for="modalRoleName">اسم الصنف</label>
               <input type="hidden" id="modalRoleId" name="modalRoleId">
-              <input type="text" id="ecommerce-category-title" name="categoryTitle" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+              <input type="text" id="ecommerce-category-title" name="categoryTitle" class="form-control" placeholder="أدخل اسم الصنف" tabindex="-1" />
             </div>
             <!-- Image -->
             <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">photo</label>
-              <input type="file" id="ecommerce-category-image" name="img" class="form-control" placeholder="Enter a role name" tabindex="-1" />
-            </div>
-            <!-- price -->
-            <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">Price per weight</label>
-              <input type="text" id="price_per_weight" name="price_per_weight" class="form-control" placeholder="Enter a role name" tabindex="-1" />
+              <label class="form-label" for="modalRoleName">صورة الصنف</label>
+              <input type="file" id="ecommerce-category-image" name="img" class="form-control" placeholder="" tabindex="-1" />
             </div>
 
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+              <button type="submit" class="btn btn-primary me-sm-3 me-1" >إرسال</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
             </div>
           </form>
           <!--/ Add role form -->
@@ -136,30 +135,24 @@
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="role-title">Edit Category</h3>
+            <h3 class="role-title">تعديل الصنف</h3>
           </div>
           <form id="editForm" class="row g-3" >
-            @csrf
             <!-- Title -->
             <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">Title</label>
+              <label class="form-label" for="modalRoleName">اسم الصنف</label>
               <input type="hidden" id="editId" name="editId">
               <input type="text" id="Etitle" name="categoryTitle" class="form-control" placeholder="Enter a category name" tabindex="-1" />
             </div>
             <!-- Image -->
             <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">photo</label>
+              <label class="form-label" for="modalRoleName">صورة الصنف</label>
               <input type="file" id="Eimage" name="img" class="form-control" placeholder="Enter category image" tabindex="-1" />
-            </div>
-            <!-- price -->
-            <div class="col-12 mb-4">
-              <label class="form-label" for="modalRoleName">Price per weight</label>
-              <input type="text" id="Eprice" name="price_per_weight" class="form-control" placeholder="Enter a price per wight" tabindex="-1" />
             </div>
 
             <div class="col-12 text-center">
-              <button type="submit" class="btn btn-primary me-sm-3 me-1" >Submit</button>
-              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+              <button type="submit" class="btn btn-primary me-sm-3 me-1" >إرسال</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
             </div>
           </form>
           <!--/ Add role form -->

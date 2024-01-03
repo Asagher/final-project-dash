@@ -5,23 +5,31 @@
 'use strict';
 
 $(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
   // Variable declaration for table
   var dt_invoice_table = $('.invoice-list-table');
 
   // Invoice datatable
   if (dt_invoice_table.length) {
     var dt_invoice = dt_invoice_table.DataTable({
-      ajax: assetsPath + 'json/invoice-list.json', // JSON file to add data
+      processing: true,
+      serverSide: true,
+
+      ajax: baseUrl + 'add-invoices',
       columns: [
-        // columns according to JSON
         { data: '' },
-        { data: 'invoice_id' },
-        { data: 'invoice_status' },
-        { data: 'issued_date' },
-        { data: 'client_name' },
-        { data: 'total' },
-        { data: 'balance' },
-        { data: 'invoice_status' },
+        { data: 'id', type: 'string' },
+        { data: 'request_id' },
+        { data: 'sender_name' },
+        { data: 'amount' },
+        { data: 'invoice_date' },
+        { data: 'payer' },
+        { data: 'payer' },
+
         { data: 'action' }
       ],
       columnDefs: [
@@ -39,10 +47,9 @@ $(function () {
           // Invoice ID
           targets: 1,
           render: function (data, type, full, meta) {
-            var $invoice_id = full['invoice_id'];
+            var $invoice_id = full['id'];
             // Creates full output for row
-            var $row_output =
-              '<a href="' + baseUrl + 'app/invoice/preview"><span class="fw-medium">#' + $invoice_id + '</span></a>';
+            var $row_output = '<span class="fw-medium text-primary">#' + $invoice_id + '</span>';
             return $row_output;
           }
         },
@@ -50,32 +57,9 @@ $(function () {
           // Invoice status
           targets: 2,
           render: function (data, type, full, meta) {
-            var $invoice_status = full['invoice_status'],
-              $due_date = full['due_date'],
-              $balance = full['balance'];
-            var roleBadgeObj = {
-              Sent: '<span class="badge badge-center rounded-pill bg-label-secondary w-px-30 h-px-30"><i class="bx bx-paper-plane bx-xs"></i></span>',
-              Draft:
-                '<span class="badge badge-center rounded-pill bg-label-primary w-px-30 h-px-30"><i class="bx bxs-save bx-xs"></i></span>',
-              'Past Due':
-                '<span class="badge badge-center rounded-pill bg-label-danger w-px-30 h-px-30"><i class="bx bx-info-circle bx-xs"></i></span>',
-              'Partial Payment':
-                '<span class="badge badge-center rounded-pill bg-label-success w-px-30 h-px-30"><i class="bx bx-adjust bx-xs"></i></span>',
-              Paid: '<span class="badge badge-center rounded-pill bg-label-warning w-px-30 h-px-30"><i class="bx bx-pie-chart-alt bx-xs"></i></span>',
-              Downloaded:
-                '<span class="badge badge-center rounded-pill bg-label-info w-px-30 h-px-30"><i class="bx bx-down-arrow-circle bx-xs"></i></span>'
-            };
-            return (
-              "<span data-bs-toggle='tooltip' data-bs-html='true' title='<span>" +
-              $invoice_status +
-              '<br> <span class="fw-medium">Balance:</span> ' +
-              $balance +
-              '<br> <span class="fw-medium">Due Date:</span> ' +
-              $due_date +
-              "</span>'>" +
-              roleBadgeObj[$invoice_status] +
-              '</span>'
-            );
+            var $request_id = full['request_id'];
+            var $row_output = '<span class="fw-medium">#' + $request_id + '</span></a>';
+            return $row_output;
           }
         },
         {
@@ -83,25 +67,18 @@ $(function () {
           targets: 3,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            var $name = full['client_name'],
-              $service = full['service'],
-              $image = full['avatar_image'],
-              $rand_num = Math.floor(Math.random() * 11) + 1,
-              $user_img = $rand_num + '.png';
-            if ($image === true) {
-              // For Avatar image
-              var $output =
-                '<img src="' + assetsPath + 'img/avatars/' + $user_img + '" alt="Avatar" class="rounded-circle">';
-            } else {
-              // For Avatar badge
-              var stateNum = Math.floor(Math.random() * 6),
-                states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'],
-                $state = states[stateNum],
-                $name = full['client_name'],
-                $initials = $name.match(/\b\w/g) || [];
-              $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-              $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
-            }
+            var $name = full['sender_name'];
+
+            // For Avatar badge
+            var stateNum = Math.floor(Math.random() * 6),
+              states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'],
+              $state = states[stateNum],
+              $name = full['sender_name'],
+              $initials = $name.match(/\b\w/g) || [];
+            $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
+            var $output =
+              '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
+
             // Creates full output for avatar row
             var $row_output =
               '<div class="d-flex justify-content-start align-items-center">' +
@@ -111,14 +88,9 @@ $(function () {
               '</div>' +
               '</div>' +
               '<div class="d-flex flex-column">' +
-              '<a href="' +
-              baseUrl +
-              'pages/profile-user" class="text-body text-truncate"><span class="fw-medium">' +
+              '<span class="fw-medium">' +
               $name +
-              '</span></a>' +
-              '<small class="text-truncate text-muted">' +
-              $service +
-              '</small>' +
+              '</span>' +
               '</div>' +
               '</div>';
             return $row_output;
@@ -128,7 +100,7 @@ $(function () {
           // Total Invoice Amount
           targets: 4,
           render: function (data, type, full, meta) {
-            var $total = full['total'];
+            var $total = full['amount'];
             return '<span class="d-none">' + $total + '</span>$' + $total;
           }
         },
@@ -136,7 +108,7 @@ $(function () {
           // Due Date
           targets: 5,
           render: function (data, type, full, meta) {
-            var $due_date = new Date(full['due_date']);
+            var $due_date = full['invoice_date'];
             // Creates full output for row
             var $row_output =
               '<span class="d-none">' +
@@ -152,15 +124,13 @@ $(function () {
           targets: 6,
           orderable: false,
           render: function (data, type, full, meta) {
-            var $balance = full['balance'];
-            if ($balance === 0) {
-              var $badge_class = 'bg-label-success';
-              return '<span class="badge ' + $badge_class + '"> Paid </span>';
-            } else {
-              return '<span class="d-none">' + $balance + '</span>' + $balance;
-            }
+            var $balance = full['payer'];
+
+            var $badge_class = 'bg-label-success';
+            return '<span class="badge ' + $badge_class + '">' + $balance + '</span>';
           }
         },
+
         {
           targets: 7,
           visible: false
@@ -168,7 +138,7 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'الاجرائات',
           searchable: false,
           orderable: false,
           render: function (data, type, full, meta) {
@@ -176,18 +146,16 @@ $(function () {
               '<div class="d-flex align-items-center">' +
               '<a href="javascript:;" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Send Mail"><i class="bx bx-send mx-1"></i></a>' +
               '<a href="' +
-              baseUrl +
-              'app/invoice/preview" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
+              'javascript:;" data-bs-toggle="tooltip" class="text-body" data-bs-placement="top" title="Preview Invoice"><i class="bx bx-show mx-1"></i></a>' +
               '<div class="dropdown">' +
               '<a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>' +
               '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="javascript:;" class="dropdown-item">Download</a>' +
+              '<a href="javascript:;" class="dropdown-item">تنزيل</a>' +
               '<a href="' +
-              baseUrl +
-              'app/invoice/edit" class="dropdown-item">Edit</a>' +
-              '<a href="javascript:;" class="dropdown-item">Duplicate</a>' +
+              'javascript:;" class="dropdown-item">Edit</a>' +
+              '<a href="javascript:;" class="dropdown-item">تكرار</a>' +
               '<div class="dropdown-divider"></div>' +
-              '<a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>' +
+              '<a href="javascript:;" class="dropdown-item delete-record text-danger">حذف</a>' +
               '</div>' +
               '</div>' +
               '</div>'
@@ -213,7 +181,7 @@ $(function () {
       // Buttons with Dropdown
       buttons: [
         {
-          text: '<i class="bx bx-plus me-md-1"></i><span class="d-md-inline-block d-none">Create Invoice</span>',
+          text: '<i class="bx bx-plus me-md-1"></i><span class="d-md-inline-block d-none">انشاء فاتورة</span>',
           className: 'btn btn-primary',
           action: function (e, dt, button, config) {
             window.location = baseUrl + 'app/invoice/add';
@@ -259,9 +227,7 @@ $(function () {
           .columns(7)
           .every(function () {
             var column = this;
-            var select = $(
-              '<select id="UserRole" class="form-select"><option value=""> Select Status </option></select>'
-            )
+            var select = $('<select id="UserRole" class="form-select"><option value=""> اختر الحالة </option></select>')
               .appendTo('.invoice_status')
               .on('change', function () {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());

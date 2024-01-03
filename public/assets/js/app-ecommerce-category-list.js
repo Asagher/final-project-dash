@@ -35,6 +35,70 @@ $(function () {
     headingColor = config.colors.headingColor;
   }
 
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }});
+
+  /////// Delete Record//////////
+  $(document).on('click', '.delete-record', function () {
+    var category_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+      console.log(category_id);
+
+    // hide responsive modal in small screen
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // sweetalert for confirmation of delete
+    Swal.fire({
+      title: ' هل أنت متأكد من ذلك؟',
+      text: " لن تكون قادرا على التراجع عن هذا!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: ' نعم ، احذفه!',
+      cancelButtonText: 'إلغاء',
+      customClass: {
+        confirmButton: 'btn btn-primary me-3',
+        cancelButton: 'btn btn-label-secondary'
+      },
+      buttonsStyling: true
+    }).then(function (result) {
+      if (result.value) {
+        // delete the data
+        $.ajax({
+          type: 'DELETE',
+          url:  ''.concat(baseUrl, 'product-category/').concat(category_id),
+          success: function () {
+            $('#categories').load('/app/ecommerce/product/category' + ' #categories');
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+
+        // success sweetalert
+        Swal.fire({
+          icon: 'success',
+          title: 'حذف!',
+          text: ' تم حذف الدور',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'ألغيت',
+          text: 'لم  يتم حذف الدور',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      }
+    });
+  });
   //select2 for dropdowns in offcanvas
 
   var select2 = $('.select2');
@@ -47,10 +111,7 @@ $(function () {
       });
     });
   }
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }});
+
   // Customers List Datatable
 $('#addCategoryModal').on('show.bs.modal', function () {
     $('#addForm')[0].reset();
@@ -77,15 +138,11 @@ $('#addCategoryModal').on('show.bs.modal', function () {
 //     $('#id').val(category_id);
 //     $('#ecommerce-category-title').val(data.name);
 //     $('#ecommerce-category-image').val(data.name);
-    
+
 //   });
 // });
   // clearing form data when offcanvas hidden
-  
 
-
-
-});
 //////add category/////
   (function () {
   FormValidation.formValidation(document.getElementById('addForm'), {
@@ -183,7 +240,7 @@ $(document).on('click', '.category-edit-modal', function () {
     $('#Etitle').val(data.category_name);
     $('#Eprice').val(data.price_per_weight);
 
-    
+
   });
 });
 ////////update///////////
@@ -264,3 +321,5 @@ $(document).on('click', '.category-edit-modal', function () {
     });
   });
 })();
+});
+

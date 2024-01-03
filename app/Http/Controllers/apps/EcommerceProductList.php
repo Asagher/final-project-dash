@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\apps;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ShipmentCategory;
+use App\Http\Controllers\Controller;
 
 class EcommerceProductList extends Controller
 {
   public function index()
   {
-    return view('content.apps.app-ecommerce-product-list');
+    $categories = ShipmentCategory::all();
+    return view('content.apps.app-ecommerce-product-list',
+    [ 'categories' =>$categories,
+     ] );
   }
 }

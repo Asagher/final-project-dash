@@ -181,29 +181,8 @@ $(function () {
     });
   }
 
-  // edit Record
-
-  $(document).on('click', '.edit-record', function () {
-
-    var user_id = $(this).data('id'),
-      dtrModal = $('.dtr-bs-modal.show');
-    // hide responsive modal in small screen
-    console.log(user_id + 'gg');
-    if (dtrModal.length) {
-      dtrModal.modal('hide');
-    }
-
-    // get data
-    $.get(''.concat(baseUrl, 'access-permission/').concat(user_id, '/edit'), function (data) {
-      console.log(data.name + 'gg');
-
-      $('#editPermissionId').val(user_id);
-      $('#editPermissionName').val(data.name);
-    });
-  });
 
   //add
-
   (function () {
     FormValidation.formValidation(document.getElementById('addPermissionForm'), {
       fields: {
@@ -267,6 +246,26 @@ $(function () {
       });
     });
   })();
+
+  // edit Record
+  $(document).on('click', '.edit-record', function () {
+
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+    // hide responsive modal in small screen
+    console.log(user_id + 'gg');
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // get data
+    $.get(''.concat(baseUrl, 'access-permission/').concat(user_id, '/edit'), function (data) {
+      console.log(data.name + 'gg');
+
+      $('#editPermissionId').val(user_id);
+      $('#editPermissionName').val(data.name);
+    });
+  });
 
   /// update
   (function () {

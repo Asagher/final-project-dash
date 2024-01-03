@@ -14,11 +14,15 @@ return new class extends Migration {
       $table->id('request_id');
       $table->unsignedBigInteger('sender_customer_id');
       $table->unsignedBigInteger('receiver_customer_id');
-      $table->double('total_weight', 10, 2);
-      $table->double('total_shipping_cost', 10, 2);
       $table->timestamp('shipping_date');
       $table->date('shipping_delivery');
       $table->unsignedBigInteger('status_id');
+      $table->unsignedBigInteger('address_id');
+      $table
+        ->foreign('address_id')
+        ->references('id')
+        ->on('addresses')
+        ->onDelete('cascade');
       $table
         ->foreign('sender_customer_id')
         ->references('id')

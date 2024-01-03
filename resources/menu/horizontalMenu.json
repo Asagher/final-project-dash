@@ -119,18 +119,13 @@
               "slug": "app-ecommerce-dashboard"
             },
             {
-              "name": "Products",
+              "name": "Products and Categories",
               "slug": "app-ecommerce-product",
               "submenu": [
                 {
                   "url": "app/ecommerce/product/list",
                   "name": "Product List",
                   "slug": "app-ecommerce-product-list"
-                },
-                {
-                  "url": "app/ecommerce/product/add",
-                  "name": "Add Product",
-                  "slug": "app-ecommerce-product-add"
                 },
                 {
                   "url": "app/ecommerce/product/category",

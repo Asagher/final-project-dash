@@ -55,10 +55,8 @@ $(function () {
         { data: 'product_name' },
         { data: 'category' },
         { data: 'stock' },
-        { data: 'sku' },
         { data: 'price' },
         { data: 'quantity' },
-        { data: 'status' },
         { data: '' }
       ],
       columnDefs: [
@@ -92,29 +90,8 @@ $(function () {
           render: function (data, type, full, meta) {
             var $name = full['product_name'],
               $id = full['id'],
-              $product_brand = full['product_brand'],
-              $image = full['image'];
-            if ($image) {
-              // For Product image
+              $product_brand = full['product_brand'];
 
-              var $output =
-                '<img src="' +
-                assetsPath +
-                'img/ecommerce-images/' +
-                $image +
-                '" alt="Product-' +
-                $id +
-                '" class="rounded-2">';
-            } else {
-              // For Product badge
-              var stateNum = Math.floor(Math.random() * 6);
-              var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
-              var $state = states[stateNum],
-                $name = full['product_brand'],
-                $initials = $name.match(/\b\w/g) || [];
-              $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-              $output = '<span class="avatar-initial rounded-2 bg-label-' + $state + '">' + $initials + '</span>';
-            }
             // Creates full output for Product name and product_brand
             var $row_output =
               '<div class="d-flex justify-content-start align-items-center product-name">' +
@@ -224,21 +201,6 @@ $(function () {
             var $qty = full['qty'];
 
             return '<span>' + $qty + '</span>';
-          }
-        },
-        {
-          // Status
-          targets: -2,
-          render: function (data, type, full, meta) {
-            var $status = full['status'];
-
-            return (
-              '<span class="badge ' +
-              statusObj[$status].class +
-              '" text-capitalized>' +
-              statusObj[$status].title +
-              '</span>'
-            );
           }
         },
         {
@@ -416,7 +378,7 @@ $(function () {
           ]
         },
         {
-          text: '<i class="bx bx-plus me-0 me-sm-1"></i><span class="d-none d-sm-inline-block">Add Product</span>',
+          text: '<i class="bx bx-plus me-0 me-sm-1"></i><span class="d-none d-sm-inline-block">إضافة منتج</span>',
           className: 'add-new btn btn-primary',
           action: function () {
             window.location.href = productAdd;

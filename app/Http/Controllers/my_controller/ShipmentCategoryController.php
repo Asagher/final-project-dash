@@ -33,8 +33,7 @@ class ShipmentCategoryController extends Controller {
         $file_name = $this->saveImage( $request->img, '/assets/img/category/' );
         $category = ShipmentCategory::create( [
             'category_name' => $request->categoryTitle,
-            'photo' => $file_name,
-            'price_per_weight' => $request->price_per_weight,
+            'photo' => $file_name
         ] );
         if ( $category ) {
             // user updated
@@ -69,8 +68,8 @@ class ShipmentCategoryController extends Controller {
 
     public function update( Request $request,  $id ) {
         $category = ShipmentCategory::findOrFail( $id );
-        // Update name
-        $category->update( $request->all() );
+        // Update record
+        $category->update(['category_name'=> $request->categoryTitle]);
 
         if ( $category ) {
             return response()->json( [ 'message' => 'Updated' ], 200 );
@@ -81,7 +80,7 @@ class ShipmentCategoryController extends Controller {
     * Remove the specified resource from storage.
     */
 
-    public function destroy( string $id ) {
-        //
+    public function destroy(  $id ) {
+      $roles = ShipmentCategory::where( 'category_id', $id )->delete();
     }
 }

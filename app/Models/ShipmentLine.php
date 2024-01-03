@@ -10,14 +10,7 @@ class ShipmentLine extends Model
   use HasFactory;
   protected $primaryKey = 'shipment_line_id';
   public $timestamps = false;
-  protected $fillable = [
-    'shipment_line_id',
-    'request_id',
-    'category_id',
-    'quantity',
-    'total_weight',
-    'line_total_cost',
-  ];
+  protected $fillable = ['shipment_line_id', 'request_id', 'category_id', 'quantity', 'weight', 'description'];
   public function shippingRequest()
   {
     return $this->belongsTo(ShippingRequest::class, 'request_id');
@@ -26,9 +19,5 @@ class ShipmentLine extends Model
   public function category()
   {
     return $this->belongsTo(ShipmentCategory::class, 'category_id');
-  }
-  public function invoice()
-  {
-    return $this->hasOne(Invoice::class, 'shipment_line_id');
   }
 }

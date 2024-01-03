@@ -7,11 +7,29 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+
 @endsection
 
 @section('page-script')
@@ -23,103 +41,123 @@
   <span class="text-muted fw-light">eCommerce /</span> Product List
 </h4>
 
-<!-- Product List Widget -->
-
-<div class="card mb-4">
-  <div class="card-widget-separator-wrapper">
-    <div class="card-body card-widget-separator">
-      <div class="row gy-4 gy-sm-1">
-        <div class="col-sm-6 col-lg-3">
-          <div class="d-flex justify-content-between align-items-start card-widget-1 border-end pb-3 pb-sm-0">
-            <div>
-              <h6 class="mb-2">In-store Sales</h6>
-              <h4 class="mb-2">$5,345.43</h4>
-              <p class="mb-0"><span class="text-muted me-2">5k orders</span><span class="badge bg-label-success">+5.7%</span></p>
-            </div>
-            <div class="avatar me-sm-4">
-              <span class="avatar-initial rounded bg-label-secondary">
-                <i class="bx bx-store-alt bx-sm"></i>
-              </span>
-            </div>
-          </div>
-          <hr class="d-none d-sm-block d-lg-none me-4">
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="d-flex justify-content-between align-items-start card-widget-2 border-end pb-3 pb-sm-0">
-            <div>
-              <h6 class="mb-2">Website Sales</h6>
-              <h4 class="mb-2">$674,347.12</h4>
-              <p class="mb-0"><span class="text-muted me-2">21k orders</span><span class="badge bg-label-success">+12.4%</span></p>
-            </div>
-            <div class="avatar me-lg-4">
-              <span class="avatar-initial rounded bg-label-secondary">
-                <i class="bx bx-laptop bx-sm"></i>
-              </span>
-            </div>
-          </div>
-          <hr class="d-none d-sm-block d-lg-none">
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="d-flex justify-content-between align-items-start border-end pb-3 pb-sm-0 card-widget-3">
-            <div>
-              <h6 class="mb-2">Discount</h6>
-              <h4 class="mb-2">$14,235.12</h4>
-              <p class="mb-0 text-muted">6k orders</p>
-            </div>
-            <div class="avatar me-sm-4">
-              <span class="avatar-initial rounded bg-label-secondary">
-                <i class="bx bx-gift bx-sm"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-          <div class="d-flex justify-content-between align-items-start">
-            <div>
-              <h6 class="mb-2">Affiliate</h6>
-              <h4 class="mb-2">$8,345.23</h4>
-              <p class="mb-0"><span class="text-muted me-2">150 orders</span><span class="badge bg-label-danger">-3.5%</span></p>
-            </div>
-            <div class="avatar">
-              <span class="avatar-initial rounded bg-label-secondary">
-                <i class="bx bx-wallet bx-sm"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Product List Table -->
 <div class="card">
-  <div class="card-header">
-    <h5 class="card-title">Filter</h5>
-    <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
-      <div class="col-md-4 product_status"></div>
-      <div class="col-md-4 product_category"></div>
-      <div class="col-md-4 product_stock"></div>
-    </div>
-  </div>
   <div class="card-datatable table-responsive">
     <table class="datatables-products table border-top">
       <thead>
         <tr>
           <th></th>
-          <th></th>
-          <th>product</th>
-          <th>category</th>
-          <th>stock</th>
-          <th>sku</th>
-          <th>price</th>
-          <th>qty</th>
-          <th>status</th>
-          <th>actions</th>
+          <th>التسلسل</th>
+          <th>الصنف</th>
+          <th>نوع الطرد</th>
+          <th>الوزن</th>
+          <th>السعر</th>
+          <th>الإجراءات</th>
         </tr>
       </thead>
     </table>
   </div>
 </div>
 
+<!-- Add product Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-simple">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3> إضافة نوع طرد جديد</h3>
+        </div>
+        <form id="addForm" class="row">
+          {{-- category --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-name"> الصنف</label>
+            <select id="category-org" class="form-select" data-placeholder="اختر صنف" name="category_id">
+              <option value="">اختر نوع الصنف</option>
+              @foreach ($categories as $category)
+              <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+              @endforeach
+            </select>
+          </div>
+
+          {{-- name --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-name">اسم الطرد</label>
+            <input type="text" class="form-control" id="ecommerce-product-name" placeholder="نوع الطرد" name="type" aria-label="Product title">
+          </div>
+
+          {{-- weight --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-sku">الوزن</label>
+            <input type="text" class="form-control" id="ecommerce-product-sku" placeholder="ادخل الوزن" name="weight" aria-label="Product SKU">
+          </div>
+
+          {{-- price --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-barcode">السعر</label>
+            <input type="text" class="form-control" id="ecommerce-product-barcode" placeholder="ادخل السعر" name="price" aria-label="Product barcode">
+          </div>
+          <div class="col-12 text-center demo-vertical-spacing">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">إرسال</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Add product Modal -->
+
+
+<!-- Edit product Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-simple">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close btn-pinned" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3> إضافة نوع طرد جديد</h3>
+        </div>
+        <input type="text" id="editId" name="editId" hidden/>
+        <form id="editForm" class="row">
+          {{-- category --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-name"> الصنف</label>
+            <select id="category" class="form-select" data-placeholder="اختر صنف" name="category_id">
+              <option value="" >اختر نوع الصنف</option>
+              @foreach ($categories as $category)
+              <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+              @endforeach
+            </select>
+          </div>
+
+          {{-- name --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-name">اسم الطرد</label>
+            <input type="text" class="form-control" id="product-name" placeholder="نوع الطرد" name="type" aria-label="Product title">
+          </div>
+
+          {{-- weight --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-sku">الوزن</label>
+            <input type="text" class="form-control" id="weight" placeholder="ادخل الوزن" name="weight" aria-label="Product SKU">
+          </div>
+
+          {{-- price --}}
+          <div class="col-12 mb-4">
+            <label class="form-label" for="ecommerce-product-barcode">السعر</label>
+            <input type="text" class="form-control" id="price" placeholder="ادخل السعر" name="price" aria-label="Product barcode">
+          </div>
+          <div class="col-12 text-center demo-vertical-spacing">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">إرسال</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">إلغاء</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ Edit product Modal -->
 @endsection

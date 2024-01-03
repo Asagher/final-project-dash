@@ -14,24 +14,20 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-      $categories=['الكترونيات','أدوية','مواد غذائية','ملابس'];
+      $categories=['الأجهزة الإلكترونية المحمولة','أدوية','مواد غذائية','ملابس','الأجهزة المنزلية','قطع سيارة'];
       $images=[
         'electronic.jpg',
         'medicine.jpg',
         'food.jpg',
-        'clothing.jpg'];
-        $price=[
-          '50.000',
-          '60.000',
-          '50.000',
-          '20.000'
-        ];
+        'clothing.jpg',
+      'home.jpg',
+    'car.jpg'];
+
         foreach ($categories as $k => $category) {
           ShipmentCategory::create( [
             'category_name' => $category,
-            'photo' => $images[$k],
-            'price_per_weight' => $price[$k],
-        ] );        }
+            'photo' => $images[$k]
+                    ] );        }
 
     }
 }

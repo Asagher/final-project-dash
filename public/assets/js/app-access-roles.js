@@ -168,7 +168,6 @@ $(function () {
       $('#editRoleId').val(role_id);
       $('#editRoleName').val(data.name);
       const m = [data.permissions];
-      console.log(m);
       let checkboxes = document.querySelectorAll('input[id="editCheckbox"]');
       let values = [];
       for (let j = 0; j < m[0].length; j++) {

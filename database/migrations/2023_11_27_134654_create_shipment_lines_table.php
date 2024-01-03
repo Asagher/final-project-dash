@@ -14,10 +14,9 @@ return new class extends Migration {
       $table->id('shipment_line_id');
       $table->unsignedBigInteger('request_id');
       $table->unsignedBigInteger('category_id');
-
       $table->integer('quantity');
-      $table->double('total_weight', 10, 2);
-      $table->double('line_total_cost', 10, 2);
+      $table->double('weight', 10, 2);
+      $table->string('description', 100)->nullable();
 
       $table
         ->foreign('request_id')

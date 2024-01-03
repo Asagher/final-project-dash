@@ -71,11 +71,6 @@
       "url": "app/ecommerce/product/list"
     },
     {
-      "name": "eCommerce - Add Product",
-      "icon": "bx-plus-circle",
-      "url": "app/ecommerce/product/add"
-    },
-    {
       "name": "eCommerce - Category List",
       "icon": "bx-list-ol",
       "url": "app/ecommerce/category/list"

@@ -68,21 +68,13 @@ class OrderShipController extends Controller
         );
       }
 
-      $totalWeight = 0;
-      $totalCost = 0;
-      foreach ($request->lines as $line) {
-        // add line weights
-        $totalWeight += $line['total_wight'];
-        $totalCost += $line['line_total_cost'];
-      }
       // Shipment Create line and request
 
       $shippingRequest = ShippingRequest::create([
         'sender_customer_id' => $customerS->id,
         'receiver_customer_id' => $customerR->id,
         'status_id' => 1,
-        'total_weight' => $totalWeight,
-        'total_shipping_cost' => $totalCost,
+        'address_id' => $request->address,
         'shipping_delivery' => $request->shipping_delivery,
       ]);
 
@@ -90,14 +82,14 @@ class OrderShipController extends Controller
         $shippingRequest->shipmentLines()->create([
           'category_id' => $line['category'],
           'quantity' => $line['quantity'],
-          'total_weight' => $line['total_wight'],
+          'weight' => $line['total_wight'],
 
-          'line_total_cost' => $line['line_total_cost'],
+          'description' => $line['description'],
         ]);
       }
 
       $shippingRequest->save();
-      return response()->json(['message' => 'Done'], 200);
+      return response()->json(['message' => 'Done', 'id' => $shippingRequest->request_id], 200);
     } else {
       return response()->json(['message' => 'Have Error'], 422);
     }
