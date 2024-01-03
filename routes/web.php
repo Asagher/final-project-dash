@@ -234,6 +234,8 @@ Route::middleware([
   Route::get('/app/kanban', [Kanban::class, 'index'])->name('app-kanban');
   Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
   Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
+
+
   Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
     'app-ecommerce-product-category'
   );

@@ -182,6 +182,26 @@ $(function () {
   }
 
 
+  // edit Record
+
+  $(document).on('click', '.edit-record', function () {
+    var user_id = $(this).data('id'),
+      dtrModal = $('.dtr-bs-modal.show');
+    // hide responsive modal in small screen
+    console.log(user_id + 'gg');
+    if (dtrModal.length) {
+      dtrModal.modal('hide');
+    }
+
+    // get data
+    $.get(''.concat(baseUrl, 'access-permission/').concat(user_id, '/edit'), function (data) {
+      console.log(data.name + 'gg');
+
+      $('#editPermissionId').val(user_id);
+      $('#editPermissionName').val(data.name);
+    });
+  });
+
   //add
   (function () {
     FormValidation.formValidation(document.getElementById('addPermissionForm'), {
@@ -344,53 +364,53 @@ $(function () {
     if (dtrModal.length) {
       dtrModal.modal('hide');
     }
-// sweetalert for confirmation of delete
-Swal.fire({
-  title: ' هل أنت متأكد من ذلك؟',
-  text: " لن تكون قادرا على التراجع عن هذا!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: ' نعم ، احذفه!',
-  cancelButtonText: 'إلغاء',
-  customClass: {
-    confirmButton: 'btn btn-primary me-3',
-    cancelButton: 'btn btn-label-secondary'
-  },
-  buttonsStyling: true
-}).then(function (result) {
-  if (result.value) {
-    // delete the data
-    $.ajax({
-      type: 'DELETE',
-      url: ''.concat(baseUrl, 'access-permission/').concat(permission_id),
-      success: function () {
-        dt_permission.draw();
+    // sweetalert for confirmation of delete
+    Swal.fire({
+      title: ' هل أنت متأكد من ذلك؟',
+      text: ' لن تكون قادرا على التراجع عن هذا!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: ' نعم ، احذفه!',
+      cancelButtonText: 'إلغاء',
+      customClass: {
+        confirmButton: 'btn btn-primary me-3',
+        cancelButton: 'btn btn-label-secondary'
       },
-      error: function (error) {
-        console.log(error);
-      }
-    });
+      buttonsStyling: true
+    }).then(function (result) {
+      if (result.value) {
+        // delete the data
+        $.ajax({
+          type: 'DELETE',
+          url: ''.concat(baseUrl, 'access-permission/').concat(permission_id),
+          success: function () {
+            dt_permission.draw();
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
 
-    // success sweetalert
-    Swal.fire({
-      icon: 'success',
-      title: 'حذف!',
-      text: ' تم حذف الصلاحية',
-      customClass: {
-        confirmButton: 'btn btn-success'
+        // success sweetalert
+        Swal.fire({
+          icon: 'success',
+          title: 'حذف!',
+          text: ' تم حذف الصلاحية',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'ألغيت',
+          text: 'لم  يتم حذف الصلاحية',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-success'
+          }
+        });
       }
     });
-  } else if (result.dismiss === Swal.DismissReason.cancel) {
-    Swal.fire({
-      title: 'ألغيت',
-      text: 'لم  يتم حذف الصلاحية',
-      icon: 'error',
-      customClass: {
-        confirmButton: 'btn btn-success'
-      }
-    });
-  }
-});
   });
 
   // Filter form control to default size
