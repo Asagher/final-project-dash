@@ -211,22 +211,20 @@ Route::middleware([
     'front-pages-help-center-article'
   );
 
-    // apps
-    Route::get('/app/email', [Email::class, 'index'])->name('app-email');
-    Route::get('/app/chat', [Chat::class, 'index'])->name('app-chat');
-    Route::get('/app/calendar', [Calendar::class, 'index'])->name('app-calendar');
-    Route::get('/app/kanban', [Kanban::class, 'index'])->name('app-kanban');
-    Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
-    ////////////product/////////
-    Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name(
-      'app-ecommerce-product-list'
-    );
-    Route::resource('/ecommerce-product-list',CategoryDetailController::class);
-    /////////////////////category/////////////
-    Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
-      'app-ecommerce-product-category'
-    );
-    Route::resource('/product-category', ShipmentCategoryController::class);
+  // apps
+  Route::get('/app/email', [Email::class, 'index'])->name('app-email');
+  Route::get('/app/chat', [Chat::class, 'index'])->name('app-chat');
+  Route::get('/app/calendar', [Calendar::class, 'index'])->name('app-calendar');
+  Route::get('/app/kanban', [Kanban::class, 'index'])->name('app-kanban');
+  Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
+  ////////////product/////////
+  Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
+  Route::resource('/ecommerce-product-list', CategoryDetailController::class);
+  /////////////////////category/////////////
+  Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
+    'app-ecommerce-product-category'
+  );
+  Route::resource('/product-category', ShipmentCategoryController::class);
   // apps
   Route::get('/app/email', [Email::class, 'index'])->name('app-email');
   Route::get('/app/chat', [Chat::class, 'index'])->name('app-chat');
@@ -234,7 +232,6 @@ Route::middleware([
   Route::get('/app/kanban', [Kanban::class, 'index'])->name('app-kanban');
   Route::get('/app/ecommerce/dashboard', [EcommerceDashboard::class, 'index'])->name('app-ecommerce-dashboard');
   Route::get('/app/ecommerce/product/list', [EcommerceProductList::class, 'index'])->name('app-ecommerce-product-list');
-
 
   Route::get('/app/ecommerce/product/category', [EcommerceProductCategory::class, 'index'])->name(
     'app-ecommerce-product-category'
@@ -461,6 +458,7 @@ Route::middleware([
 
   // laravel example
   Route::get('/user-management', [UserManagement::class, 'UserManagement'])->name('app-users-user-management');
+  Route::get('/get-category-details/{categoryId}', [EcommerceProductCategory::class, 'getCategoryDetails']);
   Route::resource('/user-list', UserManagement::class);
   Route::resource('/order-ship', OrderShipController::class);
   Route::resource('/category', ShipmentCategory::class);

@@ -13,9 +13,8 @@ return new class extends Migration {
     Schema::create('shipment_lines', function (Blueprint $table) {
       $table->id('shipment_line_id');
       $table->unsignedBigInteger('request_id');
-      $table->unsignedBigInteger('category_id');
-      $table->integer('quantity');
-      $table->double('weight', 10, 2);
+      $table->unsignedBigInteger('category_detail_id');
+      $table->integer('quantity')->unsigned();
       $table->string('description', 100)->nullable();
 
       $table
@@ -25,9 +24,9 @@ return new class extends Migration {
         ->onDelete('cascade');
 
       $table
-        ->foreign('category_id')
-        ->references('category_id')
-        ->on('shipment_categories')
+        ->foreign('category_detail_id')
+        ->references('id')
+        ->on('category_details')
         ->onDelete('cascade');
     });
   }

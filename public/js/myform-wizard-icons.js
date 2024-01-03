@@ -9,9 +9,6 @@ $(function () {
     selectPicker = $('.selectpicker');
 
   // Bootstrap select
-  if (selectPicker.length) {
-    selectPicker.selectpicker();
-  }
 
   // select2
   if (select2.length) {
@@ -73,57 +70,57 @@ $(function () {
     });
     // accountdetails
     const FormValidation1 = FormValidation.formValidation(wizardValidationFormStep1, {
-      fields: {
-        first_name_s: {
-          validators: {
-            notEmpty: {
-              message: 'The first name is required'
-            }
-          }
-        },
-        middle_name_s: {
-          validators: {
-            notEmpty: {
-              message: 'The middle name is required'
-            }
-          }
-        },
-        last_name_s: {
-          validators: {
-            notEmpty: {
-              message: 'The last is required'
-            }
-          }
-        },
-        national_id_s: {
-          validators: {
-            notEmpty: {
-              message: 'The national id is required'
-            }
-          }
-        },
-        phone_s: {
-          validators: {
-            notEmpty: {
-              message: 'The phone is required'
-            }
-          }
-        },
-        email_s: {
-          validators: {
-            notEmpty: {
-              message: 'The email is required'
-            }
-          }
-        },
-        address_s: {
-          validators: {
-            notEmpty: {
-              message: 'The address is required'
-            }
-          }
-        }
-      },
+      // fields: {
+      //   first_name_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The first name is required'
+      //       }
+      //     }
+      //   },
+      //   middle_name_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The middle name is required'
+      //       }
+      //     }
+      //   },
+      //   last_name_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The last is required'
+      //       }
+      //     }
+      //   },
+      //   national_id_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The national id is required'
+      //       }
+      //     }
+      //   },
+      //   phone_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The phone is required'
+      //       }
+      //     }
+      //   },
+      //   email_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The email is required'
+      //       }
+      //     }
+      //   },
+      //   address_s: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The address is required'
+      //       }
+      //     }
+      //   }
+      // },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -148,57 +145,57 @@ $(function () {
 
     // Personal info
     const FormValidation2 = FormValidation.formValidation(wizardValidationFormStep2, {
-      fields: {
-        first_name_r: {
-          validators: {
-            notEmpty: {
-              message: 'The first name is required'
-            }
-          }
-        },
-        middle_name_r: {
-          validators: {
-            notEmpty: {
-              message: 'The middle name is required'
-            }
-          }
-        },
-        last_name_r: {
-          validators: {
-            notEmpty: {
-              message: 'The last is required'
-            }
-          }
-        },
-        national_id_r: {
-          validators: {
-            notEmpty: {
-              message: 'The national id is required'
-            }
-          }
-        },
-        phone_r: {
-          validators: {
-            notEmpty: {
-              message: 'The phone is required'
-            }
-          }
-        },
-        email_r: {
-          validators: {
-            notEmpty: {
-              message: 'The email is required'
-            }
-          }
-        },
-        address_r: {
-          validators: {
-            notEmpty: {
-              message: 'The address is required'
-            }
-          }
-        }
-      },
+      // fields: {
+      //   first_name_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The first name is required'
+      //       }
+      //     }
+      //   },
+      //   middle_name_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The middle name is required'
+      //       }
+      //     }
+      //   },
+      //   last_name_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The last is required'
+      //       }
+      //     }
+      //   },
+      //   national_id_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The national id is required'
+      //       }
+      //     }
+      //   },
+      //   phone_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The phone is required'
+      //       }
+      //     }
+      //   },
+      //   email_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The email is required'
+      //       }
+      //     }
+      //   },
+      //   address_r: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'The address is required'
+      //       }
+      //     }
+      //   }
+      // },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -243,43 +240,43 @@ $(function () {
     }
     // address
     const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
-      fields: {
-        quantity: {
-          validators: {
-            notEmpty: {
-              message: 'quantity is required'
-            }
-          }
-        },
-        category: {
-          validators: {
-            notEmpty: {
-              message: 'category is required'
-            }
-          }
-        },
-        price_for_wight: {
-          validators: {
-            notEmpty: {
-              message: 'price is required'
-            }
-          }
-        },
-        total_wight: {
-          validators: {
-            notEmpty: {
-              message: 'wight is required'
-            }
-          }
-        },
-        line_total_cost: {
-          validators: {
-            notEmpty: {
-              message: 'cost is required'
-            }
-          }
-        }
-      },
+      // fields: {
+      //   quantity: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'quantity is required'
+      //       }
+      //     }
+      //   },
+      //   category: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'category is required'
+      //       }
+      //     }
+      //   },
+      //   price_for_wight: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'price is required'
+      //       }
+      //     }
+      //   },
+      //   total_wight: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'wight is required'
+      //       }
+      //     }
+      //   },
+      //   line_total_cost: {
+      //     validators: {
+      //       notEmpty: {
+      //         message: 'cost is required'
+      //       }
+      //     }
+      //   }
+      // },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -414,9 +411,24 @@ $(function () {
     //   $('#review-firstName').text(firstName);
     // });
 
+    // // Populate category details when category changes
+    $('#category_shipment').change(function () {
+      var categoryID = $(this).val();
+
+      $.ajax({
+        url: ''.concat(baseUrl, 'get-category-details/') + categoryID,
+        type: 'GET',
+        success: function (data) {
+          $.each(data, function (index, detail) {
+            $('#category-detail').append('<option value="' + detail.id + '">' + detail.type + '</option>');
+          });
+        }
+      });
+    });
+
     // show price in category
     function attachChangeHandler() {
-      $('.shipment-line').on('change', '.myCategory', function () {
+      $('.shipment-line').on('change', '#category-detail', function () {
         var categoryName = $(this).find(':selected').text();
         var row = $(this).closest('.shipment-line');
         $.ajax({
@@ -427,6 +439,8 @@ $(function () {
           },
           success: function (response) {
             row.find('.price_for_wight').val(response.price);
+            row.find('.total_wight').val(response.weight);
+
             calculateLineTotalCost(row);
           }
         });
@@ -510,6 +524,7 @@ $(function () {
 
       $('.shipment-line').each(function () {
         var line = {
+          category_detail: $(this).find('.myCategorydetaile').val(),
           category: $(this).find('.myCategory').val(),
           description: $(this).find('.description').val(),
           quantity: $(this).find('.quantity').val(),

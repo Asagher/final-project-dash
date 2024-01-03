@@ -164,11 +164,11 @@
               <tbody>
                 @foreach ($lines as $line)
                 <tr>
-                  <td>{{ $line->category->category_name }}</td>
+                  <td>{{ $line->categoryDetail->category->category_name }}</td>
                   <td>{{ $line->description }}</td>
                   <td>{{ $line->weight }}</td>
                   <td>{{ $line->quantity }}</td>
-                  <td>{{ $line->weight * $line->quantity * $line->category->price_per_weight}}</td>
+                  <td>{{ $line->categoryDetail->weight * $line->quantity * $line->categoryDetail->price}}</td>
                 </tr>
                 @endforeach
               </tbody>
