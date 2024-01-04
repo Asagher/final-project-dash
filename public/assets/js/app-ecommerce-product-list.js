@@ -328,13 +328,6 @@ $(function () {
             }
           }
         },
-        weight: {
-          validators: {
-            notEmpty: {
-              message: 'ادخل وزن الطرد'
-            }
-          }
-        },
         price: {
           validators: {
             notEmpty: {
@@ -486,13 +479,6 @@ Swal.fire({
           validators: {
             notEmpty: {
               message: 'ادخل اسم الطرد'
-            }
-          }
-        },
-        weight: {
-          validators: {
-            notEmpty: {
-              message: 'ادخل وزن الطرد'
             }
           }
         },

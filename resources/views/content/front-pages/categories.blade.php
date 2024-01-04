@@ -36,7 +36,7 @@ $configData = Helper::appClasses();
       <div class="row g-4" id="categories">
         @foreach ($categories as $category)
         <div class="col-xl-4 col-lg-2 col-md-2">
-          <a href="#">
+          <a href="{{ Route('shipping-price') }}">
             <div class="card h-100 border">
               <div class="card-body d-flex flex-column justify-content-between">
                 <img src="{{asset('assets/img/category/'.$category->photo)}}" class="img-fluid mx-auto my-4 rounded" style="width: 500px; height: 300px;" alt="...">
