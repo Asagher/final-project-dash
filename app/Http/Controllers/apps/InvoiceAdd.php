@@ -35,7 +35,7 @@ class InvoiceAdd extends Controller
       $shipment = ShippingRequest::find($request->id);
       $lines = $shipment->shipmentLines;
       $total = $lines->sum(function ($line) {
-        return $line->weight * $line->quantity * $line->category->price_per_weight;
+        return $line->categoryDetail->weight * $line->quantity * $line->categoryDetail->price;
       });
     }
 

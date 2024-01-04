@@ -80,9 +80,8 @@ class OrderShipController extends Controller
 
       foreach ($request->lines as $line) {
         $shippingRequest->shipmentLines()->create([
-          'category_id' => $line['category'],
+          'category_detail_id' => $line['category_detail'],
           'quantity' => $line['quantity'],
-          'weight' => $line['total_wight'],
 
           'description' => $line['description'],
         ]);

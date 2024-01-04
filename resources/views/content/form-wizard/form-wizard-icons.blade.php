@@ -5,6 +5,7 @@
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
@@ -237,18 +238,28 @@
               </div>
              <div class="row g-3 shipment-line" >
 
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label class="form-label" for="category">فئات الشحن</label>
-                <select class="form-select   myCategory" name="category[]" >
-                  <option label=" "></option>
+                <select class="form-select   myCategory" name="category[]" id="category_shipment">
+                  <option value="">اختر الفئة</option>
+
                   @foreach ($categories as $category )
                   <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
 
                   @endforeach
                 </select>
               </div>
+              <div class="col-sm-4">
+                <label class="form-label"  for="category-detail"> تفاصيل فئات الشحن </label>
+                <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
 
-              <div class="col-sm-6">
+                  <option >اختر تفاصيل الفئة</option>
+
+
+
+                </select>
+              </div>
+              <div class="col-sm-4">
                 <label class="form-label" for="quantity">الكمية</label>
                 <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
               </div>

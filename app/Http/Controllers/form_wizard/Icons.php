@@ -5,6 +5,7 @@ namespace App\Http\Controllers\form_wizard;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Category;
+use App\Models\CategoryDetail;
 use Illuminate\Http\Request;
 use App\Models\ShipmentCategory;
 
@@ -28,9 +29,10 @@ class Icons extends Controller
   {
     $categoryId = $request->categoryName;
 
-    $categoryName = ShipmentCategory::where('category_name', $categoryId)->first();
+    $categoryName = CategoryDetail::where('type', $categoryId)->first();
     return response()->json([
-      'price' => $categoryName->price_per_weight,
+      'price' => $categoryName->price,
+      'weight' => $categoryName->weight,
     ]);
   }
 }
