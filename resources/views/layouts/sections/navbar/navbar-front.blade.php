@@ -219,90 +219,87 @@
             @endif
           </li>
           @if($configData['hasCustomizer'] == true)
-        <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <i class='bx bx-sm'></i>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
-            <li>
-              <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+            <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+              <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                <i class='bx bx-sm'></i>
               </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                    <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                    <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                    <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                  </a>
+                </li>
+              </ul>
             </li>
-            <li>
-              <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!-- / Style Switcher-->
-        @endif
+          @endif
 
-        <!-- navbar button: Start -->
-        <li class="nav-item navbar-dropdown dropdown-user dropdown">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <div class="avatar avatar-online">
-              <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/Profile-PNG-Images.png') }}" alt class="w-px-40 h-auto rounded-circle">
-            </div>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            @if (Auth::check())
-              <li>
-                <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar avatar-online">
-                        <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/Profile-PNG-Images.png') }}" alt class="w-px-40 h-auto rounded-circle">
+          <li class="nav-item navbar-dropdown dropdown-user dropdown">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+              <div class="avatar avatar-online">
+                <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/Profile-PNG-Images.png') }}" alt class="w-px-40 h-auto rounded-circle">
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              @if (Auth::check())
+                <li>
+                  <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar avatar-online">
+                          <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/Profile-PNG-Images.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <span class="fw-medium d-block">
+
+                          {{ Auth::user()->name }}<br>
+                          <small class="text-muted">{{ Auth::user()->getRoleNames()->first() }}</small>
+                        </span>
                       </div>
                     </div>
-                    <div class="flex-grow-1">
-                      <span class="fw-medium d-block">
-
-                        {{ Auth::user()->name }}<br>
-                        <small class="text-muted">{{ Auth::user()->getRoleNames()->first() }}</small>
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
-                  <i class="bx bx-user me-2"></i>
-                  <span class="align-middle">My Profile</span>
-                </a>
-              </li>
-            @endif
-
-              @if (Auth::check())
-              <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  <i class='bx bx-power-off me-2'></i>
-                  <span class="align-middle">Logout</span>
-                </a>
-              </li>
-              <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                @csrf
-              </form>
-              @else
-              <li>
-                <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : url('auth/login-basic') }}">
-                  <i class='bx bx-log-in me-2'></i>
-                  <span class="align-middle">Login</span>
-                </a>
-              </li>
+                  </a>
+                </li>
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+                    <i class="bx bx-user me-2"></i>
+                    <span class="align-middle">My Profile</span>
+                  </a>
+                </li>
               @endif
-            </ul>
+
+                @if (Auth::check())
+                <li>
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class='bx bx-power-off me-2'></i>
+                    <span class="align-middle">Logout</span>
+                  </a>
+                </li>
+                <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                  @csrf
+                </form>
+                @else
+                <li>
+                  <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : url('auth/login-basic') }}">
+                    <i class='bx bx-log-in me-2'></i>
+                    <span class="align-middle">Login</span>
+                  </a>
+                </li>
+                @endif
+              </ul>
           </li>
-        <!-- navbar button: End -->
         <!-- Style Switcher -->
         </ul>
       </div>
@@ -314,7 +311,7 @@
         <li>
           <!-- Mobile menu toggle: End-->
           <a href="{{url('front-pages/landing')}}" class="app-brand-link">
-            <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">SpeedyShip
+            <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">SwiftShip
             </span>
             <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
           </a>

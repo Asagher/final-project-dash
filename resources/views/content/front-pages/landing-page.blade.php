@@ -1,3 +1,32 @@
+<style>
+  .features-icon-box {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .features-icon-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #5d10af67;
+    z-index: -1;
+    transform: scale(1.1);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .features-icon-box:hover::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+</style>
 @php
 $configData = Helper::appClasses();
 @endphp
@@ -42,18 +71,7 @@ $configData = Helper::appClasses();
             <a href="#landingPricing" class="btn btn-primary">Get early access</a>
           </div>
         </div>
-        <div id="heroDashboardAnimation" class="hero-animation-img">
-          <a href="{{url('/app/ecommerce/dashboard')}}" target="_blank">
-            <div id="heroAnimationImg" class="position-relative hero-dashboard-img">
-              <img src="{{asset('assets/img/front-pages/landing-page/hero-dashboard-'.$configData['style'].'.png')}}" alt="hero dashboard" class="animation-img" data-app-light-img="front-pages/landing-page/hero-dashboard-light.png" data-app-dark-img="front-pages/landing-page/hero-dashboard-dark.png" />
-              <img src="{{asset('assets/img/front-pages/landing-page/hero-elements-'.$configData['style'].'.png')}}" alt="hero elements" class="position-absolute hero-elements-img animation-img top-0 start-0" data-app-light-img="front-pages/landing-page/hero-elements-light.png" data-app-dark-img="front-pages/landing-page/hero-elements-dark.png" />
-            </div>
-          </a>
-        </div>
       </div>
-    </div>
-    <div class="landing-hero-blank">
-
     </div>
   </section>
   <!-- Hero: End -->
@@ -61,65 +79,26 @@ $configData = Helper::appClasses();
   <!-- Useful features: Start -->
   <section id="landingFeatures" class="section-py landing-features">
     <div class="container">
-      <div class="text-center mb-3 pb-1">
-        <span class="badge bg-label-primary">Useful Features</span>
+      <div class="text-center mb-3 pb-1 ">
+        <h2><span class="badge bg-label-primary">الاستعلام</span></h2>
       </div>
-      <h3 class="text-center mb-1">
-        <span class="section-title">Everything you need</span> to start your next project
-      </h3>
-      <p class="text-center mb-3 mb-md-5 pb-3">
-        Not just a set of tools, the package includes ready-to-deploy conceptual application.
-      </p>
-      <div class="features-icon-wrapper row gx-0 gy-4 g-sm-5">
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/laptop.png')}}" alt="laptop charging" />
-          </div>
-          <h5 class="mb-3">Quality Code</h5>
-          <p class="features-icon-description">
-            Code structure that all developers will easily understand and fall in love with.
-          </p>
+      <div class="row justify-content-center d-flex justify-content-around">
+        <div class="col-lg-4 col-sm-6 text-center features-icon-box mb-4">
+          <a href="{{ Route('categories') }}">
+            <div class="text-center mb-3">
+              <i class="bx bxs-file bx-lg me-2" style="color: #5d10af67;"></i>
+            </div>
+            <h5 class="mb-3">أسعار الشحن</h5>
+          </a>
         </div>
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/rocket.png')}}" alt="transition up" />
-          </div>
-          <h5 class="mb-3">Continuous Updates</h5>
-          <p class="features-icon-description">
-            Free updates for the next 12 months, including new demos and features.
-          </p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/paper.png')}}" alt="edit" />
-          </div>
-          <h5 class="mb-3">Stater-Kit</h5>
-          <p class="features-icon-description">
-            Start your project quickly without having to remove unnecessary features.
-          </p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/check.png')}}" alt="3d select solid" />
-          </div>
-          <h5 class="mb-3">API Ready</h5>
-          <p class="features-icon-description">
-            Just change the endpoint and see your own data loaded within seconds.
-          </p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/user.png')}}" alt="lifebelt" />
-          </div>
-          <h5 class="mb-3">Excellent Support</h5>
-          <p class="features-icon-description">An easy-to-follow doc with lots of references and code examples.</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box">
-          <div class="text-center mb-3">
-            <img src="{{asset('assets/img/front-pages/icons/keyboard.png')}}" alt="google docs" />
-          </div>
-          <h5 class="mb-3">Well Documented</h5>
-          <p class="features-icon-description">An easy-to-follow doc with lots of references and code examples.</p>
+
+        <div class="col-lg-4 col-sm-6 text-center features-icon-box mb-4">
+          <a href="your-page-url-1">
+            <div class="text-center mb-3">
+              <i class="bx bxs-map bx-lg me-2" style="color: #5d10af67;"></i>
+            </div>
+            <h5 class="mb-3">الفروع</h5>
+          </a>
         </div>
       </div>
     </div>

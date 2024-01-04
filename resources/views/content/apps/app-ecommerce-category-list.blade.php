@@ -74,13 +74,11 @@
       <div class="col-xl-4 col-lg-6 col-md-6 ">
         <div class="card">
           <div class="card-body">
-            <img src="{{asset('assets/img/category/'.$category->photo )}}"class="img-fluid d-flex mx-auto my-4 rounded" alt="...">
+            <img src="{{asset('assets/img/category/'.$category->photo)}}" class="img-fluid mx-auto my-4 rounded" style="width: 500px; height: 300px;" alt="...">
             <div class="d-flex justify-content-between align-items-end">
               <div class="role-heading">
-                <h5 class="card-title">{{$category->category_name}}</h5>
-                <p class="card-text">
-                  {{$category->price_per_weight}}
-                </p>
+                <h5 class="card-title text-center">{{$category->category_name}}</h5>
+
                 <a href="javascript:;"  data-bs-target="#editModal"  class="category-edit-modal" data-id={{$category->category_id}} data-bs-toggle="modal" ><small>تعديل الصنف</small></a>
               </div>
               <a href="javascript:void(0);" data-id={{$category->category_id}} class="delete-record"><i class="bx bx-trash"></i></a>
