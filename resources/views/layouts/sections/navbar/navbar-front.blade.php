@@ -26,20 +26,20 @@
             <a class="nav-link fw-medium" aria-current="page" href="{{url('front-pages/landing')}}#landingHero">الصفحة الرئيسية</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFeatures">Features</a>
+            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFeatures">ميزات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingTeam">Team</a>
+            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingTeam">الفريق</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFAQ">FAQ</a>
+            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFAQ">الأسئلة الشائعة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingContact">Contact us</a>
+            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingContact">تواصل معنا</a>
           </li>
           <li class="nav-item mega-dropdown {{ $activeClass }}">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown mega-dropdown fw-medium" aria-expanded="false" data-bs-toggle="mega-dropdown" data-trigger="hover">
-              <span>Pages</span>
+              <span>الصفحات</span>
             </a>
             <div class="dropdown-menu p-4">
               <div class="row gy-4">
@@ -48,32 +48,32 @@
                     <div class="avatar avatar-sm flex-shrink-0 me-2">
                       <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-grid-alt'></i></span>
                     </div>
-                    <span class="ps-1">Other</span>
+                    <span class="ps-1">اّخر</span>
                   </div>
                   <!-- add page slug in $activeRoutes array, defined Beginning of the page to add active class to the nav item -->
                   <ul class="nav flex-column">
                     <li class="nav-item {{ $currentRouteName === 'front-pages-pricing' ? 'active' : '' }}">
                       <a class="nav-link mega-dropdown-link" href="{{ url('front-pages/pricing') }}">
                         <i class='bx bx-radio-circle me-2'></i>
-                        <span>Pricing</span>
+                        <span>التسعير</span>
                       </a>
                     </li>
                     <li class="nav-item {{ $currentRouteName === 'front-pages-payment' ? 'active' : '' }}">
                       <a class="nav-link mega-dropdown-link" href="{{ url('front-pages/payment') }}">
                         <i class='bx bx-radio-circle me-2'></i>
-                        <span>Payment</span>
+                        <span>الدفع</span>
                       </a>
                     </li>
                     <li class="nav-item {{ $currentRouteName === 'front-pages-checkout' ? 'active' : '' }}">
                       <a class="nav-link mega-dropdown-link" href="{{ url('front-pages/checkout') }}">
                         <i class='bx bx-radio-circle me-2'></i>
-                        <span>Checkout</span>
+                        <span>خروج</span>
                       </a>
                     </li>
                     <li class="nav-item {{ $currentRouteName === 'front-pages-help-center' ? 'active' : '' }}">
                       <a class="nav-link mega-dropdown-link" href="{{ url('front-pages/help-center') }}">
                         <i class='bx bx-radio-circle me-2'></i>
-                        <span>Help Center</span>
+                        <span>مركز المساعدة</span>
                       </a>
                     </li>
                   </ul>
@@ -83,19 +83,19 @@
                     <div class="avatar avatar-sm flex-shrink-0 me-2">
                       <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-lock-open'></i></span>
                     </div>
-                    <span class="ps-1">Auth Demo</span>
+                    <span class="ps-1">مصادقة تجريبية</span>
                   </div>
                   <ul class="nav flex-column">
                     <li class="nav-item">
                       <a class="nav-link mega-dropdown-link" href="{{url('/auth/login-basic')}}" target="_blank">
                         <i class='bx bx-radio-circle me-2'></i>
-                        Login (Basic)
+                        تسجيل الدخول(اساسي)
                       </a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link mega-dropdown-link" href="{{url('/auth/login-cover')}}" target="_blank">
                         <i class='bx bx-radio-circle me-2'></i>
-                        Login (Cover)
+                        تسجيل الدخول(Cover)
                       </a>
                     </li>
                     <li class="nav-item">

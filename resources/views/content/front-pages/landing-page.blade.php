@@ -26,7 +26,312 @@
     opacity: 1;
   }
 
+  :root {
+    --main-color: #696cff;
+    --main-color-alt: #1787e0;
+    --main-trans: 0.3s;
+    --main-padd: 100px;
+}
+
+/* slider show  */
+
+.slideA{
+  margin-top: 40px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .slide-container{
+    position: relative;
+    width: 100%;
+    border: 3px solid #ede6de;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  .slide-container .slides{
+    width: 100%;
+    height:85vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-container .slides img{
+    width: 100%;
+    height: calc(100%);
+    position: absolute;
+    object-fit: cover;
+  }
+  .slide-container .slides img:not(.active){
+    top: 0;
+    left: -100%;
+  }
+  .slide-container .slides::before{
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #696cff;
+    z-index: 2;
+    opacity: 0.4;
+  }
+  span.next,span.prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 14px;
+    background: #696cff;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    border-radius: 3px;
+    user-select: none;
+    cursor: pointer;
+    z-index: -1;
+  }
+  /* span.next{
+    left: 20px;
+  }
+  span.prev{
+    right: 20px;
+  }
+  span.next:hover,span.prev:hover{
+    background: #9e9fff;
+    opacity: 0.8;
+    /* color: #222; */
+  /* } */ 
+  .dots{
+    position: absolute;
+    bottom: 20px;
+    z-index: 5;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background: #696cff; */
+    border-radius: 5px;
+    padding: 10px 15px;
+  }
+  .dots .dot{
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    margin: 5px 10px 0 10px;
+    /* border: 3px solid #fff; */
+    border-radius: 50%;
+    display: inline-block;
+    transition: backgroung-color 0.6s ease;
+  }
+  .dots .active{
+    background: #696cff;
+  }
+  .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+  }
+  .content h1{
+    color: white;
+    font-size: 56px
+  }
+  @media(max-width:990px) {
+    .content h1{
+      font-size: 35px;
+    }
+}
+@media(max-width:450px) {
+    .content h1{
+      font-size: 20px;
+    }
+}
+@keyframes next1{
+  from{
+    left: 0%;
+  }
+  to{
+    left: -100%;
+  }
+}
+@keyframes next2{
+  from{
+    left: 100%;
+  }
+  to{
+    left: 0%;
+  }
+}
+/* title mian */
+.main-title{
+    text-align: center;
+    margin: 40px 0 60px 0;
+    position: relative;
+}
+.main-title::after{
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 5px;
+    background: #696cff;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* enquiry */
+.services {
+    /* padding-top: var(--main-padd);*/
+    padding-bottom: var(--main-padd); 
+    position: relative;
+    /* width: 100%; */
+    /* background-color: #ececec; */
+}
+.services .container1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 40px;
+    margin: 100px 200px 0px 200px ;
+}
+
+.services .box {
+    background-color: white;
+    box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    counter-increment: services;
+    transition: var(--main-trans);
+    position: relative;
+}
+
+.services .box::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    top: -3px;
+    background-color: var(--main-color);
+    width: 0;
+    transition: var(--main-trans);
+}
+
+.services .box:hover {
+    transform: translateY(-10px);
+}
+
+.services .box:hover::before {
+    width: 100%;
+}
+
+.services .box>i {
+    margin: 40px auto 20px;
+    display: block;
+    text-align: center;
+    color: #e7e7ff;
+}
+
+.services .box>h3 {
+    text-align: center;
+    margin: 20px 0 40px;
+    font-size: 25px;
+    color: var(--main-color);
+}
+
+.services .box .info {
+    padding: 15px;
+    position: relative;
+    background-color: #f9f9f9;
+    text-align: right;
+}
+
+.services .box .info a {
+    color: var(--main-color);
+}
+.services .box:hover .info::before{
+  color: white;
+} 
+
+.services .box .info::before {
+    content: '0' counter(services);
+    position: absolute;
+    background-color: #e7e7ff;
+    color: #696cff;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100px;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    transition: var(--main-trans);
+}
+.services .box:hover .info::before {
+    background: var(--main-color);
+}
+.services .box .info::after {
+    content: '';
+    position: absolute;
+    background-color: #e7e7ff;
+    top: 0;
+    left: 80px;
+    width: 50px;
+    height: calc(100% + 0.4px);
+    transform: skewX(-30deg);
+}
+.services .box i{
+  transition: var(--main-trans);
+}
+.services .box:hover i{
+  color: #696cff;
+}
+@media(max-width:768px) {
+  .services .container1{
+      margin: 0 50px 0 50px;
+    }
+}
+@media(max-width:450px) {
+    .services .container1{
+      margin: 0;
+    }
+}
 </style>
+{{-- slider show js --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const slideImage = document.getElementsByClassName("A");
+  const next = document.getElementsByClassName("prev")[0];
+  const dots =document.getElementsByClassName("dot");
+  console.log(slideImage);
+  console.log(next);
+  console.log(dots);
+  var counter=0;
+  next.addEventListener('click',slidNext);
+  function slidNext(){
+    slideImage[counter].style.animation="next1 0.5s ease-in forwards";
+    if(counter>=slideImage.length-1){
+      counter=0;}
+    else{counter++;}
+    slideImage[counter].style.animation="next2 0.5s ease-in forwards";
+    dott();
+  }
+  function autoSlide(){
+    deletInter=setInterval(timer,3500);
+    function timer(){
+      slidNext();
+      dott();
+    }
+  }
+  autoSlide();
+  function dott(){
+      for(let i=0;i<dots.length;i++){
+        dots[i].className=dots[i].className.replace(' active','');
+      }
+      dots[counter].className+=' active';
+  }
+});
+  
+
+</script>
 @php
 $configData = Helper::appClasses();
 @endphp
@@ -48,7 +353,6 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/nouislider/nouislider.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
 @endsection
-
 @section('page-script')
 <script src="{{asset('assets/js/front-page-landing.js')}}"></script>
 @endsection
@@ -56,57 +360,60 @@ $configData = Helper::appClasses();
 @section('content')
 <div data-bs-spy="scroll" class="scrollspy-example">
   <!-- Hero: Start -->
-  <section id="hero-animation">
-    <div id="landingHero" class="section-py landing-hero position-relative">
-      <div class="container">
-        <div class="hero-text-box text-center">
-          <h1 class="text-primary hero-title display-4 fw-bold">One dashboard to manage all your businesses</h1>
-          <h2 class="hero-sub-title h6 mb-4 pb-1">
-            Production-ready & easy to use Admin Template<br class="d-none d-lg-block" />
-            for Reliability and Customizability.
-          </h2>
-          <div class="landing-hero-btn d-inline-block position-relative">
-            <span class="hero-btn-item position-absolute d-none d-md-flex text-heading">Join community
-              <img src="{{asset('assets/img/front-pages/icons/Join-community-arrow.png')}}" alt="Join community arrow" class="scaleX-n1-rtl" /></span>
-            <a href="#landingPricing" class="btn btn-primary">Get early access</a>
-          </div>
-        </div>
+
+<section class="slideA">
+  <div class="slide-container">
+      <div class="slides">
+          <img class="active A" src="{{asset('assets/img/front-pages/landing-page/truck1.jpg')}}" alt=""/>
+          <img class="A" src="{{asset('assets/img/front-pages/landing-page/truck2.jpg')}}" alt=""/>
+          <img class="A" src="{{asset('assets/img/front-pages/landing-page/truck3.jpg')}}" alt=""/>
+          <img class="A" src="{{asset('assets/img/front-pages/landing-page/truck4.jpg')}}" alt=""/>
       </div>
-    </div>
-  </section>
+      <div class="buttons">
+          <span class="next">&#10095;</span>
+          <span class="prev">&#10094;</span>
+      </div>
+      <div class="dots">
+          <div class="dot active" attr='0'></div>
+          <div class="dot" attr='1'></div>
+          <div class="dot" attr='2'></div>
+          <div class="dot" attr='3'></div>
+      </div>
+      <div class="content">
+        <h1>عبر عن تجارتك الإلكترونية</h1>
+      </div>
+  </div>
+</section>
+  
+
   <!-- Hero: End -->
 
   <!-- Useful features: Start -->
-  <section id="landingFeatures" class="section-py landing-features">
-    <div class="container">
-      <div class="text-center mb-3 pb-1 ">
-        <h2><span class="badge bg-label-primary">الاستعلام</span></h2>
-      </div>
-      <div class="row justify-content-center d-flex justify-content-around">
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box mb-4">
-          <a href="{{ Route('categories') }}">
-            <div class="text-center mb-3">
-              <i class="bx bxs-file bx-lg me-2" style="color: #5d10af67;"></i>
-            </div>
-            <h5 class="mb-3">أسعار الشحن</h5>
-          </a>
-        </div>
-
-        <div class="col-lg-4 col-sm-6 text-center features-icon-box mb-4">
-          <a href="your-page-url-1">
-            <div class="text-center mb-3">
-              <i class="bx bxs-map bx-lg me-2" style="color: #5d10af67;"></i>
-            </div>
-            <h5 class="mb-3">الفروع</h5>
-          </a>
+  <section>
+    <div class="services" id="services">
+        <h2 class="main-title ">الإستعلام</h2>
+        <div class="container1">
+          <div class="box">
+              <i class="bx bxs-file bx-lg me-2"></i>
+              <h3>أسعار الشحن</h3>
+              <div class="info">
+                <a href="{{ Route('categories') }}">تفاصيل</a>
+              </div>
+          </div>
+          <div class="box">
+              <i class="bx bxs-map bx-lg me-2"></i>
+              <h3>الفروع</h3>
+              <div class="info">
+                  <a href="#">تفاصيل</a>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- Useful features: End -->
 
   <!-- Real customers reviews: Start -->
-  <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
+  {{-- <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
     <!-- What people say slider: Start -->
     <div class="container">
       <div class="row align-items-center gx-0 gy-4 g-lg-5">
@@ -341,11 +648,11 @@ $configData = Helper::appClasses();
       </div>
     </div>
     <!-- Logo slider: End -->
-  </section>
+  </section> --}}
   <!-- Real customers reviews: End -->
 
   <!-- Our great team: Start -->
-  <section id="landingTeam" class="section-py landing-team">
+  {{-- <section id="landingTeam" class="section-py landing-team">
     <div class="container">
       <div class="text-center mb-3 pb-1">
         <span class="badge bg-label-primary">Our Great Team</span>
@@ -399,34 +706,33 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- Our great team: End -->
 
   <!-- Pricing plans: Start -->
   <section id="landingPricing" class="section-py bg-body landing-pricing">
     <div class="container">
       <div class="text-center mb-3 pb-1">
-        <span class="badge bg-label-primary">Pricing Plans</span>
+        <span class="badge bg-label-primary">خطط التسعير</span>
       </div>
-      <h3 class="text-center mb-1"><span class="section-title">Tailored pricing plans</span> designed for you</h3>
+      <h3 class="text-center mb-1"><span class="section-title">خطط تسعير</span> مصممة لأجلك</h3>
       <p class="text-center mb-4 pb-3">
-        All plans include 40+ advanced tools and features to boost your product.<br />Choose the best plan to fit
-        your needs.
+        تتضمن جميع الخطط أكثر من 40 أداة وميزات متقدمة لتعزيز منتجك.<br />اختر أفضل خطة تناسب احتياجاتك.
       </p>
       <div class="text-center mb-5">
         <div class="position-relative d-inline-block pt-3 pt-md-0">
           <label class="switch switch-primary me-0">
-            <span class="switch-label">Pay Monthly</span>
+            <span class="switch-label">الدفع شهريا</span>
             <input type="checkbox" class="switch-input price-duration-toggler" checked />
             <span class="switch-toggle-slider">
               <span class="switch-on"></span>
               <span class="switch-off"></span>
             </span>
-            <span class="switch-label">Pay Annual</span>
+            <span class="switch-label">الدفع سنوي</span>
           </label>
           <div class="pricing-plans-item position-absolute d-flex">
             <img src="{{asset('assets/img/front-pages/icons/pricing-plans-arrow.png')}}" alt="pricing plans arrow" class="scaleX-n1-rtl" />
-            <span class="fw-semibold mt-2 ms-1"> Save 25%</span>
+            <span class="fw-semibold mt-2 ms-1"> حفظ  25%</span>
           </div>
         </div>
       </div>
@@ -437,11 +743,11 @@ $configData = Helper::appClasses();
             <div class="card-header">
               <div class="text-center">
                 <img src="{{asset('assets/img/front-pages/icons/paper-airplane.png')}}" alt="paper airplane icon" class="mb-4 pb-2 scaleX-n1-rtl" />
-                <h4 class="mb-1">Basic</h4>
+                <h4 class="mb-1">اساسي</h4>
                 <div class="d-flex align-items-center justify-content-center">
                   <span class="price-monthly h1 text-primary fw-bold mb-0">$19</span>
                   <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$14</span>
-                  <sub class="h6 text-muted mb-0 ms-1">/mo</sub>
+                  <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
                   <div class="price-yearly text-muted price-yearly-toggle d-none">$ 168 / year</div>
@@ -453,48 +759,36 @@ $configData = Helper::appClasses();
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Timeline
+                    الجدول الزمني
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Basic search
+                    البحث الأساسي
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Live chat widget
+                    التسويق عبر البريد الإلكتروني
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Email marketing
+                    النماذج المخصصة
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Custom Forms
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Traffic analytics
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Basic Support
+                    تحليلات حركة المرور
                   </h5>
                 </li>
               </ul>
               <div class="d-grid mt-4 pt-3">
-                <a href="{{url('/front-pages/payment')}}" class="btn btn-label-primary">Get Started</a>
+                <a href="{{url('/front-pages/payment')}}" class="btn btn-label-primary">إبدأ</a>
               </div>
             </div>
           </div>
@@ -507,11 +801,11 @@ $configData = Helper::appClasses();
             <div class="card-header">
               <div class="text-center">
                 <img src="{{asset('assets/img/front-pages/icons/plane.png')}}" alt="plane icon" class="mb-4 pb-2 scaleX-n1-rtl" />
-                <h4 class="mb-1">Team</h4>
+                <h4 class="mb-1">فريق</h4>
                 <div class="d-flex align-items-center justify-content-center">
                   <span class="price-monthly h1 text-primary fw-bold mb-0">$29</span>
                   <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$22</span>
-                  <sub class="h6 text-muted mb-0 ms-1">/mo</sub>
+                  <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
                   <div class="price-yearly text-muted price-yearly-toggle d-none">$ 264 / year</div>
@@ -523,48 +817,36 @@ $configData = Helper::appClasses();
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Everything in basic
+                    الجدول الزمني مع قاعدة البيانات
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Timeline with database
+                    البحث المتقدم
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Advanced search
+                    أتمتة التسويق
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Marketing automation
+                    روبوت الدردشة المتقدم
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Advanced chatbot
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Campaign management
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Collaboration tools
+                    إدارة الحملة
                   </h5>
                 </li>
               </ul>
               <div class="d-grid mt-4 pt-3">
-                <a href="{{url('/front-pages/payment')}}" class="btn btn-primary">Get Started</a>
+                <a href="{{url('/front-pages/payment')}}" class="btn btn-primary">إبدأ</a>
               </div>
             </div>
           </div>
@@ -577,11 +859,11 @@ $configData = Helper::appClasses();
             <div class="card-header">
               <div class="text-center">
                 <img src="{{asset('assets/img/front-pages/icons/shuttle-rocket.png')}}" alt="shuttle rocket icon" class="mb-4 pb-2 scaleX-n1-rtl" />
-                <h4 class="mb-1">Enterprise</h4>
+                <h4 class="mb-1">مشروع</h4>
                 <div class="d-flex align-items-center justify-content-center">
                   <span class="price-monthly h1 text-primary fw-bold mb-0">$49</span>
                   <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$37</span>
-                  <sub class="h6 text-muted mb-0 ms-1">/mo</sub>
+                  <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
                   <div class="price-yearly text-muted price-yearly-toggle d-none">$ 444 / year</div>
@@ -593,48 +875,36 @@ $configData = Helper::appClasses();
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Everything in premium
+                    الجدول الزمني مع قاعدة البيانات
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Timeline with database
+                    بحث عميق
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Fuzzy search
+                    أذونات مخصصة
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    A/B testing sanbox
+                    أتمتة وسائل التواصل الاجتماعي
                   </h5>
                 </li>
                 <li>
                   <h5>
                     <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Custom permissions
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Social media automation
-                  </h5>
-                </li>
-                <li>
-                  <h5>
-                    <span class="badge badge-center rounded-pill bg-label-primary p-0 me-2"><i class="bx bx-check bx-xs"></i></span>
-                    Sales automation tools
+                    أدوات أتمتة المبيعات
                   </h5>
                 </li>
               </ul>
               <div class="d-grid mt-4 pt-3">
-                <a href="{{url('/front-pages/payment')}}" class="btn btn-label-primary">Get Started</a>
+                <a href="{{url('/front-pages/payment')}}" class="btn btn-label-primary">إبدأ</a>
               </div>
             </div>
           </div>
@@ -646,7 +916,7 @@ $configData = Helper::appClasses();
   <!-- Pricing plans: End -->
 
   <!-- Fun facts: Start -->
-  <section id="landingFunFacts" class="section-py landing-fun-facts">
+  {{-- <section id="landingFunFacts" class="section-py landing-fun-facts">
     <div class="container">
       <div class="row gy-3">
         <div class="col-sm-6 col-lg-3">
@@ -699,17 +969,17 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- Fun facts: End -->
 
   <!-- FAQ: Start -->
   <section id="landingFAQ" class="section-py bg-body landing-faq">
     <div class="container">
       <div class="text-center mb-3 pb-1">
-        <span class="badge bg-label-primary">FAQ</span>
+        <span class="badge bg-label-primary">الأسئلة الشائعة</span>
       </div>
-      <h3 class="text-center mb-1">Frequently asked <span class="section-title">questions</span></h3>
-      <p class="text-center mb-5 pb-3">Browse through these FAQs to find answers to commonly asked questions.</p>
+      <h3 class="text-center mb-1">الأسئلة <span class="section-title">الشائعة</span></h3>
+      <p class="text-center mb-5 pb-3">تصفح هذه الأسئلة الشائعة للعثور على إجابات للأسئلة الشائعة.</p>
       <div class="row gy-5">
         <div class="col-lg-5">
           <div class="text-center">
@@ -721,7 +991,7 @@ $configData = Helper::appClasses();
             <div class="card accordion-item active">
               <h2 class="accordion-header" id="headingOne">
                 <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                  Do you charge for each upgrade?
+                  هل يتم جمع رسوم؟
                 </button>
               </h2>
 
@@ -736,7 +1006,7 @@ $configData = Helper::appClasses();
             <div class="card accordion-item">
               <h2 class="accordion-header" id="headingTwo">
                 <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="false" aria-controls="accordionTwo">
-                  Do I need to purchase a license for each website?
+                  ماهو الترخيص العادي؟
                 </button>
               </h2>
               <div id="accordionTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -750,7 +1020,7 @@ $configData = Helper::appClasses();
             <div class="card accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionThree" aria-expanded="false" aria-controls="accordionThree">
-                  What is regular license?
+                  ماهو الترخيص المتعدد؟
                 </button>
               </h2>
               <div id="accordionThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -767,7 +1037,7 @@ $configData = Helper::appClasses();
             <div class="card accordion-item">
               <h2 class="accordion-header" id="headingFour">
                 <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionFour" aria-expanded="false" aria-controls="accordionFour">
-                  What is extended license?
+                  هل يتم جمع رسوم؟
                 </button>
               </h2>
               <div id="accordionFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
@@ -781,7 +1051,7 @@ $configData = Helper::appClasses();
             <div class="card accordion-item">
               <h2 class="accordion-header" id="headingFive">
                 <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionFive" aria-expanded="false" aria-controls="accordionFive">
-                  Which license is applicable for SASS application?
+                  ماهو الترخيص العادي؟
                 </button>
               </h2>
               <div id="accordionFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
@@ -820,10 +1090,10 @@ $configData = Helper::appClasses();
   <section id="landingContact" class="section-py bg-body landing-contact">
     <div class="container">
       <div class="text-center mb-3 pb-1">
-        <span class="badge bg-label-primary">Contact US</span>
+        <span class="badge bg-label-primary">تواصل معنا</span>
       </div>
-      <h3 class="text-center mb-1"><span class="section-title">Let's work</span> together</h3>
-      <p class="text-center mb-4 mb-lg-5 pb-md-3">Any question or remark? just write us a message</p>
+      <h3 class="text-center mb-1"><span class="section-title">دعونا نعمل معا</span></h3>
+      <p class="text-center mb-4 mb-lg-5 pb-md-3">أي سؤال أو ملاحظة؟ فقط اكتب لنا رسالة</p>
       <div class="row gy-4">
         <div class="col-lg-5">
           <div class="contact-img-box position-relative border p-2 h-100">
@@ -834,7 +1104,7 @@ $configData = Helper::appClasses();
                   <div class="d-flex align-items-center">
                     <div class="badge bg-label-primary rounded p-2 me-2"><i class="bx bx-envelope bx-sm"></i></div>
                     <div>
-                      <p class="mb-0">Email</p>
+                      <p class="mb-0">البريد الإلكتروني</p>
                       <h5 class="mb-0">
                         <a href="mailto:example@gmail.com" class="text-heading">example@gmail.com</a>
                       </h5>
@@ -847,7 +1117,7 @@ $configData = Helper::appClasses();
                       <i class="bx bx-phone-call bx-sm"></i>
                     </div>
                     <div>
-                      <p class="mb-0">Phone</p>
+                      <p class="mb-0">الهاتف</p>
                       <h5 class="mb-0"><a href="tel:+1234-568-963" class="text-heading">+1234 568 963</a></h5>
                     </div>
                   </div>
@@ -859,27 +1129,26 @@ $configData = Helper::appClasses();
         <div class="col-lg-7">
           <div class="card">
             <div class="card-body">
-              <h4 class="mb-1">Send a message</h4>
+              <h4 class="mb-1">ارسل رسالة</h4>
               <p class="mb-4">
-                If you would like to discuss anything related to payment, account, licensing,<br class="d-none d-lg-block" />
-                partnerships, or have pre-sales questions, you’re at the right place.
+                إذا كنت ترغب في مناقشة أي شيء متعلق بالدفع أو الحساب أو الترخيص أو الشراكات أو لديك أسئلة ما قبل البيع, فأنت في المكان الصحيح
               </p>
               <form>
                 <div class="row g-4">
                   <div class="col-md-6">
-                    <label class="form-label" for="contact-form-fullname">Full Name</label>
+                    <label class="form-label" for="contact-form-fullname">الأسم الكامل</label>
                     <input type="text" class="form-control" id="contact-form-fullname" placeholder="john" />
                   </div>
                   <div class="col-md-6">
-                    <label class="form-label" for="contact-form-email">Email</label>
+                    <label class="form-label" for="contact-form-email">البريد الإلكتروني</label>
                     <input type="text" id="contact-form-email" class="form-control" placeholder="johndoe@gmail.com" />
                   </div>
                   <div class="col-12">
-                    <label class="form-label" for="contact-form-message">Message</label>
+                    <label class="form-label" for="contact-form-message">رسالة</label>
                     <textarea id="contact-form-message" class="form-control" rows="9" placeholder="Write a message"></textarea>
                   </div>
                   <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Send inquiry</button>
+                    <button type="submit" class="btn btn-primary">أرسل</button>
                   </div>
                 </div>
               </form>
