@@ -1,9 +1,10 @@
 @extends('layouts/layoutMaster')
 
 @section('title', 'Logistics Fleet - Apps')
-
+ <meta property="og:description" content="Geolocate the user and then track their current location on the map using the GeolocateControl." />
 @section('vendor-style')
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/mapbox-gl/mapbox-gl.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/maplibre-gl/maplibre-gl.css')}}" />
+
 @endsection
 
 @section('page-style')
@@ -12,7 +13,11 @@
 @endsection
 
 @section('vendor-script')
-<script src="{{asset('assets/vendor/libs/mapbox-gl/mapbox-gl.js')}}"></script>
+
+<script src="https://unpkg.com/@esri/arcgis-rest-request@4.0.0/dist/bundled/request.umd.js"></script>
+<script src="https://unpkg.com/@esri/arcgis-rest-routing@4.0.0/dist/bundled/routing.umd.js"></script>
+
+<script src="{{asset('assets/vendor/libs/maplibre-gl/maplibre-gl.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -21,14 +26,7 @@
 
 @section('content')
 
-@if(env('APP_ENV') !== 'production')
-<div class="alert alert-outline-primary alert-dismissible" role="alert">
-  Fleet page is using Mapbox to display maps. The maps on the fleet page may not load on your localhost or domain because you need to add your own access token for Mapbox. <br />For more details refer to the <a href="https://docs.mapbox.com/mapbox-gl-js/guides/" target="_blank">Mapbox</a> section in the <a href="{{config('variables.documentation')}}/faq.html#mapbox-not-loading" class="alert-link" target="_blank">documentation</a>.
 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-  </button>
-</div>
-@endif
 
 <div class="card overflow-hidden">
 
@@ -43,7 +41,7 @@
     <!-- Map Menu -->
     <div class="app-logistics-fleet-sidebar col h-100" id="app-logistics-fleet-sidebar">
       <div class="card-header border-0 pt-4 pb-2 d-flex justify-content-between">
-        <h5 class="mb-0 card-title">Fleet</h5>
+        <h5 class="mb-0 card-title">تتبع الشاحنات</h5>
         <!-- Sidebar close button -->
         <i class="bx bx-x bx-sm cursor-pointer close-sidebar d-md-none" data-bs-toggle="sidebar" data-overlay data-target="#app-logistics-fleet-sidebar"></i>
       </div>
@@ -63,7 +61,7 @@
                   </div>
                   <span class="d-flex flex-column">
                     <span class="h6 mb-0">VOL-342808</span>
-                    <span class="text-muted">Chelsea, NY, USA</span>
+                    <span class="text-muted">الموقع الحالي</span>
                   </span>
                 </div>
               </div>
@@ -71,7 +69,7 @@
             <div id="fleet1" class="accordion-collapse collapse show" data-bs-parent="#fleet">
               <div class="accordion-body pt-3 pb-0">
                 <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="mb-1">Delivery Process</h6>
+                  <h6 class="mb-1">عملية التسليم </h6>
                   <p class="text-body mb-1">88%</p>
                 </div>
                 <div class="progress" style="height: 5px;">
@@ -84,9 +82,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-success text-uppercase fw-medium">tracking number created</small>
+                        <small class="text-success text-uppercase fw-medium">نقطة البداية </small>
                       </div>
-                      <h6 class="mb-1">Veronica Herman</h6>
+                      <h6 class="mb-1">مستودع حلب</h6>
                       <p class="text-muted mb-0">Sep 01, 7:53 AM</p>
                     </div>
                   </li>
@@ -96,9 +94,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-success text-uppercase fw-medium">out for delivery</small>
+                        <small class="text-success text-uppercase fw-medium">نقطة النهاية</small>
                       </div>
-                      <h6 class="mb-1">Veronica Herman</h6>
+                      <h6 class="mb-1">دمشق</h6>
                       <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
                     </div>
                   </li>
@@ -108,9 +106,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-primary text-uppercase fw-medium">arriving</small>
+                        <small class="text-primary text-uppercase fw-medium">وقت الوصول</small>
                       </div>
-                      <h6 class="mb-1">Veronica Herman</h6>
+                      <h6 class="mb-1">دمشق</h6>
                       <p class="text-muted mb-0">Sep 04, 8:18 AM</p>
                     </div>
                   </li>
@@ -131,7 +129,7 @@
                   </div>
                   <span class="d-flex flex-column">
                     <span class="h6 mb-0">VOL-954784</span>
-                    <span class="text-muted">Lincoln Harbor, NY, USA</span>
+                    <span class="text-muted">الموقع الحالي</span>
                   </span>
                 </div>
               </div>
@@ -139,7 +137,7 @@
             <div id="fleet2" class="accordion-collapse collapse" data-bs-parent="#fleet">
               <div class="accordion-body pt-3 pb-0">
                 <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="mb-1">Delivery Process</h6>
+                  <h6 class="mb-1">عملية التسليم</h6>
                   <p class="text-body mb-1">100%</p>
                 </div>
                 <div class="progress" style="height: 5px;">
@@ -152,9 +150,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-success text-uppercase fw-medium">tracking number created</small>
+                        <small class="text-success text-uppercase fw-medium">نقطة البداية </small>
                       </div>
-                      <h6 class="mb-1">Myrtle Ullrich</h6>
+                      <h6 class="mb-1">مستودع حلب</h6>
                       <p class="text-muted mb-0">Sep 01, 7:53 AM</p>
                     </div>
                   </li>
@@ -164,9 +162,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-success text-uppercase fw-medium">out for delivery</small>
+                        <small class="text-success text-uppercase fw-medium">نقطة النهاية</small>
                       </div>
-                      <h6 class="mb-1">Myrtle Ullrich</h6>
+                      <h6 class="mb-1">دمشق</h6>
                       <p class="text-muted mb-0">Sep 03, 8:02 AM</p>
                     </div>
                   </li>
@@ -176,9 +174,9 @@
                     </span>
                     <div class="timeline-event ps-0 pb-0">
                       <div class="timeline-header">
-                        <small class="text-primary text-uppercase fw-medium">arrived</small>
+                        <small class="text-primary text-uppercase fw-medium">وقت الوصول</small>
                       </div>
-                      <h6 class="mb-1">Myrtle Ullrich</h6>
+                      <h6 class="mb-1">دمشق</h6>
                       <p class="text-muted mb-0">Sep 04, 8:18 AM</p>
                     </div>
                   </li>
@@ -199,7 +197,7 @@
                   </div>
                   <span class="d-flex flex-column">
                     <span class="h6 mb-0">VOL-342808</span>
-                    <span class="text-muted">Midtown East, NY, USA</span>
+                    <span class="text-muted">الموقع الحالي</span>
                   </span>
                 </div>
               </div>
@@ -207,7 +205,7 @@
             <div id="fleet3" class="accordion-collapse collapse" data-bs-parent="#fleet">
               <div class="accordion-body pt-3 pb-0">
                 <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="mb-1">Delivery Process</h6>
+                  <h6 class="mb-1">عملية التسليم</h6>
                   <p class="text-body mb-1">60%</p>
                 </div>
                 <div class="progress" style="height: 5px;">
@@ -325,7 +323,21 @@
         </div>
       </div>
     </div>
-
+<style>
+  #directions {
+        position: absolute;
+        width: 30%;
+        max-height: 50%;
+        right: 30%;
+        top: ;
+        overflow-y: auto; /* Show a scrollbar if needed */
+        background: white;
+        font-family: Arial, Helvetica, Verdana;
+        line-height: 1.5;
+        font-size: 14px;
+        padding: 10px;
+      }
+</style>
     <!-- Mapbox Map container -->
     <div class="col h-100 map-container">
       <!-- Map -->
