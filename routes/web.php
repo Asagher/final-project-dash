@@ -170,6 +170,7 @@ use App\Http\Controllers\my_controller\ShipmentCategoryController;
 use App\Http\Controllers\wizard_example\Checkout as WizardCheckout;
 use App\Http\Controllers\apps\EcommerceCustomerDetailsNotifications;
 use App\Http\Controllers\form_wizard\Numbered as FormWizardNumbered;
+use App\Http\Controllers\my_controller\VehicleController;
 
 // Admin Route
 Route::middleware([
@@ -465,13 +466,13 @@ Route::middleware([
   Route::resource('/order-ship', OrderShipController::class);
   Route::resource('/category', ShipmentCategory::class);
   Route::resource('/add-invoices', AddInvoicesController::class);
+  Route::resource('/add-vehicle', VehicleController::class);
 });
 ///////////home////////////
 
-Route::get('/', [Landing::class, 'index'])->name('front-pages-landing');////welcome page
-Route::get('/categories-page', [Categories::class, 'index'])->name('categories');////welcome page
+Route::get('/', [Landing::class, 'index'])->name('front-pages-landing'); ////welcome page
+Route::get('/categories-page', [Categories::class, 'index'])->name('categories'); ////welcome page
 
-Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price');/////shiping prices page
-
+Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
 
 ////////////////

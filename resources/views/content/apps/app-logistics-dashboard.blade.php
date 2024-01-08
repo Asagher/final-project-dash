@@ -6,20 +6,49 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+
+
 @endsection
 
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/app-logistics-dashboard.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/@form-validation/umd/styles/index.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 
 @endsection
 
 @section('vendor-script')
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+
+
 @endsection
 
 @section('page-script')
 <script src="{{asset('assets/js/app-logistics-dashboard.js')}}"></script>
+<script src="{{asset('assets/js/modal-add-car.js')}}"></script>
+
 @endsection
 
 @section('content')
@@ -38,10 +67,10 @@
           </div>
           <h4 class="ms-1 mb-0">42</h4>
         </div>
-        <p class="mb-1">On route vehicles</p>
+        <p class="mb-1">سيارات في المسار</p>
         <p class="mb-0">
           <span class="fw-medium me-1">+18.2%</span>
-          <small class="text-muted">than last week</small>
+          <small class="text-muted">الاسبوع الماضي</small>
         </p>
       </div>
     </div>
@@ -55,10 +84,10 @@
           </div>
           <h4 class="ms-1 mb-0">8</h4>
         </div>
-        <p class="mb-1">Vehicles with errors</p>
+        <p class="mb-1">مركبات معطلة</p>
         <p class="mb-0">
           <span class="fw-medium me-1">-8.7%</span>
-          <small class="text-muted">than last week</small>
+          <small class="text-muted">الاسبوع الماضي</small>
         </p>
       </div>
     </div>
@@ -72,10 +101,10 @@
           </div>
           <h4 class="ms-1 mb-0">27</h4>
         </div>
-        <p class="mb-1">Deviated from route</p>
+        <p class="mb-1">انحرفت من المسار</p>
         <p class="mb-0">
           <span class="fw-medium me-1">+4.3%</span>
-          <small class="text-muted">than last week</small>
+          <small class="text-muted">الاسبوع الماضي</small>
         </p>
       </div>
     </div>
@@ -89,10 +118,10 @@
           </div>
           <h4 class="ms-1 mb-0">13</h4>
         </div>
-        <p class="mb-1">Late vehicles</p>
+        <p class="mb-1">مركبات متاخرة</p>
         <p class="mb-0">
           <span class="fw-medium me-1">-2.5%</span>
-          <small class="text-muted">than last week</small>
+          <small class="text-muted">الاسبوع الماضي</small>
         </p>
       </div>
     </div>
@@ -105,15 +134,15 @@
     <div class="card h-100">
       <div class="card-header">
         <div class="card-title mb-0">
-          <h5 class="m-0">Vehicles overview</h5>
+          <h5 class="m-0">نظرة على المركبات </h5>
         </div>
       </div>
       <div class="card-body">
         <div class="d-none d-lg-flex vehicles-progress-labels mb-3">
-          <div class="vehicles-progress-label on-the-way-text" style="width: 39.7%;">On the way</div>
-          <div class="vehicles-progress-label unloading-text" style="width: 28.3%;">Unloading</div>
-          <div class="vehicles-progress-label loading-text" style="width: 17.4%;">Loading</div>
-          <div class="vehicles-progress-label waiting-text" style="width: 14.6%;">Waiting</div>
+          <div class="vehicles-progress-label on-the-way-text" style="width: 39.7%;">في المسار</div>
+          <div class="vehicles-progress-label unloading-text" style="width: 28.3%;">تفريغ </div>
+          <div class="vehicles-progress-label loading-text" style="width: 17.4%;">تحميل</div>
+          <div class="vehicles-progress-label waiting-text" style="width: 14.6%;">انتظار</div>
         </div>
         <div class="vehicles-overview-progress progress rounded-2 mb-3" style="height: 46px;">
           <div class="progress-bar fs-big fw-medium text-start bg-lighter text-body px-1 px-lg-3 rounded-start shadow-none" role="progressbar" style="width: 39.7%" aria-valuenow="39.7" aria-valuemin="0" aria-valuemax="100">39.7%</div>
@@ -130,7 +159,7 @@
                     <div class="me-2">
                       <i class="bx bxs-truck"></i>
                     </div>
-                    <h6 class="mb-0 fw-normal">On the way</h6>
+                    <h6 class="mb-0 fw-normal">في المسار</h6>
                   </div>
                 </td>
                 <td class="text-end pe-0 text-nowrap">
@@ -146,7 +175,7 @@
                     <div class="me-2">
                       <i class='bx bx-down-arrow-circle'></i>
                     </div>
-                    <h6 class="mb-0 fw-normal">Unloading</h6>
+                    <h6 class="mb-0 fw-normal">تفريغ </h6>
                   </div>
                 </td>
                 <td class="text-end pe-0 text-nowrap">
@@ -162,7 +191,7 @@
                     <div class="me-2">
                       <i class='bx bx-up-arrow-circle'></i>
                     </div>
-                    <h6 class="mb-0 fw-normal">Loading</h6>
+                    <h6 class="mb-0 fw-normal">تحميل</h6>
                   </div>
                 </td>
                 <td class="text-end pe-0 text-nowrap">
@@ -178,7 +207,7 @@
                     <div class="me-2">
                       <i class="bx bx-time-five"></i>
                     </div>
-                    <h6 class="mb-0 fw-normal">Waiting</h6>
+                    <h6 class="mb-0 fw-normal">انتظار</h6>
                   </div>
                 </td>
                 <td class="text-end pe-0 text-nowrap">
@@ -200,8 +229,8 @@
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Shipment statistics</h5>
-          <small class="text-muted">Total number of deliveries 23.8k</small>
+          <h5 class="m-0 me-2">احصائيا الشحن</h5>
+          <small class="text-muted">العدد الكلي للتسليم 23.8k</small>
         </div>
         <div class="dropdown">
           <button type="button" class="btn btn-label-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">January</button>
@@ -228,390 +257,41 @@
   </div>
   <!--/ Shipment statistics -->
   <!-- Delivery Performance -->
-  <div class="col-lg-6 col-xxl-4 mb-4 order-2 order-xxl-2">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Delivery Performance</h5>
-          <small class="text-muted">12% increase in this month</small>
-        </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="deliveryPerformance" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="deliveryPerformance">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <ul class="p-0 m-0">
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-package"></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Packages in transit</h6>
-                <small class="text-success fw-normal d-block">
-                  <i class="bx bx-chevron-up"></i>
-                  25.8%
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">10k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-info"><i class="bx bxs-truck"></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Packages out for delivery</h6>
-                <small class="text-success fw-normal d-block">
-                  <i class="bx bx-chevron-up"></i>
-                  4.3%
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">5k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-success"><i class="bx bx-check-circle"></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Packages delivered</h6>
-                <small class="text-danger fw-normal d-block">
-                  <i class="bx bx-chevron-down"></i>
-                  12.5
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">15k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-warning"><i>%</i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Delivery success rate</h6>
-                <small class="text-success fw-normal d-block">
-                  <i class="bx bx-chevron-up"></i>
-                  35.6%
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">95%</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-secondary"><i class="bx bx-time-five"></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Average delivery time</h6>
-                <small class="text-danger fw-normal d-block">
-                  <i class="bx bx-chevron-down"></i>
-                  2.15
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">2.5 Days</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-danger"><i class="bx bx-group"></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-1 fw-normal">Customer satisfaction</h6>
-                <small class="text-success fw-normal d-block">
-                  <i class="bx bx-chevron-up"></i>
-                  5.7%
-                </small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">4.5/5</h6>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
   <!--/ Delivery Performance -->
   <!-- Reasons for delivery exceptions -->
-  <div class="col-md-6 col-xxl-4 mb-4 order-1 order-xxl-3">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Reasons for delivery exceptions</h5>
-        </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="deliveryExceptions" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="deliveryExceptions">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div id="deliveryExceptionsChart"></div>
-      </div>
-    </div>
-  </div>
+
   <!--/ Reasons for delivery exceptions -->
   <!-- Orders by Countries -->
-  <div class="col-md-6 col-xxl-4 mb-4 order-0 order-xxl-4">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Orders by Countries</h5>
-          <small class="text-muted">62 deliveries in progress</small>
-        </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="ordersCountries" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="ordersCountries">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="nav-align-top">
-          <ul class="nav nav-tabs nav-fill tabs-line" role="tablist">
-            <li class="nav-item">
-              <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-new" aria-controls="navs-justified-new" aria-selected="true">New</button>
-            </li>
-            <li class="nav-item">
-              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-link-preparing" aria-controls="navs-justified-link-preparing" aria-selected="false">Preparing</button>
-            </li>
-            <li class="nav-item">
-              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-link-shipping" aria-controls="navs-justified-link-shipping" aria-selected="false">Shipping</button>
-            </li>
-          </ul>
-          <div class="tab-content shadow-none border-0 border-top pb-0">
-            <div class="tab-pane fade show active" id="navs-justified-new" role="tabpanel">
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Myrtle Ullrich</h6>
-                    <p class="text-muted mb-0">101 Boulder, California(CA), 95959</p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Barry Schowalter</h6>
-                    <p class="text-muted mb-0">939 Orange, California(CA), 92118</p>
-                  </div>
-                </li>
-              </ul>
-              <div class="border-1 border-light border-top border-dashed mb-3"></div>
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Veronica Herman</h6>
-                    <p class="text-muted mb-0">162 Windsor, California(CA), 95492</p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Helen Jacobs</h6>
-                    <p class="text-muted mb-0">487 Sunset, California(CA), 94043</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="tab-pane fade" id="navs-justified-link-preparing" role="tabpanel">
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Barry Schowalter</h6>
-                    <p class="text-muted mb-0">939 Orange, California(CA), 92118</p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Myrtle Ullrich</h6>
-                    <p class="text-muted mb-0">101 Boulder, California(CA), 95959 </p>
-                  </div>
-                </li>
-              </ul>
-              <div class="border-1 border-light border-top border-dashed mb-3 "></div>
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Veronica Herman</h6>
-                    <p class="text-muted mb-0">162 Windsor, California(CA), 95492</p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Helen Jacobs</h6>
-                    <p class="text-muted mb-0">487 Sunset, California(CA), 94043</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="tab-pane fade" id="navs-justified-link-shipping" role="tabpanel">
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Veronica Herman</h6>
-                    <p class="text-muted mb-0">101 Boulder, California(CA), 95959</p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Barry Schowalter</h6>
-                    <p class="text-muted mb-0">939 Orange, California(CA), 92118</p>
-                  </div>
-                </li>
-              </ul>
-              <div class="border-1 border-light border-top border-dashed mb-3 "></div>
-              <ul class="timeline mb-0">
-                <li class="timeline-item ps-4 border-left-dashed">
-                  <span class="timeline-indicator-advanced timeline-indicator-success border-0 shadow-none">
-                    <i class='bx bx-check-circle mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-success text-uppercase fw-medium">sender</small>
-                    </div>
-                    <h6 class="mb-2">Myrtle Ullrich</h6>
-                    <p class="text-muted mb-0">162 Windsor, California(CA), 95492 </p>
-                  </div>
-                </li>
-                <li class="timeline-item ps-4 border-transparent">
-                  <span class="timeline-indicator-advanced timeline-indicator-primary border-0 shadow-none">
-                    <i class='bx bx-map mt-1'></i>
-                  </span>
-                  <div class="timeline-event ps-0 pb-0">
-                    <div class="timeline-header">
-                      <small class="text-primary text-uppercase fw-medium">Receiver</small>
-                    </div>
-                    <h6 class="mb-2">Helen Jacobs</h6>
-                    <p class="text-muted mb-0">487 Sunset, California(CA), 94043</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!--/ Orders by Countries -->
   <!-- On route vehicles Table -->
   <div class="col-12 order-5">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
-          <h5 class="m-0 me-2">On route vehicles</h5>
+          <h5 class="m-0 me-2">الشاحنات</h5>
         </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="routeVehicles" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="routeVehicles">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserLogistec"> +اضافة شاحنة </button>
+
       </div>
       <div class="card-datatable table-responsive">
         <table class="dt-route-vehicles table">
           <thead class="border-top">
             <tr>
               <th></th>
-              <th></th>
-              <th>location</th>
-              <th>starting route</th>
-              <th>ending route</th>
-              <th>warnings</th>
-              <th class="w-20">progress</th>
+              <th>id</th>
+              <th>رقم اللوحة</th>
+              <th>رقم الشاسيه  </th>
+              <th>نوع السيارة </th>
+              <th>اللون</th>
+              <th> ارتفاع السيارة </th>
+              <th>طول السيارة</th>
+              <th>سنة الصنع </th>
+              <th>حالة السيارة</th>
+              <th>الاجرائات </th>
+
+
             </tr>
           </thead>
         </table>
@@ -620,5 +300,6 @@
   </div>
 </div>
 <!--/ On route vehicles Table -->
+@include('_partials/_modals/modal-car-logistec')
 
 @endsection
