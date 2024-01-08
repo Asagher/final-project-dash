@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\my_controller;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Notifications\CreateInvoice;
+use Illuminate\Support\Facades\Notification;
 
 class AddInvoicesController extends Controller
 {
@@ -110,11 +113,26 @@ class AddInvoicesController extends Controller
       'amount' => $request->amount,
       'payer' => $request->payer,
     ]);
-    if ($invoices) {
-      return response()->json(['message' => 'انشئت'], 200);
+    $sender_email=$invoices->shippingRequest->sender->email;
+    $reciver_email=$invoices->shippingRequest->receiver->email;
+
+    $emails = User::whereIn('email', [$sender_email, $reciver_email])->get();
+
+    if($invoices)
+    {
+      if($emails){
+        $title='فاتورة';
+        $p="فاتورة شحن الطرد انقر لمعرفة التفاصيل ";
+        $link="invoice-show";
+        $photo= "invoice.jpg";
+        Notification::sendNow($emails, new CreateInvoice($invoices->id, $title, $p,$photo, $link));
+      }
+        return response()->json(['message' => 'انشئت'], 200);
     } else {
-      return response()->json(['message' => 'خطأ'], 401);
+          return response()->json(['message' => 'خطأ'], 401);
     }
+
+
   }
 
   /**

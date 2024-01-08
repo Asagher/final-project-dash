@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use Database\Seeders\CategoryDetailSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,18 +14,15 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
-    // \App\Models\User::factory(10)->create();
-
-    // \App\Models\User::factory()->create([
-    //     'name' => 'Test User',
-    //     'email' => 'test@example.com',
-    // ]);
 
     $this->call(RoleSeeder::class);
     $this->call(PermissionSeeder::class);
     $this->call(AdminSeeder::class);
     $this->call(ShippingOperationsManagementSeeder::class);
     $this->call(CategorySeeder::class);
+    $this->call(CarPartSeeder::class);
+    $this->call(HomePartSeeder::class);
+    $this->call(DevicesSeeder::class);
 
   }
 }

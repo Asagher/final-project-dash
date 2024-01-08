@@ -16,4 +16,5 @@
       new MegaDropdown(e);
     });
   }
+
 })();

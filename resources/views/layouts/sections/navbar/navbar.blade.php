@@ -209,189 +209,83 @@ $navbarDetached = ($navbarDetached ?? '');
         @endif
 
         <!-- Notification -->
-        <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-            <i class="bx bx-bell bx-sm"></i>
-            <span class="badge bg-danger rounded-pill badge-notifications">5</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end py-0">
-            <li class="dropdown-menu-header border-bottom">
-              <div class="dropdown-header d-flex align-items-center py-3">
-                <h5 class="text-body mb-0 me-auto">Notification</h5>
-                <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i class="bx fs-4 bx-envelope-open"></i></a>
-              </div>
-            </li>
-            <li class="dropdown-notifications-list scrollable-container">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+        @if (Auth::check())
+          <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class="bx bx-bell bx-sm"></i>
+              @if ( Auth::user()->unreadNotifications->count())
+              <span class="badge bg-danger rounded-pill badge-notifications">{{ Auth::user()->unreadNotifications->count()}}</span>
+              @endif
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end py-0">
+              <li class="dropdown-menu-header border-bottom">
+                <div class="dropdown-header d-flex align-items-center py-3">
+                  <h5 class="text-body mb-0 me-auto">الإشعارات</h5>
+                </div>
+              </li>
+              @foreach (Auth::user()->unreadNotifications as $notification)
+                <li class="dropdown-notifications-list scrollable-container">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action dropdown-notifications-item" style="background-color: gainsboro	">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar">
+                            <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle" style="display: inline">
+                          </div>
+                        </div>
+                        <a href="{{ Route('category-show',$notification->data['id']) }}">
+                          <div class="flex-grow-1">
+                            <h6 class="mb-1"><b>{{ $notification->data['title'] }} 🎉</b></h6>
+                            <p class="mb-0">
+                              <b> {{ $notification->data['paragraph'] }}</b>
+                            </p>
+                            <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                          </div>
+                        </a>
+                        <div class="flex-shrink-0 dropdown-notifications-actions">
+                          <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                          <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
+                        </div>
                       </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Congratulation Lettie 🎉</h6>
-                      <p class="mb-0">Won the monthly best seller gold badge</p>
-                      <small class="text-muted">1h ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
+              @endforeach
+
+              {{-- read notification --}}
+
+              @foreach (Auth::user()->readNotifications as $notification)
+                <li class="dropdown-notifications-list scrollable-container">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                      <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar">
+                              <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle">
+                            </div>
+                          </div>
+                          <a href="{{ Route($notification->data['link'] )}}">
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">{{ $notification->data['title'] }} 🎉</h6>
+                              <p class="mb-0">
+                                {{ $notification->data['paragraph'] }}
+                              </p>
+                              <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                            </div>
+                          </a>
+                          <div class="flex-shrink-0 dropdown-notifications-actions">
+                            <a href="#" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
+                          </div>
                       </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Charles Franklin</h6>
-                      <p class="mb-0">Accepted your connection</p>
-                      <small class="text-muted">12hr ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <img src="{{ asset('assets/img/avatars/2.png') }}" alt class="w-px-40 h-auto rounded-circle">
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">New Message ✉️</h6>
-                      <p class="mb-0">You have new message from Natalie</p>
-                      <small class="text-muted">1h ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <span class="avatar-initial rounded-circle bg-label-success"><i class="bx bx-cart"></i></span>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Whoo! You have new order 🛒 </h6>
-                      <p class="mb-0">ACME Inc. made new order $1,154</p>
-                      <small class="text-muted">1 day ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <img src="{{ asset('assets/img/avatars/9.png') }}" alt class="w-px-40 h-auto rounded-circle">
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Application has been approved 🚀 </h6>
-                      <p class="mb-0">Your ABC project application has been approved.</p>
-                      <small class="text-muted">2 days ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <span class="avatar-initial rounded-circle bg-label-success"><i class="bx bx-pie-chart-alt"></i></span>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Monthly report is generated</h6>
-                      <p class="mb-0">July monthly financial report is generated </p>
-                      <small class="text-muted">3 days ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <img src="{{ asset('assets/img/avatars/5.png') }}" alt class="w-px-40 h-auto rounded-circle">
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">Send connection request</h6>
-                      <p class="mb-0">Peter sent you connection request</p>
-                      <small class="text-muted">4 days ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <img src="{{ asset('assets/img/avatars/6.png') }}" alt class="w-px-40 h-auto rounded-circle">
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">New message from Jane</h6>
-                      <p class="mb-0">Your have new message from Jane</p>
-                      <small class="text-muted">5 days ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                  <div class="d-flex">
-                    <div class="flex-shrink-0 me-3">
-                      <div class="avatar">
-                        <span class="avatar-initial rounded-circle bg-label-warning"><i class="bx bx-error"></i></span>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1">
-                      <h6 class="mb-1">CPU is running high</h6>
-                      <p class="mb-0">CPU Utilization Percent is currently at 88.63%,</p>
-                      <small class="text-muted">5 days ago</small>
-                    </div>
-                    <div class="flex-shrink-0 dropdown-notifications-actions">
-                      <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                      <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown-menu-footer border-top p-3">
-              <button class="btn btn-primary text-uppercase w-100">view all notifications</button>
-            </li>
-          </ul>
-        </li>
+              @endforeach
+              <li class="dropdown-menu-footer border-top p-3">
+                <a href="{{ route('markRead') }}" class="btn btn-primary text-uppercase w-100">مشاهدة كل الإشعارات</a>            </li>
+            </ul>
+          </li>
+        @endif
         <!--/ Notification -->
 
         <!-- User -->

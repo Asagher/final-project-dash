@@ -70,57 +70,61 @@ $(function () {
     });
     // accountdetails
     const FormValidation1 = FormValidation.formValidation(wizardValidationFormStep1, {
-      // fields: {
-      //   first_name_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The first name is required'
-      //       }
-      //     }
-      //   },
-      //   middle_name_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The middle name is required'
-      //       }
-      //     }
-      //   },
-      //   last_name_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The last is required'
-      //       }
-      //     }
-      //   },
-      //   national_id_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The national id is required'
-      //       }
-      //     }
-      //   },
-      //   phone_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The phone is required'
-      //       }
-      //     }
-      //   },
-      //   email_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The email is required'
-      //       }
-      //     }
-      //   },
-      //   address_s: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The address is required'
-      //       }
-      //     }
-      //   }
-      // },
+      fields: {
+        first_name_s: {
+          validators: {
+            notEmpty: {
+              message: 'The first name is required'
+            }
+          }
+        },
+        middle_name_s: {
+          validators: {
+            notEmpty: {
+              message: 'The middle name is required'
+            }
+          }
+        },
+        last_name_s: {
+          validators: {
+            notEmpty: {
+              message: 'The last is required'
+            }
+          }
+        },
+        national_id_s: {
+          validators: {
+            notEmpty: {
+              message: 'The national id is required'
+            }
+          }
+        },
+        phone_s: {
+          validators: {
+            notEmpty: {
+              message: 'The phone is required'
+            }
+          }
+        },
+        email_s: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your email'
+            },
+            emailAddress: {
+              message: 'The value is not a valid email address'
+            },
+
+          }
+        },
+        address_s: {
+          validators: {
+            notEmpty: {
+              message: 'The address is required'
+            }
+          }
+        }
+      },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -145,57 +149,61 @@ $(function () {
 
     // Personal info
     const FormValidation2 = FormValidation.formValidation(wizardValidationFormStep2, {
-      // fields: {
-      //   first_name_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The first name is required'
-      //       }
-      //     }
-      //   },
-      //   middle_name_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The middle name is required'
-      //       }
-      //     }
-      //   },
-      //   last_name_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The last is required'
-      //       }
-      //     }
-      //   },
-      //   national_id_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The national id is required'
-      //       }
-      //     }
-      //   },
-      //   phone_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The phone is required'
-      //       }
-      //     }
-      //   },
-      //   email_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The email is required'
-      //       }
-      //     }
-      //   },
-      //   address_r: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'The address is required'
-      //       }
-      //     }
-      //   }
-      // },
+      fields: {
+        first_name_r: {
+          validators: {
+            notEmpty: {
+              message: 'The first name is required'
+            }
+          }
+        },
+        middle_name_r: {
+          validators: {
+            notEmpty: {
+              message: 'The middle name is required'
+            }
+          }
+        },
+        last_name_r: {
+          validators: {
+            notEmpty: {
+              message: 'The last is required'
+            }
+          }
+        },
+        national_id_r: {
+          validators: {
+            notEmpty: {
+              message: 'The national id is required'
+            }
+          }
+        },
+        phone_r: {
+          validators: {
+            notEmpty: {
+              message: 'The phone is required'
+            }
+          }
+        },
+        email_r: {
+          validators: {
+            notEmpty: {
+              message: 'Please enter your email'
+            },
+            emailAddress: {
+              message: 'The value is not a valid email address'
+            },
+
+          }
+        },
+        address_r: {
+          validators: {
+            notEmpty: {
+              message: 'The address is required'
+            }
+          }
+        }
+      },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -240,43 +248,43 @@ $(function () {
     }
     // address
     const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
-      // fields: {
-      //   quantity: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'quantity is required'
-      //       }
-      //     }
-      //   },
-      //   category: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'category is required'
-      //       }
-      //     }
-      //   },
-      //   price_for_wight: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'price is required'
-      //       }
-      //     }
-      //   },
-      //   total_wight: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'wight is required'
-      //       }
-      //     }
-      //   },
-      //   line_total_cost: {
-      //     validators: {
-      //       notEmpty: {
-      //         message: 'cost is required'
-      //       }
-      //     }
-      //   }
-      // },
+      fields: {
+        address: {
+          validators: {
+            notEmpty: {
+              message: 'quantity is required'
+            }
+          }
+        },
+        category: {
+          validators: {
+            notEmpty: {
+              message: 'category is required'
+            }
+          }
+        },
+        price_for_wight: {
+          validators: {
+            notEmpty: {
+              message: 'price is required'
+            }
+          }
+        },
+        total_wight: {
+          validators: {
+            notEmpty: {
+              message: 'wight is required'
+            }
+          }
+        },
+        line_total_cost: {
+          validators: {
+            notEmpty: {
+              message: 'cost is required'
+            }
+          }
+        }
+      },
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap5: new FormValidation.plugins.Bootstrap5({

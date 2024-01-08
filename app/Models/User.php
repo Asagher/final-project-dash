@@ -21,6 +21,7 @@ class User extends Authenticatable {
     use HasRoles;
     use TwoFactorAuthenticatable;
 
+
     /**
     * The attributes that are mass assignable.
     *

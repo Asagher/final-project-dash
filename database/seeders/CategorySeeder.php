@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-      $categories=['الأجهزة الإلكترونية المحمولة','أدوية','مواد غذائية','ملابس','الأجهزة المنزلية','قطع سيارة'];
+      $categories=['الأجهزة الإلكترونية ','أدوية','مواد غذائية','ملابس','الأجهزة المنزلية','قطع سيارة'];
       $images=[
         'electronic.jpg',
         'medicine.jpg',

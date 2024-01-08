@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\my_controller;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Traits\SaveImageTrait;
 use App\Models\ShipmentCategory;
+use App\Http\Controllers\Controller;
+use App\Notifications\CreateCategory;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Collection;
+
 
 class ShipmentCategoryController extends Controller {
     use SaveImageTrait;
@@ -35,9 +41,13 @@ class ShipmentCategoryController extends Controller {
             'category_name' => $request->categoryTitle,
             'photo' => $file_name
         ] );
+        $users = User::where('id','!=',auth()->user()->id)->get();
+        $title=$category->category_name;
+        $p="لقد قمنا بإضافة صنف جديد بناءاً على رغبتكم,أصبح بإمكانكم شحن أي طرد تابع لهذا الصنف .";
+        $link="category-show";
         if ( $category ) {
-            // user updated
-            return response()->json( [ 'message' => 'created' ], 200 );
+          Notification::sendNow($users, new CreateCategory($category->category_id ,$title,$p,$category->photo,$link));
+          return response()->json( [ 'message' => 'created' ], 200 );
         } else {
             return response()->json( [ 'message' => 'error' ], 401 );
         }

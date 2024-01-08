@@ -5,6 +5,7 @@ namespace App\Http\Controllers\apps;
 use Illuminate\Http\Request;
 use App\Models\ShipmentCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Notification;
 
 class EcommerceProductList extends Controller
 {
@@ -14,5 +15,7 @@ class EcommerceProductList extends Controller
     return view('content.apps.app-ecommerce-product-list',
     [ 'categories' =>$categories,
      ] );
+     
+
   }
 }
