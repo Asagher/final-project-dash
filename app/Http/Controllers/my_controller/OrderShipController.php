@@ -73,8 +73,8 @@ class OrderShipController extends Controller
       $shippingRequest = ShippingRequest::create([
         'sender_customer_id' => $customerS->id,
         'receiver_customer_id' => $customerR->id,
-        'status_id' => 1,
-        'address_id' => $request->address,
+        'source_id' => $request->source,
+        'destination_id' => $request->destination,
         'shipping_delivery' => $request->shipping_delivery,
       ]);
 
@@ -82,7 +82,6 @@ class OrderShipController extends Controller
         $shippingRequest->shipmentLines()->create([
           'category_detail_id' => $line['category_detail'],
           'quantity' => $line['quantity'],
-
           'description' => $line['description'],
         ]);
       }

@@ -38,8 +38,7 @@
           <div class="content-left">
             <span>Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2">{{$totalUser}}</h3>
-              <small class="text-success">(100%)</small>
+              <h3 class="mb-0 me-2" id="userCount">{{$totalUser}}</h3>              <small class="text-success">(100%)</small>
             </div>
             <small>Total Users</small>
           </div>
@@ -57,7 +56,7 @@
           <div class="content-left">
             <span>Verified Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2">{{$verified}}</h3>
+              <h3 class="mb-0 me-2" id="userVerifiedCount">{{$verified}}</h3>
               <small class="text-success">(+95%)</small>
             </div>
             <small>Recent analytics </small>

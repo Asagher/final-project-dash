@@ -11,6 +11,7 @@ class CreateCategory extends Notification
 {
     use Queueable;
   private $category_id;
+  private $user_id;
   private $title;
   private $p;
   private $photo;
@@ -19,9 +20,10 @@ class CreateCategory extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($category_id,$title,$p,$photo,$link)
+    public function __construct($category_id,$user_id,$title,$p,$photo,$link)
     {
       $this->category_id=$category_id;
+      $this->user_id=$user_id;
       $this->title=$title;
       $this->p=$p;
       $this->photo=$photo;
@@ -43,6 +45,7 @@ class CreateCategory extends Notification
     {
         return [
             'id'=>$this->category_id,
+            'user_id'=>$this->user_id,
             'title'=>$this->title,
             'paragraph'=>$this->p,
             'photo'=>$this->photo,

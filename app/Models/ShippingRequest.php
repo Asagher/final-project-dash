@@ -13,16 +13,19 @@ class ShippingRequest extends Model
     'sender_customer_id',
     'receiver_customer_id',
     'shipping_delivery',
-    'created_at',
-    'status_id',
-    'address_id',
+    'destination_id',
+    'source_id'
   ];
+  public $timestamps = false;
   protected $primaryKey = 'request_id';
-  protected $dates = ['created_at'];
 
-  public function addresses()
+  public function source()
   {
-    return $this->belongsTo(Address::class, 'address_id');
+    return $this->belongsTo(Address::class, 'source_id');
+  }
+  public function destination()
+  {
+    return $this->belongsTo(Address::class, 'destination_id');
   }
   public function sender()
   {
@@ -39,10 +42,6 @@ class ShippingRequest extends Model
     return $this->hasMany(ShipmentLine::class, 'request_id');
   }
 
-  public function status()
-  {
-    return $this->belongsTo(RequestStatus::class, 'status_id');
-  }
   public function invoice()
   {
     return $this->hasOne(Invoice::class, 'request_id');

@@ -70,7 +70,7 @@
                 <use xlink:href="{{asset('assets/svg/icons/form-wizard-personal.svg#wizardPersonal')}}"></use>
               </svg>
             </span>
-            <span class="bs-stepper-label">معلومات المستلم</span>
+            <span class="bs-stepper-label">معلومات المرسل إليه</span>
           </button>
         </div>
         <div class="line">
@@ -167,8 +167,8 @@
           <!-- Personal Info -->
           <div id="personal-info" class="content">
             <div class="content-header mb-3">
-              <h6 class="mb-0">معلومات المستلم</h6>
-              <small>أدخل معلومات المستلم.</small>
+              <h6 class="mb-0">معلومات المرسل إليه</h6>
+              <small>أدخل معلومات المرسل إليه.</small>
             </div>
             <div class="row g-3"> <div class="col-sm-4">
               <label class="form-label" for="first_name_r">الأسم الأول </label>
@@ -227,12 +227,24 @@
                 <label class="form-label" for="Delivery">وقت التسليم</label>
                 <input class="form-control" type="date"  name="shipping_delivery" id="shipping_delivery"  />
               </div>
+              {{-- source --}}
               <div class="col-sm-4">
-                <label class="form-label" for="address">وجهة الشحن</label>
-                <select class="form-select   myAddress" name="address" >
-                  <option label=" "></option>
-                  @foreach ($addresses as $address )
-                  <option value="{{$address->id}}" label=" ">{{ $address->location}}</option>
+                <label class="form-label" for="source">مصدر الشحن</label>
+                <select class="form-select" name="source" id="s">
+                  <option value="">اختر مصدر الشحن</option>
+                  @foreach ($addresses as $address)
+                    <option value="{{$address->id}}">{{$address->source}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              {{-- destination --}}
+              <div class="col-sm-4">
+                <label class="form-label" for="destination">وجهة الشحن</label>
+                <select class="form-select" name="destination" id="d">
+                  <option value="">اختر وجهة الشحن</option>
+                  @foreach ($addresses as $address)
+                    <option value="{{$address->id}}">{{$address->destination}}</option>
                   @endforeach
                 </select>
               </div>
@@ -252,29 +264,24 @@
               <div class="col-sm-4">
                 <label class="form-label"  for="category-detail"> تفاصيل فئات الشحن </label>
                 <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
-
-                  <option >اختر تفاصيل الفئة</option>
-
-
-
                 </select>
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="quantity">الكمية</label>
-                <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
+                <input type="number" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="اختر عدد الطرود المراد شحنها">
               </div>
 
               <div class="col-sm-4">
                 <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
+                <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="السعر حسب الطرد">
               </div>
               <div class="col-sm-4">
-                <label class="form-label" for="total_wight">اجمالي الوزن</label>
-                <input type="text" name="total_wight[]" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
+                <label class="form-label" for="total_wight"> الوزن</label>
+                <input type="text" name="total_wight[]" class="form-control calculate-cost total_wight" id="total_wight" placeholder="الوزن">
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="line_total_cost">التكلفة</label>
-                <input type="text" name="line_total_cost[]" class="form-control line_total_cost" id="line_total_cost" placeholder="Birmingham">
+                <input type="text" name="line_total_cost[]" class="form-control line_total_cost" id="line_total_cost" placeholder="">
               </div>
               <div>
                 <label for="description" class="form-label">تفاصيل عن الشحنة</label>
@@ -360,6 +367,9 @@
             <hr>
             <p class="fw-medium mb-2">الشحنة</p>
             <ul class="list-unstyled">
+              <li id="review-s"></li>
+              <li id="review-d"></li>
+
               <li id="review-quantity"></li>
               <li id="review-category"></li>
               <li id="review-price_for_wight"></li>

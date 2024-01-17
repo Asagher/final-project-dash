@@ -46,7 +46,7 @@ class ShipmentCategoryController extends Controller {
         $p="لقد قمنا بإضافة صنف جديد بناءاً على رغبتكم,أصبح بإمكانكم شحن أي طرد تابع لهذا الصنف .";
         $link="category-show";
         if ( $category ) {
-          Notification::sendNow($users, new CreateCategory($category->category_id ,$title,$p,$category->photo,$link));
+          Notification::sendNow($users, new CreateCategory($category->category_id,auth()->user()->id ,$title,$p,$category->photo,$link));
           return response()->json( [ 'message' => 'created' ], 200 );
         } else {
             return response()->json( [ 'message' => 'error' ], 401 );
@@ -79,7 +79,9 @@ class ShipmentCategoryController extends Controller {
     public function update( Request $request,  $id ) {
         $category = ShipmentCategory::findOrFail( $id );
         // Update record
-        $category->update(['category_name'=> $request->categoryTitle]);
+        $file_name = $this->saveImage( $request->img, '/assets/img/category/' );
+        $category->update(['category_name'=> $request->categoryTitle,
+        'photo' => $file_name]);
 
         if ( $category ) {
             return response()->json( [ 'message' => 'Updated' ], 200 );

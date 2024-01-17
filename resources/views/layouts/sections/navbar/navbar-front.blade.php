@@ -284,7 +284,7 @@
                 <li>
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class='bx bx-power-off me-2'></i>
-                    <span class="align-middle">Logout</span>
+                    <span class="align-middle">تسجيل الخروج</span>
                   </a>
                 </li>
                 <form method="POST" id="logout-form" action="{{ route('logout') }}">
@@ -294,7 +294,7 @@
                 <li>
                   <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : url('auth/login-basic') }}">
                     <i class='bx bx-log-in me-2'></i>
-                    <span class="align-middle">Login</span>
+                    <span class="align-middle">تسجيل الدخول</span>
                   </a>
                 </li>
                 @endif
@@ -303,81 +303,81 @@
 
         <!-- Notification -->
         @if (Auth::check())
-        <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
-          <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-            <i class="bx bx-bell bx-sm"></i>
-            @if ( Auth::user()->unreadNotifications->count())
-            <span class="badge bg-danger rounded-pill badge-notifications">{{ Auth::user()->unreadNotifications->count()}}</span>
-            @endif
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end py-0" id="notification">
-            <li class="dropdown-menu-header border-bottom">
-              <div class="dropdown-header d-flex align-items-center py-3">
-                <h5 class="text-body mb-0 me-auto">الإشعارات</h5>
-              </div>
-            </li>
-            <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
-              <ul class="list-group list-group-flush">
-                @foreach (Auth::user()->unreadNotifications as $notification)
-                  <li class="list-group-item list-group-item-action dropdown-notifications-item" style="background-color: gainsboro">
-                    <div class="d-flex">
-                      <div class="flex-shrink-0 me-3">
-                        <div class="avatar">
-                          <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle" style="display: inline">
+          <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class="bx bx-bell bx-sm"></i>
+              @if ( Auth::user()->unreadNotifications->count())
+              <span class="badge bg-danger rounded-pill badge-notifications">{{ Auth::user()->unreadNotifications->count()}}</span>
+              @endif
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end py-0" id="notification">
+              <li class="dropdown-menu-header border-bottom">
+                <div class="dropdown-header d-flex align-items-center py-3">
+                  <h5 class="text-body mb-0 me-auto">الإشعارات</h5>
+                </div>
+              </li>
+              <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
+                <ul class="list-group list-group-flush">
+                  @foreach (Auth::user()->unreadNotifications as $notification)
+                    <li class="list-group-item list-group-item-action dropdown-notifications-item" style="background-color: gainsboro">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar">
+                            <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle" style="display: inline">
+                          </div>
+                        </div>
+                        <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
+                          <div class="flex-grow-1">
+                            <h6 class="mb-1"><b>{{ $notification->data['title'] }} 🎉</b></h6>
+                            <p class="mb-0">
+                              <b> {{ $notification->data['paragraph'] }}</b>
+                            </p>
+                            <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                          </div>
+                        </a>
+                        <div class="flex-shrink-0 dropdown-notifications-actions">
+                          <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                          <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
                         </div>
                       </div>
-                      <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
-                        <div class="flex-grow-1">
-                          <h6 class="mb-1"><b>{{ $notification->data['title'] }} 🎉</b></h6>
-                          <p class="mb-0">
-                            <b> {{ $notification->data['paragraph'] }}</b>
-                          </p>
-                          <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                    </li>
+                  @endforeach
+                </ul>
+              </li>
+              {{-- read notification --}}
+              <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
+                <ul class="list-group list-group-flush">
+                  @foreach (Auth::user()->readNotifications as $notification)
+                    <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar">
+                            <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle">
+                          </div>
                         </div>
-                      </a>
-                      <div class="flex-shrink-0 dropdown-notifications-actions">
-                        <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                        <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
-                      </div>
-                    </div>
-                  </li>
-                @endforeach
-              </ul>
-            </li>
-            {{-- read notification --}}
-            <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
-              <ul class="list-group list-group-flush">
-                @foreach (Auth::user()->readNotifications as $notification)
-                  <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                    <div class="d-flex">
-                      <div class="flex-shrink-0 me-3">
-                        <div class="avatar">
-                          <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle">
+                        <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
+                          <div class="flex-grow-1">
+                            <h6 class="mb-1">{{ $notification->data['title'] }} 🎉</h6>
+                            <p class="mb-0">
+                              {{ $notification->data['paragraph'] }}
+                            </p>
+                            <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                          </div>
+                        </a>
+                        <div class="flex-shrink-0 dropdown-notifications-actions">
+                          <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
                         </div>
                       </div>
-                      <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
-                        <div class="flex-grow-1">
-                          <h6 class="mb-1">{{ $notification->data['title'] }} 🎉</h6>
-                          <p class="mb-0">
-                            {{ $notification->data['paragraph'] }}
-                          </p>
-                          <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
-                        </div>
-                      </a>
-                      <div class="flex-shrink-0 dropdown-notifications-actions">
-                        <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
-                      </div>
-                    </div>
-                  </li>
-                @endforeach
-              </ul>
-            </li>
-            <li class="dropdown-menu-footer border-top p-3">
-              <a href="{{ route('markRead') }}" class="btn btn-primary text-uppercase w-100">مشاهدة كل الإشعارات</a>
-            </li>
-          </ul>
-        </li>
-      @endif
+                    </li>
+                  @endforeach
+                </ul>
+              </li>
+              <li class="dropdown-menu-footer border-top p-3">
+                <a href="{{ route('markRead') }}" class="btn btn-primary text-uppercase w-100">مشاهدة كل الإشعارات</a>
+              </li>
+            </ul>
+          </li>
+        @endif
         <!--/ Notification -->
         <!-- Style Switcher -->
         </ul>

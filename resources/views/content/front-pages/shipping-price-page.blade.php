@@ -1,5 +1,5 @@
 <style>
- 
+
   .heroImge{
     margin-top: 100px;
     width: 100%;
@@ -119,64 +119,7 @@ $configData = Helper::appClasses();
         <div class="">
           <div class="card mb-4">
             <h5 class="card-header">مصاريف الشحن</h5>
-            {{-- <div class="card-body">
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">محافظة إرسال الشحنة</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">مدينة إرسال الشحنة</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div><div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">محافظة الإستلام</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div><div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">مدينة الإستلام</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">وزن الشحنة</label>
-                <input type="text">
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">نوع الخدمة</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlSelect1" class="form-label">نوع المنتج</label>
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-            </div> --}}
+
             <div class="m-3 d-flex justify-center items-center">
 {{-- my form --}}
               <form onSubmit="return false" id="demoShip">
@@ -186,48 +129,33 @@ $configData = Helper::appClasses();
                       <h6 class="mb-0">الشحنة</h6>
                       <small>أدخل معلومات الشحنة.</small>
                     </div>
-                    
-      
+
+
                   </div>
                   <div class="row g-3">
-                     
-                    <div class="col-sm-4">
-                      <label class="form-label" for="address">وجهة الشحن</label>
-                      <select class="form-select   myAddress" name="address" >
-                        <option label=" "></option>
-                        {{-- @foreach ($addresses as $address )
-                        <option value="{{$address->id}}" label=" ">{{ $address->location}}</option>
-                        @endforeach --}}
-                      </select>
-                    </div>
                    <div class="row g-3 shipment-line" >
-      
+
                     <div class="col-sm-4">
                       <label class="form-label" for="category">فئات الشحن</label>
                       <select class="form-select   myCategory" name="category[]" id="category_shipment">
                         <option value="">اختر الفئة</option>
-      
+
                         @foreach ($categories as $category )
                         <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
-      
+
                         @endforeach
                       </select>
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label"  for="category-detail"> تفاصيل فئات الشحن </label>
                       <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
-      
-                        <option >اختر تفاصيل الفئة</option>
-      
-      
-      
                       </select>
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="quantity">الكمية</label>
                       <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
                     </div>
-      
+
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
                       <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">

@@ -217,23 +217,23 @@ $navbarDetached = ($navbarDetached ?? '');
               <span class="badge bg-danger rounded-pill badge-notifications">{{ Auth::user()->unreadNotifications->count()}}</span>
               @endif
             </a>
-            <ul class="dropdown-menu dropdown-menu-end py-0">
+            <ul class="dropdown-menu dropdown-menu-end py-0" id="notification">
               <li class="dropdown-menu-header border-bottom">
                 <div class="dropdown-header d-flex align-items-center py-3">
                   <h5 class="text-body mb-0 me-auto">الإشعارات</h5>
                 </div>
               </li>
-              @foreach (Auth::user()->unreadNotifications as $notification)
-                <li class="dropdown-notifications-list scrollable-container">
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-action dropdown-notifications-item" style="background-color: gainsboro	">
+              <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
+                <ul class="list-group list-group-flush">
+                  @foreach (Auth::user()->unreadNotifications as $notification)
+                    <li class="list-group-item list-group-item-action dropdown-notifications-item" style="background-color: gainsboro">
                       <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
                           <div class="avatar">
                             <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle" style="display: inline">
                           </div>
                         </div>
-                        <a href="{{ Route('category-show',$notification->data['id']) }}">
+                        <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
                           <div class="flex-grow-1">
                             <h6 class="mb-1"><b>{{ $notification->data['title'] }} 🎉</b></h6>
                             <p class="mb-0">
@@ -244,45 +244,44 @@ $navbarDetached = ($navbarDetached ?? '');
                         </a>
                         <div class="flex-shrink-0 dropdown-notifications-actions">
                           <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                          <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
+                          <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
                         </div>
                       </div>
                     </li>
-                  </ul>
-                </li>
-              @endforeach
-
+                  @endforeach
+                </ul>
+              </li>
               {{-- read notification --}}
-
-              @foreach (Auth::user()->readNotifications as $notification)
-                <li class="dropdown-notifications-list scrollable-container">
-                  <ul class="list-group list-group-flush">
+              <li class="dropdown-notifications-list scrollable-container"> <!-- Added scrollable-container -->
+                <ul class="list-group list-group-flush">
+                  @foreach (Auth::user()->readNotifications as $notification)
                     <li class="list-group-item list-group-item-action dropdown-notifications-item">
                       <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar">
-                              <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle">
-                            </div>
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar">
+                            <img src="{{asset('assets/img/category/'.$notification->data['photo'])}}" alt=""  class="rounded-circle">
                           </div>
-                          <a href="{{ Route($notification->data['link'] )}}">
-                            <div class="flex-grow-1">
-                              <h6 class="mb-1">{{ $notification->data['title'] }} 🎉</h6>
-                              <p class="mb-0">
-                                {{ $notification->data['paragraph'] }}
-                              </p>
-                              <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
-                            </div>
-                          </a>
-                          <div class="flex-shrink-0 dropdown-notifications-actions">
-                            <a href="#" class="dropdown-notifications-archive"><span class="bx bx-x"></span></a>
+                        </div>
+                        <a href="{{ Route($notification->data['link'],$notification->data['id'])}}">
+                          <div class="flex-grow-1">
+                            <h6 class="mb-1">{{ $notification->data['title'] }} 🎉</h6>
+                            <p class="mb-0">
+                              {{ $notification->data['paragraph'] }}
+                            </p>
+                            <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
                           </div>
+                        </a>
+                        <div class="flex-shrink-0 dropdown-notifications-actions">
+                          <a href="javascript:void(0)" class="dropdown-notifications-archive delete-record" data-id={{$notification->data['id']}} ><span class="bx bx-x"></span></a>
+                        </div>
                       </div>
                     </li>
-                  </ul>
-                </li>
-              @endforeach
+                  @endforeach
+                </ul>
+              </li>
               <li class="dropdown-menu-footer border-top p-3">
-                <a href="{{ route('markRead') }}" class="btn btn-primary text-uppercase w-100">مشاهدة كل الإشعارات</a>            </li>
+                <a href="{{ route('markRead') }}" class="btn btn-primary text-uppercase w-100">مشاهدة كل الإشعارات</a>
+              </li>
             </ul>
           </li>
         @endif
@@ -424,3 +423,43 @@ $navbarDetached = ($navbarDetached ?? '');
     @endif
   </nav>
   <!-- / Navbar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+      $(document).on('click', '.delete-record', function () {
+      var role_id = $(this).data('id');
+      var dropdownMenu = $(this).closest('.dropdown-menu');
+      var dropdownItem = $(this).closest('.dropdown-notifications-item');
+      var badge = $('.badge-notifications');
+
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+      // Delete the data
+      $.ajax({
+          type: 'delete',
+          url: '/categories-page/' + role_id,
+          success: function (data) {
+              dropdownItem.remove();
+              // Update the notification count
+              var newCount= 0;
+              newCount = parseInt(badge.text()) - 1;
+              badge.text(newCount);
+              if (newCount == 0) {
+                  badge.hide();
+              }
+          },
+          error: function (error) {
+              console.log(error);
+          }
+      });
+  });
+  </script>
+  <style>
+  .scrollable-container {
+    max-height: 200px; /* Adjust the max-height value as needed */
+    overflow-y: auto;
+  }
+  </style>

@@ -384,7 +384,7 @@
           name: {
             validators: {
               notEmpty: {
-                message: 'Please enter fullname'
+                message: 'ادخل الاسم الكامل'
               }
             }
           },
@@ -392,37 +392,30 @@
           email: {
             validators: {
               notEmpty: {
-                message: 'Please enter your email'
+                message: 'ادخل الايميل'
               },
               emailAddress: {
-                message: 'The value is not a valid email address'
+                message: 'القيمة ليست عنوان بريد إلكتروني صالحًا'
               }
             }
           },
           contact: {
             validators: {
               notEmpty: {
-                message: 'Please enter your contact'
+                message: 'ادخل رقم الهاتف'
               }
             }
           },
           password: {
             validators: {
               notEmpty: {
-                message: 'Please enter password'
+                message: 'ادخل كلمة المرور'
               }
             }
           },password_confirmation: {
             validators: {
               notEmpty: {
-                message: 'Please enter password_confirmation'
-              }
-            }
-          },
-          company: {
-            validators: {
-              notEmpty: {
-                message: 'Please enter your company'
+                message: 'تأكيد كلمة المرور'
               }
             }
           }
@@ -454,8 +447,8 @@
                     // sweetalert
             Swal.fire({
               icon: 'success',
-              title: 'Successfully '.concat(status.message, '!'),
-              text: 'User '.concat(status.message, ' Successfully.'),
+              title: 'تم عملية الإضافة بنجاح',
+              text: 'تم إنشاء حساب للموظف '.concat(status.message, ' Successfully.'),
               customClass: {
                 confirmButton: 'btn btn-success'
               }
@@ -464,8 +457,8 @@
           error: function error(err) {
             offCanvasForm.offcanvas('hide');
             Swal.fire({
-              title: 'Duplicate Entry!',
-              text: 'Your email should be unique.',
+              title: 'حدث خطأ !',
+              text: 'لم تتم عملية الإضافة',
               icon: 'error',
               customClass: {
                 confirmButton: 'btn btn-success'
@@ -508,57 +501,50 @@
     });
   });
 
-///uodate//////
+///update//////
   (function () {
       var addNewUserForm = document.getElementById('editNewUserForm');
       FormValidation.formValidation(addNewUserForm,  {
         fields: {
-            name: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter fullname'
-                }
-              }
-            },
-
-            email: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter your email'
-                },
-                emailAddress: {
-                  message: 'The value is not a valid email address'
-                }
-              }
-            },
-            contact: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter your contact'
-                }
-              }
-            },
-            password: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter password'
-                }
-              }
-            },password_confirmation: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter password_confirmation'
-                }
-              }
-            },
-            company: {
-              validators: {
-                notEmpty: {
-                  message: 'Please enter your company'
-                }
+          name: {
+            validators: {
+              notEmpty: {
+                message: 'ادخل الاسم الكامل'
               }
             }
           },
+
+          email: {
+            validators: {
+              notEmpty: {
+                message: 'ادخل الايميل'
+              },
+              emailAddress: {
+                message: 'القيمة ليست عنوان بريد إلكتروني صالحًا'
+              }
+            }
+          },
+          contact: {
+            validators: {
+              notEmpty: {
+                message: 'ادخل رقم الهاتف'
+              }
+            }
+          },
+          password: {
+            validators: {
+              notEmpty: {
+                message: 'ادخل كلمة المرور'
+              }
+            }
+          },password_confirmation: {
+            validators: {
+              notEmpty: {
+                message: 'تأكيد كلمة المرور'
+              }
+            }
+          }
+        },
           plugins: {
             trigger: new FormValidation.plugins.Trigger(),
             bootstrap5: new FormValidation.plugins.Bootstrap5({
@@ -589,8 +575,8 @@
               // sweetalert
               Swal.fire({
                 icon: 'success',
-                title: 'Successfully '.concat(status.message, '!'),
-                text: 'User '.concat(status.message, ' Successfully.'),
+                title: 'تم عملية التحديث بنجاح ',
+                text: 'تم تحديث حساب الموظف',
                 customClass: {
                   confirmButton: 'btn btn-success'
                 }
@@ -599,8 +585,8 @@
             error: function error(err) {
               offCanvasFormEdit.offcanvas('hide');
               Swal.fire({
-                title: 'Duplicate Entry!',
-                text: 'Your email should be unique.',
+                title: 'حدث خطأ !',
+                text: 'لم تتم عملية التحديث',
                 icon: 'error',
                 customClass: {
                   confirmButton: 'btn btn-success'
@@ -623,11 +609,12 @@
 
     // sweetalert for confirmation of delete
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: ' هل أنت متأكد من ذلك؟',
+      text: " لن تكون قادرا على التراجع عن هذا!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: ' نعم ، احذفه!',
+      cancelButtonText: 'إلغاء',
       customClass: {
         confirmButton: 'btn btn-primary me-3',
         cancelButton: 'btn btn-label-secondary'
@@ -641,6 +628,12 @@
           url: ''.concat(baseUrl, 'user-list/').concat(user_id),
           success: function success() {
             dt_user.draw();
+             // Update the count
+            var newCount = parseInt(document.getElementById('userCount').innerText) - 1;
+            document.getElementById('userCount').innerText = newCount;
+
+            var newCount = parseInt(document.getElementById('userVerifiedCount').innerText) - 1;
+            document.getElementById('userVerifiedCount').innerText = newCount;
           },
           error: function error(_error) {
             console.log(_error);
@@ -650,16 +643,16 @@
         // success sweetalert
         Swal.fire({
           icon: 'success',
-          title: 'Deleted!',
-          text: 'The user has been deleted!',
+          title: 'تمت عملية الحذف بنجاح',
+          text: 'تم حذف حساب الموظف',
           customClass: {
             confirmButton: 'btn btn-success'
           }
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
-          title: 'Cancelled',
-          text: 'The User is not deleted!',
+          title: 'تم إلغاء عملية الحذف',
+          text: 'لم  يتم حذف حساب الموظف',
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-success'

@@ -53,6 +53,7 @@ use App\Http\Controllers\extended_ui\Treeview;
 use App\Http\Controllers\form_elements\Extras;
 use App\Http\Controllers\form_elements\Picker;
 use App\Http\Controllers\front_pages\Checkout;
+use App\Http\Controllers\front_pages\Invoices;
 use App\Http\Controllers\pages\MiscComingSoon;
 use App\Http\Controllers\apps\AcademyDashboard;
 use App\Http\Controllers\apps\AccessPermission;
@@ -117,12 +118,12 @@ use App\Http\Controllers\authentications\LoginCover;
 use App\Http\Controllers\form_layouts\StickyActions;
 use App\Http\Controllers\form_validation\Validation;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
-use App\Http\Controllers\tables\DatatableExtensions;
 // myContro
+use App\Http\Controllers\tables\DatatableExtensions;
 use App\Http\Controllers\apps\EcommerceManageReviews;
 use App\Http\Controllers\form_elements\CustomOptions;
-use App\Http\Controllers\form_layouts\HorizontalForm;
 
+use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\extended_ui\PerfectScrollbar;
@@ -146,6 +147,7 @@ use App\Http\Controllers\extended_ui\TimelineFullscreen;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\wizard_example\PropertyListing;
 use App\Http\Controllers\apps\EcommerceSettingsLocations;
+use App\Http\Controllers\my_controller\VehicleController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\authentications\VerifyEmailBasic;
 use App\Http\Controllers\authentications\VerifyEmailCover;
@@ -171,7 +173,6 @@ use App\Http\Controllers\my_controller\ShipmentCategoryController;
 use App\Http\Controllers\wizard_example\Checkout as WizardCheckout;
 use App\Http\Controllers\apps\EcommerceCustomerDetailsNotifications;
 use App\Http\Controllers\form_wizard\Numbered as FormWizardNumbered;
-use App\Http\Controllers\front_pages\Invoices;
 // Admin Route
 Route::middleware([
   'auth:sanctum',

@@ -9,7 +9,6 @@ $(function () {
     selectPicker = $('.selectpicker');
 
   // Bootstrap select
-
   // select2
   if (select2.length) {
     select2.each(function () {
@@ -249,7 +248,14 @@ $(function () {
     // address
     const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
       fields: {
-        address: {
+        source: {
+          validators: {
+            notEmpty: {
+              message: 'quantity is required'
+            }
+          }
+        },
+        destination: {
           validators: {
             notEmpty: {
               message: 'quantity is required'
@@ -305,8 +311,11 @@ $(function () {
 
       total_wight = $('#total_wight').val();
       price_for_wight = $('#price_for_wight').val();
-      category = $('#category').val();
+      category = $('#category_shipment').val();
       quantity = $('#quantity').val();
+     var s = $('#s').val();
+    var  d = $('#d').val();
+
       line_total_cost = $('#line_total_cost').val();
 
       $('#review-national-id-r').text(national_id_r);
@@ -325,6 +334,9 @@ $(function () {
       $('#review-phone-s').text(phone_s);
       $('#review-address-s').text(address_s);
 
+
+      $('#review-s').text(s);
+      $('#review-d').text(d);
       $('#review-quantity').text(quantity);
       $('#review-category').text(category);
       $('#review-price_for_wight').text(price_for_wight);
@@ -343,17 +355,6 @@ $(function () {
     //   $('#line_total_cost').val(lineTotalCost);
     // });
 
-    function calculateLineTotalCost(row) {
-      var quantity = parseFloat(row.find('.quantity').val()) || 0;
-      var priceForWeight = parseFloat(row.find('.price_for_wight').val()) || 0;
-      var totalWeight = parseFloat(row.find('.total_wight').val()) || 0;
-
-      // Perform the calculation (customize based on your formula)
-      var lineTotalCost = quantity * priceForWeight * totalWeight;
-
-      // Update the line total cost input field
-      row.find('.line_total_cost').val(lineTotalCost);
-    }
     // Social links
     // const FormValidation4 = FormValidation.formValidation(wizardValidationFormStep4, {
     //   fields: {
@@ -420,13 +421,15 @@ $(function () {
     // });
 
     // // Populate category details when category changes
-    $('#category_shipment').change(function () {
+    $('#category_shipment').on('change',function () {
       var categoryID = $(this).val();
 
       $.ajax({
-        url: ''.concat(baseUrl, 'get-category-details/') + categoryID,
+        url: ''.concat(baseUrl, 'get-category-details/').concat(categoryID) ,
         type: 'GET',
         success: function (data) {
+          $('#category-detail').empty();
+          $('#category-detail').append('<option value="">' +'اختر نوع الطرد '+ '</option>');
           $.each(data, function (index, detail) {
             $('#category-detail').append('<option value="' + detail.id + '">' + detail.type + '</option>');
           });
@@ -436,6 +439,8 @@ $(function () {
 
     // show price in category
     function attachChangeHandler() {
+      // Event listeners
+
       $('.shipment-line').on('change', '#category-detail', function () {
         var categoryName = $(this).find(':selected').text();
         var row = $(this).closest('.shipment-line');
@@ -447,15 +452,22 @@ $(function () {
           },
           success: function (response) {
             row.find('.price_for_wight').val(response.price);
+           if (response.weight) {
             row.find('.total_wight').val(response.weight);
+           } else {
+            row.find('.total_wight').val('لا يوجد وزن');
+           }
+           $('.quantity').on('change',function () {
+           var quantity = parseFloat(row.find('.quantity').val()) || 1;
+           var priceForWeight = parseFloat(row.find('.price_for_wight').val());
+           var total=priceForWeight*quantity;
+           row.find('.line_total_cost').val(total);
+           });
 
-            calculateLineTotalCost(row);
           }
         });
       });
-      $('.shipment-line').on('input', '.calculate-cost', function () {
-        calculateLineTotalCost($(this).closest('.shipment-line'));
-      });
+
     }
     attachChangeHandler();
 
@@ -524,7 +536,8 @@ $(function () {
         address_r: $('#address_r').val(),
         // anthor
         shipping_delivery: $('#shipping_delivery').val(),
-        address: $('.myAddress').val(),
+        destination: $('#d').val(),
+        source: $('#s').val(),
 
         // Shipment lines
         lines: []

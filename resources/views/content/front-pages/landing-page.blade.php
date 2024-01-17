@@ -1,4 +1,5 @@
 <style>
+
   .features-icon-box {
     position: relative;
     padding: 20px;
@@ -100,7 +101,7 @@
     background: #9e9fff;
     opacity: 0.8;
     /* color: #222; */
-  /* } */ 
+  /* } */
   .dots{
     position: absolute;
     bottom: 20px;
@@ -180,7 +181,7 @@
 /* enquiry */
 .services {
     /* padding-top: var(--main-padd);*/
-    padding-bottom: var(--main-padd); 
+    padding-bottom: var(--main-padd);
     position: relative;
     /* width: 100%; */
     /* background-color: #ececec; */
@@ -193,7 +194,7 @@
 }
 
 .services .box {
-    background-color: white;
+    background-color: #FFFBF5;
     box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
     counter-increment: services;
     transition: var(--main-trans);
@@ -224,7 +225,7 @@
     margin: 40px auto 20px;
     display: block;
     text-align: center;
-    color: #e7e7ff;
+    color: #B6BBC4;
 }
 
 .services .box>h3 {
@@ -237,7 +238,7 @@
 .services .box .info {
     padding: 15px;
     position: relative;
-    background-color: #f9f9f9;
+    background-color: #F0ECE5;
     text-align: right;
 }
 
@@ -246,7 +247,7 @@
 }
 .services .box:hover .info::before{
   color: white;
-} 
+}
 
 .services .box .info::before {
     content: '0' counter(services);
@@ -271,7 +272,7 @@
 .services .box .info::after {
     content: '';
     position: absolute;
-    background-color: #e7e7ff;
+    background-color: #B6BBC4;
     top: 0;
     left: 80px;
     width: 50px;
@@ -283,6 +284,23 @@
 }
 .services .box:hover i{
   color: #696cff;
+}
+.services .box .info::before {
+    content: '0' counter(services);
+    position: absolute;
+    background-color: #e7e7ff;
+    color: #696cff;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100px;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    transition: var(--main-trans);
 }
 @media(max-width:768px) {
   .services .container1{
@@ -329,7 +347,7 @@
       dots[counter].className+=' active';
   }
 });
-  
+
 
 </script>
 @php
@@ -384,12 +402,12 @@ $configData = Helper::appClasses();
       </div>
   </div>
 </section>
-  
+
 
   <!-- Hero: End -->
 
   <!-- Useful features: Start -->
-  <section>
+  <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
     <div class="services" id="services">
         <h2 class="main-title ">الإستعلام</h2>
         <div class="container1">

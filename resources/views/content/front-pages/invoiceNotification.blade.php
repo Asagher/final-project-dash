@@ -75,11 +75,24 @@ $configData = Helper::appClasses();
                     </dd>
                   </dl>
                 </div>
+
               </div>
 
               <hr class="my-4 mx-n4" />
 
-              <div class="row p-sm-3 p-0">
+            </div>
+            <div class="row p-sm-3 p-0">
+              <div class="col-6">
+                <h5>المصدر :</h5>
+                <h6>{{$invoice->shippingRequest->source->source}}</h6>
+              </div>
+              <div class="col-6">
+                <h5>الوجهة :</h5>
+                <h6>{{$invoice->shippingRequest->destination->destination}}</h6>
+              </div>
+
+              <hr class="my-4 mx-n4" />
+
                 <div class="col-md-6 col-sm-5 col-12 mb-sm-0 mb-4">
                   <h5 class="pb-2">المرسل:</h5>
 
@@ -107,7 +120,7 @@ $configData = Helper::appClasses();
                   </table>
                 </div>
                 <div class="col-md-6 col-sm-7">
-                  <h5 class="pb-2">المستلم:</h5>
+                  <h5 class="pb-2">المرسل إليه:</h5>
                   <table>
                     <tbody>
 
@@ -131,13 +144,10 @@ $configData = Helper::appClasses();
                     </tbody>
                   </table>
                 </div>
+            </div>
 
-              </div>
-              <div class="row p-sm-3 p-0">
-                <h5>الوجهة :</h5>
-                <h5>{{$invoice->shippingRequest->addresses->location}}</h5>
-              </div>
-              <hr class="mx-n4" />
+
+
 
               <div class=" py-sm-3">
                 <div class="">
@@ -146,8 +156,8 @@ $configData = Helper::appClasses();
                       <tr>
                         <th>الفئة</th>
                         <th>وصف الشحنة </th>
-                        <th>الكمية</th>
                         <th>الوزن</th>
+                        <th>الكمية</th>
                         <th>الاجمالي</th>
                       </tr>
                     </thead>
@@ -194,10 +204,22 @@ $configData = Helper::appClasses();
                 </div>
               </div>
               <hr class="my-4" />
-              <div  class="row py-sm-3 justify-content-between d-flex">
+              <div class="row py-sm-3 justify-content-between d-flex">
                 <div class="col-md-6 mb-md-0 mb-3">
-                  <p>  جميع الحقوق محفوظة لشركة </p>
-                  <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex"> {!! QrCode::size(100)->generate($invoice->invoice_id) !!}</div>
+                  <p>جميع الحقوق محفوظة لشركة</p>
+                </div>
+                <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex">
+                  <?php
+                  use Picqer\Barcode\BarcodeGeneratorHTML;
+
+                  $generator = new BarcodeGeneratorHTML();
+                  $barcode = $generator->getBarcode($invoice->invoice_id, $generator::TYPE_CODE_128);
+
+                  echo '<div class="barcode">' . $barcode . '</div>';
+                  ?>
+                  <div class="qrcode">
+                    {!! QrCode::size(120)->generate($invoice->invoice_id) !!}
+                  </div>
                 </div>
               </div>
             </div>
@@ -211,3 +233,30 @@ $configData = Helper::appClasses();
 </section>
 
 @endsection
+<style>
+  .barcode {
+    display: inline-block;
+    background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  color: #000000;
+  height: 50px; /* Adjust the height as desired */
+
+
+  }
+
+  .qrcode {
+    display: inline-block;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+
+  border: 1px solid #000000;
+  }
+  </style>

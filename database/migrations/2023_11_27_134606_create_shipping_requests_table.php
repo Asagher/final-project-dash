@@ -14,12 +14,17 @@ return new class extends Migration {
       $table->id('request_id');
       $table->unsignedBigInteger('sender_customer_id');
       $table->unsignedBigInteger('receiver_customer_id');
-      $table->timestamp('shipping_date');
       $table->date('shipping_delivery');
-      $table->unsignedBigInteger('status_id');
-      $table->unsignedBigInteger('address_id');
+      $table->unsignedBigInteger('source_id');
+      $table->unsignedBigInteger('destination_id');
+
       $table
-        ->foreign('address_id')
+        ->foreign('source_id')
+        ->references('id')
+        ->on('addresses')
+        ->onDelete('cascade');
+        $table
+        ->foreign('destination_id')
         ->references('id')
         ->on('addresses')
         ->onDelete('cascade');
@@ -34,12 +39,6 @@ return new class extends Migration {
         ->on('customers')
         ->onDelete('cascade');
 
-      $table
-        ->foreign('status_id')
-        ->references('status_id')
-        ->on('request_statuses')
-        ->onDelete('cascade');
-      $table->timestamps();
     });
   }
 

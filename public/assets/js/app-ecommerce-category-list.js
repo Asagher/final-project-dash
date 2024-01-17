@@ -81,16 +81,16 @@ $(function () {
         // success sweetalert
         Swal.fire({
           icon: 'success',
-          title: 'حذف!',
-          text: ' تم حذف الدور',
+          title: 'تمت عملية الحذف بنجاح',
+          text: ' تم حذف الصنف',
           customClass: {
             confirmButton: 'btn btn-success'
           }
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
-          title: 'ألغيت',
-          text: 'لم  يتم حذف الدور',
+          title: 'تم إلغاء عملية الحذف',
+          text: 'لم  يتم حذف الصنف',
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-success'
@@ -150,7 +150,7 @@ $('#addCategoryModal').on('show.bs.modal', function () {
       categoryTitle: {
         validators: {
           notEmpty: {
-            message: 'Please enter category title'
+            message: 'ادخل اسم الصنف'
           }
         }
       }
@@ -158,18 +158,11 @@ $('#addCategoryModal').on('show.bs.modal', function () {
       img: {
         validators: {
           notEmpty: {
-            message: 'Please enter category image'
+            message: 'ادخل صورة عن الصنف'
           }
         }
       }
-      ,
-      price_per_weight: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter category price per weight'
-          }
-        }
-      }
+
     },
     plugins: {
       trigger: new FormValidation.plugins.Trigger(),
@@ -202,8 +195,8 @@ $('#addCategoryModal').on('show.bs.modal', function () {
         //sweetalert
         Swal.fire({
             icon: 'success',
-            title: 'Successfully '.concat(status.message, '!'),
-            text: 'Category '.concat(status.message, ' Successfully.'),
+            title: 'تمت عملية الإضافة بنجاح ',
+            text: 'تم إنشاء صنف جديد ',
             customClass: {
               confirmButton: 'btn btn-success'
             }
@@ -212,8 +205,8 @@ $('#addCategoryModal').on('show.bs.modal', function () {
       error: function (err) {
         $('#addModal').modal('hide');
         Swal.fire({
-            title: 'Duplicate Entry!',
-            text: 'Your role should be unique.',
+            title: 'حدث خطأ',
+            text: 'لم يتم إنشاء صنف جديد',
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-success'
@@ -250,7 +243,7 @@ $(document).on('click', '.category-edit-modal', function () {
       categoryTitle: {
         validators: {
           notEmpty: {
-            message: 'Please enter category title'
+            message: 'ادخل اسم الصنف'
           }
         }
       }
@@ -258,18 +251,11 @@ $(document).on('click', '.category-edit-modal', function () {
       img: {
         validators: {
           notEmpty: {
-            message: 'Please enter category image'
+            message: 'ادخل صورة عن الصنف'
           }
         }
       }
-      ,
-      price_per_weight: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter category price per weight'
-          }
-        }
-      }
+
     },
     plugins: {
       trigger: new FormValidation.plugins.Trigger(),
@@ -287,10 +273,16 @@ $(document).on('click', '.category-edit-modal', function () {
   }).on('core.form.valid', function () {
     // Get form data
     var id = $('#editId').val();
+    var form=new FormData($('#editForm') [0]);
     $.ajax({
-      data: $('#editForm').serialize(),
+      data: form,
       url: ''.concat(baseUrl, 'product-category/').concat(id),
       method: 'PUT',
+      processData: false,
+      contentType: false,
+      cache: false,
+      dataType: 'JSON',
+
       success: function success(status) {
         $('#editModal').modal('hide');
         $('#editForm')[0].reset();
@@ -298,8 +290,8 @@ $(document).on('click', '.category-edit-modal', function () {
         // sweetalert
         Swal.fire({
           icon: 'success',
-          title: 'Successfully '.concat(status.message, '!'),
-          text: 'Category '.concat(status.message, ' Successfully.'),
+          title: 'تمت عملية التحديث بنجاح '.concat(status.message, '!'),
+          text: 'تم تحديث الصنف ',
           customClass: {
             confirmButton: 'btn btn-success'
           }
@@ -310,8 +302,8 @@ $(document).on('click', '.category-edit-modal', function () {
         $('#editModal').modal('hide');
 
         Swal.fire({
-          title: 'Duplicate Entry!',
-          text: 'Your Category should be unique.',
+          title: 'حدث خطأ',
+          text: 'لم يتم تحديث الصنف ',
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-success'

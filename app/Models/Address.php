@@ -11,7 +11,7 @@ class Address extends Model
 
   public $timestamps = false;
 
-  protected $fillable = ['id', 'address_id'];
+  protected $fillable = ['id', 'source','destination'];
   public function addressShippingRequests()
   {
     return $this->hasMany(ShippingRequest::class, 'address_id');

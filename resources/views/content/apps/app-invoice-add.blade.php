@@ -91,7 +91,7 @@
 
         <div class="row p-sm-3 p-0">
           <div class="col-md-6 col-sm-5 col-12 mb-sm-0 mb-4">
-            <h5 class="pb-2">المرسل:</h5>
+            <h5 class="pb-2">المرسل :</h5>
 
             <table>
               <tbody>
@@ -117,7 +117,7 @@
             </table>
           </div>
           <div class="col-md-6 col-sm-7">
-            <h5 class="pb-2">المستلم:</h5>
+            <h5 class="pb-2">المرسل إليه:</h5>
             <table>
               <tbody>
 
@@ -144,8 +144,11 @@
 
         </div>
         <div class="row p-sm-3 p-0">
+          <h5>المصدر :</h5>
+          <h5>{{$shipment->source->source}}</h5>
+
         <h5>الوجهة :</h5>
-         <h5>{{$shipment->addresses->location}}</h5>
+         <h5>{{$shipment->destination->destination}}</h5>
         </div>
         <hr class="mx-n4" />
 
@@ -166,9 +169,9 @@
                 <tr>
                   <td>{{ $line->categoryDetail->category->category_name }}</td>
                   <td>{{ $line->description }}</td>
-                  <td>{{ $line->weight }}</td>
                   <td>{{ $line->quantity }}</td>
-                  <td>{{ $line->categoryDetail->weight * $line->quantity * $line->categoryDetail->price}}</td>
+                  <td>{{ $line->weight }}</td>
+                  <td>{{ $line->quantity * $line->categoryDetail->price}}</td>
                 </tr>
                 @endforeach
               </tbody>
@@ -188,7 +191,7 @@
                 <label for="selectpickerLiveSearch" class="form-label">جهة الدفع</label>
                 <select id="selectpickerLiveSearch" name="payer" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
 
-                  <option  data-subtext="المستلم" value="{{$shipment->receiver->first_name}} {{$shipment->receiver->middle_name}} {{$shipment->receiver->last_name}}" label=" ">{{$shipment->receiver->first_name}} {{$shipment->receiver->middle_name}} {{$shipment->receiver->last_name}}</option>
+                  <option  data-subtext="المرسل إليه" value="{{$shipment->receiver->first_name}} {{$shipment->receiver->middle_name}} {{$shipment->receiver->last_name}}" label=" ">{{$shipment->receiver->first_name}} {{$shipment->receiver->middle_name}} {{$shipment->receiver->last_name}}</option>
                   <option  data-subtext="المرسل" value="{{$shipment->sender->first_name}} {{$shipment->sender->middle_name}} {{$shipment->sender->last_name}}" label=" ">{{$shipment->sender->first_name}} {{$shipment->sender->middle_name}} {{$shipment->sender->last_name}}</option>
 
                 </select>
@@ -207,14 +210,23 @@
           </div>
         </div>
         <hr class="my-4" />
-        <div  class="row py-sm-3 justify-content-between d-flex">
+        <div class="row py-sm-3 justify-content-between d-flex">
           <div class="col-md-6 mb-md-0 mb-3">
-          <p>  جميع الحقوق محفوظة لشركة </p>
-
+            <p>جميع الحقوق محفوظة لشركة</p>
           </div>
-          <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex"> {!! QrCode::size(100)->generate($uniqueId) !!}</div>
+          <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex">
+            <?php
+            use Picqer\Barcode\BarcodeGeneratorHTML;
 
+            $generator = new BarcodeGeneratorHTML();
+            $barcode = $generator->getBarcode($uniqueId, $generator::TYPE_CODE_128);
 
+            echo '<div class="barcode">' . $barcode . '</div>';
+            ?>
+            <div class="qrcode">
+              {!! QrCode::size(120)->generate($uniqueId) !!}
+            </div>
+          </div>
         </div>
 
 
@@ -243,3 +255,30 @@
 @include('_partials/_offcanvas/offcanvas-send-invoice')
 <!-- /Offcanvas -->
 @endsection
+<style>
+  .barcode {
+    display: inline-block;
+    background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  color: #000000;
+  height: 50px; /* Adjust the height as desired */
+  
+
+  }
+
+  .qrcode {
+    display: inline-block;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+
+  border: 1px solid #000000;
+  }
+  </style>
