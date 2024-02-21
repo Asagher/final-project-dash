@@ -9,4 +9,5 @@
 
 let assetsPath = document.documentElement.getAttribute('data-assets-path'),
   templateName = document.documentElement.getAttribute('data-template'),
+  baseUrl = document.documentElement.getAttribute('data-base-url') + '/',
   rtlSupport = true; // set true for rtl support (rtl + ltr), false for ltr only.

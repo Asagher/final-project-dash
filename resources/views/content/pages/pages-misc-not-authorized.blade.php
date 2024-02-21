@@ -17,8 +17,8 @@ $configData = Helper::appClasses();
 <!-- Not Authorized -->
 <div class="container-xxl container-p-y">
   <div class="misc-wrapper">
-    <h2 class="mb-2 mx-2">You are not authorized!</h2>
-    <p class="mb-4 mx-2">You do not have permission to view this page using the credentials that you have provided while login. <br> Please contact your site administrator.</p>
+    <h2 class="mb-2 mx-2">إنك غير مخول للوصول !</h2>
+    <p class="mb-4 mx-2">ليس لديك إذن لعرض هذه الصفحة باستخدام بيانات الاعتماد التي قدمتها أثناء تسجيل الدخول <br> يرجى الاتصال بمسؤول الموقع</p>
     <a href="{{url('/')}}" class="btn btn-primary">Back to home</a>
     <div class="mt-5">
       <img src="{{asset('assets/img/illustrations/girl-with-laptop-'.$configData['style'].'.png')}}" alt="page-misc-not-authorized-light" width="450" class="img-fluid" data-app-light-img="illustrations/girl-with-laptop-light.png" data-app-dark-img="illustrations/girl-with-laptop-dark.png">

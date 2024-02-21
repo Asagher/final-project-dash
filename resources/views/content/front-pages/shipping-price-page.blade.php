@@ -76,13 +76,7 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('vendor-script')
-<script src="{{ asset(mix('assets/vendor/libs/jquery/jquery.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/libs/popper/popper.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/js/bootstrap.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/libs/hammer/hammer.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/libs/typeahead-js/typeahead.js')) }}"></script>
-<script src="{{ asset(mix('assets/vendor/js/menu.js')) }}"></script>
+
 <script src="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
@@ -121,8 +115,8 @@ $configData = Helper::appClasses();
             <h5 class="card-header">مصاريف الشحن</h5>
 
             <div class="m-3 d-flex justify-center items-center">
-{{-- my form --}}
-              <form onSubmit="return false" id="demoShip">
+                  {{-- my form --}}
+              <form  id="demoShip">
                 <div id="address" class="content">
                   <div class="content-header justify-content-between mb-3 d-flex">
                     <div>
@@ -133,11 +127,21 @@ $configData = Helper::appClasses();
 
                   </div>
                   <div class="row g-3">
+
+                    <div class="col-sm-4">
+                      <label class="form-label" for="address">وجهة الشحن</label>
+                      <select class="form-select   myAddress" name="address" >
+                        <option label=" "></option>
+                        {{-- @foreach ($addresses as $address )
+                        <option value="{{$address->id}}" label=" ">{{ $address->location}}</option>
+                        @endforeach --}}
+                      </select>
+                    </div>
                    <div class="row g-3 shipment-line" >
 
                     <div class="col-sm-4">
                       <label class="form-label" for="category">فئات الشحن</label>
-                      <select class="form-select   myCategory" name="category[]" id="category_shipment">
+                      <select class="form-select   myCategory" name="category" id="category_shipment">
                         <option value="">اختر الفئة</option>
 
                         @foreach ($categories as $category )
@@ -149,25 +153,27 @@ $configData = Helper::appClasses();
                     <div class="col-sm-4">
                       <label class="form-label"  for="category-detail"> تفاصيل فئات الشحن </label>
                       <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
+
+                        <option >اختر تفاصيل الفئة</option>
+
+
+
                       </select>
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="quantity">الكمية</label>
-                      <input type="text" name="quantity[]" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
+                      <input type="text" name="quantity" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
                     </div>
 
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                      <input type="text" name="price_for_wight[]"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
+                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>
-                      <input type="text" name="total_wight[]" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
+                      <input type="text" name="total_wight" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
                     </div>
-                    <div class="col-sm-4">
-                      <label class="form-label" for="line_total_cost">التكلفة</label>
-                      <input type="text" name="line_total_cost[]" class="form-control line_total_cost" id="line_total_cost" placeholder="Birmingham">
-                    </div>
+
                     <div>
                       <label for="description" class="form-label">تفاصيل عن الشحنة</label>
                       <textarea class="form-control description" name="description" id="description" rows="3"></textarea>
@@ -175,7 +181,7 @@ $configData = Helper::appClasses();
                             {{-- <hr> --}}
                   </div>
                     <div class="col-12 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-label-primary w-25">
+                      <button type="submit" id="submit-btn" class="btn btn-label-primary w-25">
                         {{-- <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i> --}}
                         <span class="align-middle d-sm-inline-block d-none">تأكيد</span>
                       </button>
@@ -188,10 +194,29 @@ $configData = Helper::appClasses();
                 </div>
               </form>
 
+
             </div>
+            <hr>
+
+              <div id="demoCalc" class="d-flex justify-content-center mb-4 w-100 d-none">
+                <div class="col-md-6">
+                  <div class="  card shadow-none bg-transparent border border-primary">
+                    <div class="card-header text-center">التكلفة الاجمالية</div>
+                    <div class="card-body text-center text-primary">
+                      <h5 class=" card-title">تكلفة الشحن المتوقعة</h5>
+                      <span id="total-cost" class="fw-bold text-end card-text">
+
+                      </span><span>ليرة</span>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>

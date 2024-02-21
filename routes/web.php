@@ -471,16 +471,21 @@ Route::middleware([
   Route::resource('/add-vehicle', VehicleController::class);
 });
 ///////////home////////////
+Route::get('/get-category-details/{categoryId}', [EcommerceProductCategory::class, 'getCategoryDetails']);
 
-Route::get('/', [Landing::class, 'index'])->name('front-pages-landing');////welcome page
-Route::get('/categories-page', [Categories::class, 'index'])->name('categories');////welcome page
-Route::get('/categories-page/{id}', [Categories::class, 'show'])->name('category-show');///show notification new category
-Route::get('markAsRead',function(){
-  auth()->user()->unreadNotifications->markAsRead();
+Route::get('/', [Landing::class, 'index'])->name('front-pages-landing'); ////welcome page
+Route::get('/categories-page', [Categories::class, 'index'])->name('categories'); ////welcome page
+Route::get('/categories-page/{id}', [Categories::class, 'show'])->name('category-show');
+Route::post('/form/wizard-icons/price', [FormWizardIcons::class, 'getCategoryPrice']);
+///show notification new category
+Route::get('markAsRead', function () {
+  auth()
+    ->user()
+    ->unreadNotifications->markAsRead();
   return redirect()->back();
-})->name('markRead');///////make all notification read
-Route::delete('/categories-page/{id}', [Categories::class, 'destroy'])->name('category-destroy');///destroy notification
-Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show');///show notification new invoice to sender
+})->name('markRead'); ///////make all notification read
+Route::delete('/categories-page/{id}', [Categories::class, 'destroy'])->name('category-destroy'); ///destroy notification
+Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show'); ///show notification new invoice to sender
 
 Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
 
