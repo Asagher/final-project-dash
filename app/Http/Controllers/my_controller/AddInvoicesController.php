@@ -115,9 +115,7 @@ class AddInvoicesController extends Controller
     ]);
     $sender_email=$invoices->shippingRequest->sender->email;
     $reciver_email=$invoices->shippingRequest->receiver->email;
-
     $emails = User::whereIn('email', [$sender_email, $reciver_email])->get();
-
     if($invoices)
     {
       if($emails){

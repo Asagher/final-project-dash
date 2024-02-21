@@ -27,7 +27,7 @@ $configData = Helper::appClasses();
   <div id="landingHero" class="section-py landing-hero position-relative">
     <div class="container">
       <div class="hero-text-box text-center">
-        <h1 class="text-primary hero-title display-4 fw-bold">الأصناف الموجودة</h1>
+        <h1 class="text-primary hero-title display-4 fw-bold">الفاتورة</h1>
         <br>
       </div>
       {{-- show category --}}
@@ -233,30 +233,30 @@ $configData = Helper::appClasses();
 </section>
 
 @endsection
-<style>
-  .barcode {
-    display: inline-block;
-    background-color: #ffffff;
-  padding: 10px;
-  border: 1px solid #000000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-  font-size: 9px;
-  color: #000000;
-  height: 50px; /* Adjust the height as desired */
+  <style>
+    .barcode {
+      display: inline-block;
+      background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    color: #000000;
+    height: 50px; /* Adjust the height as desired */
 
 
-  }
+    }
 
-  .qrcode {
-    display: inline-block;
-    margin-left: 100px;
-    margin-right: 100px;
-    background-color: #ffffff;
-  padding: 5px;
-  border-radius: 5px;
+    .qrcode {
+      display: inline-block;
+      margin-left: 100px;
+      margin-right: 100px;
+      background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
 
-  border: 1px solid #000000;
-  }
+    border: 1px solid #000000;
+    }
   </style>

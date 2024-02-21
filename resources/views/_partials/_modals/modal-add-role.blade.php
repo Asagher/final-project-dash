@@ -19,10 +19,9 @@
           <div class="col-12">
             <h4> صلاحيات الدور</h4>
             <!-- Permission table -->
-            <div class="table-responsive">
-                <div class="d-flex">
+                <div class="d-flex flex-wrap row gx-4 row gap-2">
                       @foreach ($permissions as $permission)
-                        <div class="form-check me-3 me-lg-5">
+                        <div class="form-check me-3 me-lg-5 item col">
                           <input class="form-check-input" type="checkbox" id="permission_role" name="permission_role[]" value="{{$permission->name}}" />
                           <label class="form-check-label" for="permission">
                             {{$permission->name}}
@@ -30,7 +29,6 @@
                         </div>
                       @endforeach
                 </div>
-            </div>
             <!-- Permission table -->
           </div>
           <div class="col-12 text-center">

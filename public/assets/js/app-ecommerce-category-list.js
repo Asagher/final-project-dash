@@ -192,6 +192,7 @@ $('#addCategoryModal').on('show.bs.modal', function () {
         $('#addModal').modal('hide');
         $('#addForm')[0].reset();
         $('#categories').load('/app/ecommerce/product/category' + ' #categories');
+
         //sweetalert
         Swal.fire({
             icon: 'success',
@@ -214,7 +215,6 @@ $('#addCategoryModal').on('show.bs.modal', function () {
           });
       }
     });
-
   });
 })();
 
@@ -273,16 +273,11 @@ $(document).on('click', '.category-edit-modal', function () {
   }).on('core.form.valid', function () {
     // Get form data
     var id = $('#editId').val();
-    var form=new FormData($('#editForm') [0]);
+
     $.ajax({
-      data: form,
+      data: $('#editForm').serialize(),
       url: ''.concat(baseUrl, 'product-category/').concat(id),
       method: 'PUT',
-      processData: false,
-      contentType: false,
-      cache: false,
-      dataType: 'JSON',
-
       success: function success(status) {
         $('#editModal').modal('hide');
         $('#editForm')[0].reset();
@@ -290,7 +285,7 @@ $(document).on('click', '.category-edit-modal', function () {
         // sweetalert
         Swal.fire({
           icon: 'success',
-          title: 'تمت عملية التحديث بنجاح '.concat(status.message, '!'),
+          title: 'تمت عملية التحديث بنجاح ',
           text: 'تم تحديث الصنف ',
           customClass: {
             confirmButton: 'btn btn-success'

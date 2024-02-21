@@ -27,30 +27,36 @@
 @section('page-script')
 <script src="{{asset('assets/js/app-access-permission.js')}}"></script>
 @endsection
+@php
+$roles = ['المشرف'];
+@endphp
+@if (Auth::user()->hasRole($roles))
+  @section('content')
+    <h4 class="py-3 mb-2">قائمة الصلاحيات :</h4>
 
-@section('content')
-<h4 class="py-3 mb-2">قائمة الصلاحيات :</h4>
+    <!-- Permission Table -->
+    <div class="card">
+      <div class="card-datatable table-responsive">
+        <table class="datatables-permissions table border-top">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>اسم الصلاحية</th>
+              <th>تاريخ الإنشاء</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <!--/ Permission Table -->
 
-<!-- Permission Table -->
-<div class="card">
-  <div class="card-datatable table-responsive">
-    <table class="datatables-permissions table border-top">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>اسم الصلاحية</th>
-          <th>تاريخ الإنشاء</th>
-          <th>الإجراءات</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
-<!--/ Permission Table -->
-
-<!-- Modal -->
-@include('_partials/_modals/modal-add-permission')
-@include('_partials/_modals/modal-edit-permission')
-<!-- /Modal -->
-@endsection
+    <!-- Modal -->
+    @include('_partials/_modals/modal-add-permission')
+    @include('_partials/_modals/modal-edit-permission')
+    <!-- /Modal -->
+  @endsection
+@else
+  <p>ليس لديك صلاحية </p>
+@endif

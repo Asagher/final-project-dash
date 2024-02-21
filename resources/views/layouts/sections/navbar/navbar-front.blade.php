@@ -210,7 +210,7 @@
           </li>
           <li class="nav-item">
             @php
-                $roles = ['المشرف', 'إدارة طلبات الشحن'];
+                $roles = ['المشرف', 'موظف إدارة الشحن'];
             @endphp
             @if (Auth::check())
               @if (Auth::user()->hasRole($roles))
@@ -272,12 +272,6 @@
                 <li>
                   <div class="dropdown-divider"></div>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
-                    <i class="bx bx-user me-2"></i>
-                    <span class="align-middle">My Profile</span>
-                  </a>
-                </li>
               @endif
 
                 @if (Auth::check())
@@ -307,7 +301,7 @@
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class="bx bx-bell bx-sm"></i>
               @if ( Auth::user()->unreadNotifications->count())
-              <span class="badge bg-danger rounded-pill badge-notifications">{{ Auth::user()->unreadNotifications->count()}}</span>
+              <span class="badge bg-danger rounded-pill badge-notifications" id="notificationCount">{{ Auth::user()->unreadNotifications->count()}}</span>
               @endif
             </a>
             <ul class="dropdown-menu dropdown-menu-end py-0" id="notification">
@@ -403,9 +397,9 @@
 <!-- Navbar: End -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    $(document).on('click', '.delete-record', function () {
+  $(document).on('click', '.delete-record', function () {
     var role_id = $(this).data('id');
-    var dropdownMenu = $(this).closest('.dropdown-menu');
+    //var dropdownMenu = $(this).closest('.dropdown-menu');
     var dropdownItem = $(this).closest('.dropdown-notifications-item');
     var badge = $('.badge-notifications');
 
@@ -433,7 +427,8 @@
             console.log(error);
         }
     });
-});
+  });
+
 </script>
 <style>
 .scrollable-container {

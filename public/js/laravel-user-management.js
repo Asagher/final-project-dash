@@ -66,6 +66,9 @@
               data: 'email_verified_at'
             },
             {
+              data: 'role'
+            },
+            {
               data: 'action'
             }
           ],
@@ -137,6 +140,36 @@
                     ? '<i class="bx fs-4 bx-check-shield text-success"></i>'
                     : '<i class="bx fs-4 bx-shield-x text-danger" ></i>'
                 );
+              }
+            },
+
+            {
+              // User full name
+              targets: 2,
+              responsivePriority: 4,
+              render: function render(data, type, full, meta) {
+                var $name = full['role'];
+
+                // For Avatar badge
+                var stateNum = Math.floor(Math.random() * 6);
+                var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
+                var $state = states[stateNum],
+                  $name = full['name'],
+                  $initials = $name.match(/\b\w/g) || [],
+                  $output;
+                $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
+                $output =
+                  '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
+
+                // Creates full output for row
+                var $row_output =
+                  '<div class="d-flex justify-content-start align-items-center user-name">' +
+                  '<div class="d-flex flex-column">' +
+                    $name +
+                  '</span></a>' +
+                  '</div>' +
+                  '</div>';
+                return $row_output;
               }
             },
             {

@@ -28,7 +28,7 @@ class ShippingOperationsManagementSeeder extends Seeder
         'remember_token' => Str::random( 10 ),
         'profile_photo_path' => null,
         'current_team_id' => null,
-    ] )->assignRole( 'إدارة طلبات الشحن' )->givePermissionTo(Permission::where('name', 'طلبات الشحن')->first());
+    ] )->assignRole( 'موظف إدارة الشحن' )->givePermissionTo(Permission::where('name', 'طلبات الشحن')->first());
     Team::create( [
         'name' => explode( ' ', $user->name, 2 )[ 0 ]."'s Team",
         'user_id' => $user->id,

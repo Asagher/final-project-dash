@@ -178,7 +178,7 @@ Route::middleware([
   'auth:sanctum',
   config('jetstream.auth_session'),
   'verified',
-  'role:المشرف|إدارة طلبات الشحن',
+  'role:المشرف|موظف إدارة الشحن',
   'auth',
 ])->group(function () {
   Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -246,7 +246,8 @@ Route::middleware([
   Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name(
     'app-ecommerce-order-details'
   );
-  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'index'])->name('app-ecommerce-customer-all');
+  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'UserManagement']);
+  Route::resource('/customer/all',EcommerceCustomerAll::class);
   Route::get('app/ecommerce/customer/details/overview', [EcommerceCustomerDetailsOverview::class, 'index'])->name(
     'app-ecommerce-customer-details-overview'
   );

@@ -17,12 +17,18 @@ class UserManagement extends Controller {
     */
 
     public function UserManagement() {
-        $users = User::all();
+        $users = User::whereDoesntHave('roles', function ($query) {
+          $query->where('name', 'العميل');
+      })->get();
         $userCount = $users->count();
-        $verified = User::whereNotNull( 'email_verified_at' )
+        $verified = User::whereNotNull( 'email_verified_at' )->whereDoesntHave('roles', function ($query) {
+          $query->where('name', 'العميل');
+      })
         ->get()
         ->count();
-        $notVerified = User::whereNull( 'email_verified_at' )
+        $notVerified = User::whereNull( 'email_verified_at' )->whereDoesntHave('roles', function ($query) {
+          $query->where('name', 'العميل');
+      })
         ->get()
         ->count();
         $usersUnique = $users->unique( [ 'email' ] );
@@ -50,6 +56,7 @@ class UserManagement extends Controller {
             2 => 'name',
             3 => 'email',
             4 => 'email_verified_at',
+            5 =>'role'
         ];
 
         $search = [];
@@ -64,7 +71,9 @@ class UserManagement extends Controller {
         $dir = $request->input( 'order.0.dir' );
 
         if ( empty( $request->input( 'search.value' ) ) ) {
-            $users = User::offset( $start )
+            $users = User::offset( $start )->whereDoesntHave('roles', function ($query) {
+              $query->where('name', 'العميل');
+          })
             ->limit( $limit )
             ->orderBy( $order, $dir )
             ->get();
@@ -97,6 +106,7 @@ class UserManagement extends Controller {
                 $nestedData[ 'name' ] = $user->name;
                 $nestedData[ 'email' ] = $user->email;
                 $nestedData[ 'email_verified_at' ] = $user->email_verified_at;
+                $nestedData['role']=$user->getRoleNames();
                 $data[] = $nestedData;
             }
         }

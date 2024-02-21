@@ -17,9 +17,8 @@
     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
       <div class="mb-3" x-data="{photoName: null, photoPreview: null}">
         <!-- Profile Photo File Input -->
-        <input type="file" hidden wire:model.live="photo" x-ref="photo"
+          <input type="file" hidden wire:model.live="photo" x-ref="photo"
           x-on:change=" photoName = $refs.photo.files[0].name; const reader = new FileReader(); reader.onload = (e) => { photoPreview = e.target.result;}; reader.readAsDataURL($refs.photo.files[0]);" />
-
         <!-- Current Profile Photo -->
         <div class="mt-2" x-show="! photoPreview">
           <img src="{{ $this->user->profile_photo_url }}" class="rounded-circle" height="80px" width="80px">

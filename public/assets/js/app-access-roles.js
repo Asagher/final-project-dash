@@ -6,24 +6,6 @@
 
 
 
-// (function () {
-//   // On edit role click, update text
-//   var roleEditList = document.querySelectorAll('.role-edit-modal'),
-//     roleAdd = document.querySelector('.add-new-role'),
-//     roleTitle = document.querySelector('.role-title');
-
-//   roleAdd.onclick = function () {
-//     roleTitle.innerHTML = 'Add New Role'; // reset text
-//   };
-//   if (roleEditList) {
-//     roleEditList.forEach(function (roleEditEl) {
-//       roleEditEl.onclick = function () {
-//         roleTitle.innerHTML = 'Edit Role'; // reset text
-//       };
-//     });
-//   }
-// })();
-
 
 $(function () {
   $.ajaxSetup({
@@ -129,8 +111,8 @@ $(function () {
           // sweetalert
           Swal.fire({
             icon: 'success',
-            title: 'Successfully '.concat(status.message, '!'),
-            text: 'Role '.concat(status.message, ' Successfully.'),
+            title: 'تمت عملية الإضافة بنجاح',
+            text: 'تم إنشاء دور جديد',
             customClass: {
               confirmButton: 'btn btn-success'
             }
@@ -141,8 +123,8 @@ $(function () {
           $('#addRoleModal').modal('hide');
 
           Swal.fire({
-            title: 'Duplicate Entry!'.concat(status.message, '!'),
-            text: 'Role'.concat(status.message, ' Successfully.'),
+            title: 'حدث خطأ',
+            text: 'لم يتم إنشاء دور جديد',
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-success'
@@ -186,7 +168,7 @@ $(function () {
         editRoleName: {
           validators: {
             notEmpty: {
-              message: 'please,enter role name'
+              message: 'ادخل اسم الدور'
             }
           }
         }
@@ -218,8 +200,8 @@ $(function () {
           // sweetalert
           Swal.fire({
             icon: 'success',
-            title: 'Successfully '.concat(status.message, '!'),
-            text: 'Role '.concat(status.message, ' Successfully.'),
+            title: 'تمت عملية التحديث بنجاح',
+            text: 'تم تحديث الدور',
             customClass: {
               confirmButton: 'btn btn-success'
             }
@@ -230,8 +212,8 @@ $(function () {
           $('#editRoleModal').modal('hide');
 
           Swal.fire({
-            title: 'Duplicate Entry!',
-            text: 'Your role should be unique.',
+            title: 'حدث خطأ!',
+            text: 'لم يتم تحديث الدور.',
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-success'

@@ -14,15 +14,22 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
       $permissions=[
-      'الأصناف',
-      'الأدوار',
-      'الصلاحيات',
+      ' إدارة الأصناف',
+      'إدارة الطرود',
+      'إدارة الأدوار',
+      'إدارة الصلاحيات',
       'طلبات الشحن',
-      'إنشاء حساب للموظفين'];
+      'إدارة بيانات للموظفين',
+  'إدارة العملاء'];
       foreach($permissions as $permission){
           Permission::create( [ 'name'=>$permission] )->assignRole('المشرف');
       }
       $driverRole = Permission::where('name', 'طلبات الشحن')->first();
-      $driverRole->assignRole('إدارة طلبات الشحن');
+      $driverRole->assignRole('موظف إدارة الشحن');
+      $service=Permission::whereIn('name', ['إدارة الأصناف','إدارة العملاء'])->first();
+      $service->assignRole('موظف خدمات');
+      $service2=Permission::where('name','إدارة الطرود')->first();
+      $service2->assignRole('موظف خدمات');
+
     }
 }
