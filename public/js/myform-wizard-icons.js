@@ -112,8 +112,7 @@ $(function () {
             },
             emailAddress: {
               message: 'The value is not a valid email address'
-            },
-
+            }
           }
         },
         address_s: {
@@ -191,8 +190,7 @@ $(function () {
             },
             emailAddress: {
               message: 'The value is not a valid email address'
-            },
-
+            }
           }
         },
         address_r: {
@@ -313,8 +311,8 @@ $(function () {
       price_for_wight = $('#price_for_wight').val();
       category = $('#category_shipment').val();
       quantity = $('#quantity').val();
-     var s = $('#s').val();
-    var  d = $('#d').val();
+      var s = $('#s').val();
+      var d = $('#d').val();
 
       line_total_cost = $('#line_total_cost').val();
 
@@ -333,7 +331,6 @@ $(function () {
       $('#review-email-s').text(email_s);
       $('#review-phone-s').text(phone_s);
       $('#review-address-s').text(address_s);
-
 
       $('#review-s').text(s);
       $('#review-d').text(d);
@@ -421,15 +418,15 @@ $(function () {
     // });
 
     // // Populate category details when category changes
-    $('#category_shipment').on('change',function () {
+    $('#category_shipment').on('change', function () {
       var categoryID = $(this).val();
 
       $.ajax({
-        url: ''.concat(baseUrl, 'get-category-details/').concat(categoryID) ,
+        url: ''.concat(baseUrl, 'get-category-details/').concat(categoryID),
         type: 'GET',
         success: function (data) {
           $('#category-detail').empty();
-          $('#category-detail').append('<option value="">' +'اختر نوع الطرد '+ '</option>');
+          $('#category-detail').append('<option value="">' + 'اختر نوع الطرد ' + '</option>');
           $.each(data, function (index, detail) {
             $('#category-detail').append('<option value="' + detail.id + '">' + detail.type + '</option>');
           });
@@ -452,22 +449,20 @@ $(function () {
           },
           success: function (response) {
             row.find('.price_for_wight').val(response.price);
-           if (response.weight) {
-            row.find('.total_wight').val(response.weight);
-           } else {
-            row.find('.total_wight').val('لا يوجد وزن');
-           }
-           $('.quantity').on('change',function () {
-           var quantity = parseFloat(row.find('.quantity').val()) || 1;
-           var priceForWeight = parseFloat(row.find('.price_for_wight').val());
-           var total=priceForWeight*quantity;
-           row.find('.line_total_cost').val(total);
-           });
-
+            if (response.weight) {
+              row.find('.total_wight').val(response.weight);
+            } else {
+              row.find('.total_wight').val('لا يوجد وزن');
+            }
+            $('.quantity').on('change', function () {
+              var quantity = parseFloat(row.find('.quantity').val()) || 1;
+              var priceForWeight = parseFloat(row.find('.price_for_wight').val());
+              var total = priceForWeight * quantity;
+              row.find('.line_total_cost').val(total);
+            });
           }
         });
       });
-
     }
     attachChangeHandler();
 

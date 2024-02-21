@@ -90,7 +90,7 @@
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: style,
-    center: [37.1329, 36.2056],
+    center: [37.1329, 35.4],
     zoom: 6
   });
   map.addControl(
