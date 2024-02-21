@@ -60,9 +60,6 @@ class PermissionController extends Controller
       foreach ($users as $user) {
         $nestedData['id'] = $user->id;
         $nestedData['name'] = $user->name;
-
-        $nestedData['created_at'] = $user->created_at;
-
         $data[] = $nestedData;
       }
     }

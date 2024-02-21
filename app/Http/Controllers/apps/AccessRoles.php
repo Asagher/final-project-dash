@@ -17,7 +17,6 @@ class AccessRoles extends Controller {
           $counts[] = [
             'id' => $role->id,
             'name' => $role->name,
-            'count' => $role->users()->count(),
         ];
       }
         return view( 'content.apps.app-access-roles',

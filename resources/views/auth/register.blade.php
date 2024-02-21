@@ -40,7 +40,7 @@ $customizerHidden = 'customizer-hide';
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
           @csrf
           <div class="mb-3">
-            <label for="username" class="form-label">الاسم</label>
+            <label for="username" class="form-label">الاسم الكامل</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name" placeholder="johndoe" autofocus value="{{ old('name') }}" />
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -90,6 +90,24 @@ $customizerHidden = 'customizer-hide';
               </span>
             </div>
           </div>
+          @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+          <div class="mb-3">
+            <div class="form-check @error('terms') is-invalid @enderror">
+              <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms" name="terms" />
+              <label class="form-check-label" for="terms">
+                I agree to the
+                <a href="{{ route('policy.show') }}" target="_blank">privacy policy</a> &
+                <a href="{{ route('terms.show') }}" target="_blank">terms</a>
+              </label>
+            </div>
+            @error('terms')
+              <div class="invalid-feedback" role="alert">
+                  <span class="fw-medium">{{ $message }}</span>
+              </div>
+            @enderror
+          </div>
+        @endif
+
 
           <button type="submit" class="btn btn-primary d-grid w-100">إنشاء حساب</button>
         </form>

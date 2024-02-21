@@ -23,16 +23,11 @@ $(function () {
         {
           data: ''
         },
-        {
-          data: 'id'
-        },
+
         {
           data: 'name'
         },
 
-        {
-          data: 'created_at'
-        },
         {
           data: 'action'
         }
@@ -49,27 +44,13 @@ $(function () {
             return '';
           }
         },
-        {
-          targets: 1,
-          searchable: false,
-          visible: false
-        },
+        
         {
           // Name
-          targets: 2,
+          targets: 1,
           render: function (data, type, full, meta) {
             var $name = full['name'];
             return '<span class="text-nowrap">' + $name + '</span>';
-          }
-        },
-
-        {
-          //created_at
-          targets: 3,
-          orderable: false,
-          render: function (data, type, full, meta) {
-            var $date = new Date(full['created_at']);
-            return '<span class="text-nowrap">' + $date.toDateString() + '</span>';
           }
         },
         {

@@ -13,7 +13,6 @@
           @csrf
           <div class="col-12 mb-4">
             <label class="form-label" for="modalRoleName">اسم الدور</label>
-            <input type="hidden" id="modalRoleId" name="modalRoleId">
             <input type="text" id="modalRoleName" name="modalRoleName" class="form-control" placeholder="ادخل اسم الدور " tabindex="-1" />
           </div>
           <div class="col-12">

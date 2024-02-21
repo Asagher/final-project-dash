@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "name": "Dashboards",
+      "name": "Employees",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard",
       "submenu": [
