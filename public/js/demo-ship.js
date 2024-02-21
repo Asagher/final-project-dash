@@ -1,13 +1,13 @@
 'use strict';
 
-(function(){
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-    var wizardValidationFormStep3=document.getElementById('demoShip')
-    const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
+(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  var wizardValidationFormStep3 = document.getElementById('demoShip');
+  const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
     // fields: {
     //   quantity: {
     //     validators: {
@@ -55,10 +55,22 @@
       autoFocus: new FormValidation.plugins.AutoFocus(),
       submitButton: new FormValidation.plugins.SubmitButton()
     }
-  }).on('click',function(){
+  }).on('click', function () {});
+  $('#submit-btn').click(function () {
+    // Calculate total cost
+    var total = 0;
+    $('.shipment-line').each(function () {
+      var quantity = $(this).find('.quantity').val();
+      var price = $(this).find('.price_for_wight').val();
+      var lineTotal = quantity * price;
+      total += lineTotal;
+    });
 
+    // Display total
+    $('#demoCalc').removeClass('d-none');
+    $('#total-cost').text(total);
   });
-  var catt=document.getElementById('category_shipment')
+  var catt = document.getElementById('category_shipment');
   console.log(catt);
 
   $('#category_shipment').change(function () {
@@ -89,15 +101,12 @@
         success: function (response) {
           row.find('.price_for_wight').val(response.price);
           row.find('.total_wight').val(response.weight);
-
-          calculateLineTotalCost(row);
         }
       });
     });
     $('.shipment-line').on('input', '.calculate-cost', function () {
-    //   calculateLineTotalCost($(this).closest('.shipment-line'));
+      //   calculateLineTotalCost($(this).closest('.shipment-line'));
     });
   }
   attachChangeHandler();
-})
-();
+})();

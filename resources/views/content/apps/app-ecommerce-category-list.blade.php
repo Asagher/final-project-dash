@@ -165,6 +165,58 @@ $roles = ['المشرف', 'موظف خدمات'];
   @endsection
 @else
   @section('content')
-    <p>ليس لديك صلاحية </p>
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Forbidden</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        text-align: center;
+        padding-top: 80px;
+      }
+
+      .lock-icon {
+        width: 100px;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        color: #FF0000;
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 18px;
+        color: #666666;
+        margin-bottom: 20px;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FF0000;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .button:hover {
+        background-color: #990000;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="lock-icon.png" alt="Lock Icon" class="lock-icon">
+    <h1>403 Forbidden</h1>
+    <p>Access to this page is forbidden.</p>
+    <a href="#" class="button">Go Back</a>
+  </body>
+  </html>
   @endsection
+
 @endif
+

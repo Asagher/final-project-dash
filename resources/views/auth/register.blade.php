@@ -35,13 +35,12 @@ $customizerHidden = 'customizer-hide';
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">Adventure starts here 🚀</h4>
-        <p class="mb-4">Make your app management easy and fun!</p>
+        <h4 class="mb-2">إنشاء حساب جديد 🚀</h4>
 
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
           @csrf
           <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
+            <label for="username" class="form-label">الاسم</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="username" name="name" placeholder="johndoe" autofocus value="{{ old('name') }}" />
             @error('name')
             <span class="invalid-feedback" role="alert">
@@ -50,7 +49,7 @@ $customizerHidden = 'customizer-hide';
             @enderror
           </div>
           <div class="mb-3">
-            <label for="contact" class="form-label">Contact</label>
+            <label for="contact" class="form-label">الرقم</label>
             <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact" name="contact" placeholder="+1 (609) 988-44-11" autofocus value="{{ old('contact') }}" />
             @error('contact')
             <span class="invalid-feedback" role="alert">
@@ -59,7 +58,7 @@ $customizerHidden = 'customizer-hide';
             @enderror
           </div>
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label">الايميل</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" value="{{ old('email') }}" />
             @error('email')
             <span class="invalid-feedback" role="alert">
@@ -68,7 +67,7 @@ $customizerHidden = 'customizer-hide';
             @enderror
           </div>
           <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label" for="password">كلمة المرور</label>
             <div class="input-group input-group-merge @error('password') is-invalid @enderror">
               <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
               <span class="input-group-text cursor-pointer">
@@ -83,7 +82,7 @@ $customizerHidden = 'customizer-hide';
           </div>
 
           <div class="mb-3 form-password-toggle">
-            <label class="form-label" for="password-confirm">Confirm Password</label>
+            <label class="form-label" for="password-confirm">تأكيد كلمة المرور</label>
             <div class="input-group input-group-merge">
               <input type="password" id="password-confirm" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
               <span class="input-group-text cursor-pointer">
@@ -91,37 +90,21 @@ $customizerHidden = 'customizer-hide';
               </span>
             </div>
           </div>
-          @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-            <div class="mb-3">
-              <div class="form-check @error('terms') is-invalid @enderror">
-                <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms" name="terms" />
-                <label class="form-check-label" for="terms">
-                  I agree to the
-                  <a href="{{ route('policy.show') }}" target="_blank">privacy policy</a> &
-                  <a href="{{ route('terms.show') }}" target="_blank">terms</a>
-                </label>
-              </div>
-              @error('terms')
-                <div class="invalid-feedback" role="alert">
-                    <span class="fw-medium">{{ $message }}</span>
-                </div>
-              @enderror
-            </div>
-          @endif
-          <button type="submit" class="btn btn-primary d-grid w-100">Sign up</button>
+
+          <button type="submit" class="btn btn-primary d-grid w-100">إنشاء حساب</button>
         </form>
 
         <p class="text-center">
-          <span>Already have an account?</span>
+          <span>لديك حساب بالفعل؟</span>
           @if (Route::has('login'))
           <a href="{{ route('login') }}">
-            <span>Sign in instead</span>
+            <span>تسجيل الدخول بدلا من ذلك</span>
           </a>
           @endif
         </p>
 
         <div class="divider my-4">
-          <div class="divider-text">or</div>
+          <div class="divider-text">أو</div>
         </div>
 
         <div class="d-flex justify-content-center">

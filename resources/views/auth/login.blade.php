@@ -34,8 +34,7 @@ $customizerHidden = 'customizer-hide';
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
-        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+        <h4 class="mb-2">مرحبًا بك ! 👋</h4>
 
         @if (session('status'))
         <div class="alert alert-success mb-1 rounded-0" role="alert">
@@ -48,7 +47,7 @@ $customizerHidden = 'customizer-hide';
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
           @csrf
           <div class="mb-3">
-            <label for="login-email" class="form-label">Email</label>
+            <label for="login-email" class="form-label">الايميل</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="john@example.com" autofocus value="{{ old('email') }}">
             @error('email')
             <span class="invalid-feedback" role="alert">
@@ -58,10 +57,10 @@ $customizerHidden = 'customizer-hide';
           </div>
           <div class="mb-3 form-password-toggle">
             <div class="d-flex justify-content-between">
-              <label class="form-label" for="login-password">Password</label>
+              <label class="form-label" for="login-password">كلمة المرور</label>
               @if (Route::has('password.request'))
               <a href="{{ route('password.request') }}">
-                <small>Forgot Password?</small>
+                <small>نسيت كلمة المرور؟</small>
               </a>
               @endif
             </div>
@@ -79,18 +78,17 @@ $customizerHidden = 'customizer-hide';
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="remember-me" name="remember" {{ old('remember') ? 'checked' : '' }}>
               <label class="form-check-label" for="remember-me">
-                Remember Me
+                تذكرني
               </label>
             </div>
           </div>
-          <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+          <button class="btn btn-primary d-grid w-100" type="submit">تسجيل الدخول</button>
         </form>
 
         <p class="text-center">
-          <span>New on our platform?</span>
           @if (Route::has('register'))
           <a href="{{ route('register') }}">
-            <span>Create an account</span>
+            <span>إنشاء حساب جديد</span>
           </a>
           @endif
         </p>
