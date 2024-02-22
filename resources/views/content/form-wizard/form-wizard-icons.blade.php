@@ -125,23 +125,23 @@
             <div class="row g-3">
               <div class="col-sm-4">
                 <label class="form-label" for="first_name_s">الأسم الأول </label>
-                <input type="text" id="first_name_s" name="first_name_s" class="form-control" placeholder="johndoe" />
+                <input type="text" id="first_name_s" name="first_name_s" class="form-control" placeholder="الأسم الأول " />
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="middle_name_s">الأسم الأوسط</label>
-                <input type="text" id="middle_name_s" name="middle_name_s" class="form-control" placeholder="johndoe" />
+                <input type="text" id="middle_name_s" name="middle_name_s" class="form-control" placeholder="الأسم الأوسط" />
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="last_name_s">الأسم الأخير</label>
-                <input type="text" id="last_name_s" name="last_name_s" class="form-control" placeholder="johndoe" />
+                <input type="text" id="last_name_s" name="last_name_s" class="form-control" placeholder="الأسم الأخير" />
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="national_id_s">الرقم الوطني</label>
-                <input type="text" id="national_id_s" name="national_id_s" class="form-control" placeholder="National Id" />
+                <input type="number" id="national_id_s" name="national_id_s" class="form-control" placeholder="الرقم الوطني Id" />
               </div>
               <div class="col-sm-4">
                 <label class="form-label" for="phone_s">رقم الهاتف </label>
-                <input type="text" id="phone_s" name="phone_s" class="form-control" placeholder="johndoe" />
+                <input type="number" id="phone_s" name="phone_s" class="form-control" placeholder="رقم الهاتف " />
               </div>
                 <div class="col-sm-4">
                   <label class="form-label" for="email_s">الايميل</label>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-sm-12">
                   <label class="form-label" for="address_s">العنوان</label>
-                  <input type="text" id="address_s" name="address_s" class="form-control" placeholder="Enter Address" />
+                  <input type="text" id="address_s" name="address_s" class="form-control" placeholder="العنوان" />
                 </div>
 
               <div class="col-12 d-flex justify-content-between">
@@ -172,23 +172,23 @@
             </div>
             <div class="row g-3"> <div class="col-sm-4">
               <label class="form-label" for="first_name_r">الأسم الأول </label>
-              <input type="text" id="first_name_r" name="first_name_r" class="form-control" placeholder="johndoe" />
+              <input type="text" id="first_name_r" name="first_name_r" class="form-control" placeholder="الأسم الأول " />
             </div>
             <div class="col-sm-4">
               <label class="form-label" for="middle_name_r">الأسم الأوسط</label>
-              <input type="text" id="middle_name_r" name="middle_name_r" class="form-control" placeholder="johndoe" />
+              <input type="text" id="middle_name_r" name="middle_name_r" class="form-control" placeholder="الأسم الأوسط" />
             </div>
             <div class="col-sm-4">
               <label class="form-label" for="last_name_r">الأسم الأخير</label>
-              <input type="text" id="last_name_r" name="last_name_r" class="form-control" placeholder="johndoe" />
+              <input type="text" id="last_name_r" name="last_name_r" class="form-control" placeholder="الأسم الأخير" />
             </div>
             <div class="col-sm-4">
               <label class="form-label" for="national_id_r">الرقم الوطني</label>
-              <input type="text" id="national_id_r" name="national_id_r" class="form-control" placeholder="National Id" />
+              <input type="number" id="national_id_r" name="national_id_r" class="form-control" placeholder="الرقم الوطني Id" />
             </div>
             <div class="col-sm-4">
               <label class="form-label" for="phone_r">رقم الهاتف </label>
-              <input type="text" id="phone_r" name="phone_r" class="form-control" placeholder="johndoe" />
+              <input type="number" id="phone_r" name="phone_r" class="form-control" placeholder=">رقم الهاتف " />
             </div>
               <div class="col-sm-4">
                 <label class="form-label" for="email_r">الايميل</label>
@@ -196,7 +196,7 @@
               </div>
               <div class="col-sm-12">
                 <label class="form-label" for="address_r">العنوان</label>
-                <input type="text" id="address_r" name="address_r" class="form-control" placeholder="Enter Address" />
+                <input type="text" id="address_r" name="address_r" class="form-control" placeholder="العنوان" />
               </div>
               <div class="col-12 d-flex justify-content-between">
                 <button class="btn btn-primary btn-prev">

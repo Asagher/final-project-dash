@@ -48,11 +48,23 @@
             <div class="d-flex svg-illustration mb-4 gap-2">
               <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>
               <span class="app-brand-text demo text-body fw-bold">{{ config('variables.templateName') }}</span>
+
             </div>
             <p class="mb-1">مكتب حلب,222,149 </p>
             <p class="mb-1">حلب ,الجميلية, CA 91905, سوريا</p>
             <p class="mb-0">+963 (123) 456 7891, 021 (876) 543 2198</p>
+            <div class="">
+            <?php
+            use Picqer\Barcode\BarcodeGeneratorHTML;
+
+            $generator = new BarcodeGeneratorHTML();
+            $barcode = $generator->getBarcode($uniqueId, $generator::TYPE_CODE_128);
+
+            echo '<div class="barcode">' . $barcode . '</div>';
+            ?>
           </div>
+          </div>
+
           <div class="col-md-6">
 
 
@@ -215,14 +227,7 @@
             <p>جميع الحقوق محفوظة لشركة</p>
           </div>
           <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex">
-            <?php
-            use Picqer\Barcode\BarcodeGeneratorHTML;
 
-            $generator = new BarcodeGeneratorHTML();
-            $barcode = $generator->getBarcode($uniqueId, $generator::TYPE_CODE_128);
-
-            echo '<div class="barcode">' . $barcode . '</div>';
-            ?>
             <div class="qrcode">
               {!! QrCode::size(120)->generate($uniqueId) !!}
             </div>
@@ -267,13 +272,13 @@
   font-size: 9px;
   color: #000000;
   height: 50px; /* Adjust the height as desired */
-  
+
 
   }
 
   .qrcode {
     display: inline-block;
-    margin-left: 100px;
+    margin-left: ;
     margin-right: 100px;
     background-color: #ffffff;
   padding: 5px;

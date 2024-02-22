@@ -14,17 +14,34 @@ class Categories extends Controller
   {
     $categories = ShipmentCategory::orderBy('category_id', 'DESC')->get();
     $pageConfigs = ['myLayout' => 'front'];
-    return view('content.front-pages.categories', ['pageConfigs' => $pageConfigs,
-  'categories'=>$categories]);
+    return view('content.front-pages.categories', ['pageConfigs' => $pageConfigs, 'categories' => $categories]);
   }
-  public function show($id){
-      $notification_id= DB::table('notifications')->where('data->id',$id)->pluck('id');
-      DB::table('notifications')->whereIn('id', $notification_id)->where('notifiable_id', auth()->user()->id)
-      ->update(['read_at'=>now()]);
-      return redirect()->route('categories');
+
+  public function address()
+  {
+    $categories = ShipmentCategory::orderBy('category_id', 'DESC')->get();
+    $pageConfigs = ['myLayout' => 'front'];
+    return view('content.front-pages.address', ['pageConfigs' => $pageConfigs, 'categories' => $categories]);
   }
-  public function destroy($id){
-    $notification_id= DB::table('notifications')->where('data->id',$id)->pluck('id');
-    DB::table('notifications')->whereIn('id', $notification_id)->where('notifiable_id', auth()->user()->id)->delete();
-    }
+  public function show($id)
+  {
+    $notification_id = DB::table('notifications')
+      ->where('data->id', $id)
+      ->pluck('id');
+    DB::table('notifications')
+      ->whereIn('id', $notification_id)
+      ->where('notifiable_id', auth()->user()->id)
+      ->update(['read_at' => now()]);
+    return redirect()->route('categories');
+  }
+  public function destroy($id)
+  {
+    $notification_id = DB::table('notifications')
+      ->where('data->id', $id)
+      ->pluck('id');
+    DB::table('notifications')
+      ->whereIn('id', $notification_id)
+      ->where('notifiable_id', auth()->user()->id)
+      ->delete();
+  }
 }

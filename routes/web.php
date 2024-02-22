@@ -246,8 +246,10 @@ Route::middleware([
   Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name(
     'app-ecommerce-order-details'
   );
-  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'UserManagement'])->name('app-users-customer-all');
-  Route::resource('/customer/all',EcommerceCustomerAll::class);
+  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'UserManagement'])->name(
+    'app-users-customer-all'
+  );
+  Route::resource('/customer/all', EcommerceCustomerAll::class);
   Route::get('app/ecommerce/customer/details/overview', [EcommerceCustomerDetailsOverview::class, 'index'])->name(
     'app-ecommerce-customer-details-overview'
   );
@@ -486,6 +488,7 @@ Route::get('markAsRead', function () {
 })->name('markRead'); ///////make all notification read
 Route::delete('/categories-page/{id}', [Categories::class, 'destroy'])->name('category-destroy'); ///destroy notification
 Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show'); ///show notification new invoice to sender
+Route::get('/address-page', [Categories::class, 'address'])->name('address-page'); ////welcome page
 
 Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
 
