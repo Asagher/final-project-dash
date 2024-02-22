@@ -31,9 +31,7 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">eCommerce /</span> All Customers
-</h4>
+
 
 
 <div class="row g-4 mb-4">
@@ -95,7 +93,7 @@
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة مستخدم</h5>
+      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة عميل</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">

@@ -354,7 +354,7 @@
               ]
             },
             {
-              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">إضافة مستخدم جديد</span>',
+              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">إضافة موظف جديد</span>',
               className: 'add-new btn btn-primary',
               attr: {
                 'data-bs-toggle': 'offcanvas',
@@ -400,7 +400,7 @@
       // changing the title
       $('.add-new').on('click', function () {
         $('#user_id').val(''); //reseting input field
-        $('#offcanvasAddUserLabel').html('إضافة مستخدم');
+        $('#offcanvasAddUserLabel').html('إضافة موظف');
       });
 
       // Filter form control to default size

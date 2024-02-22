@@ -41,7 +41,7 @@
             @endphp
             @if (Auth::check())
               @if (Auth::user()->hasRole($roles))
-              <a class="nav-link fw-medium" href="{{url('/dashboard/analytics')}}" target="_blank">إدارة الأعمال</a>
+              <a class="nav-link fw-medium" href="{{url('/dashboard/analytics')}}" target="_blank">لوحة القيادة</a>
               @endif
             @endif
           </li>

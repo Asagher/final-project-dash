@@ -43,7 +43,7 @@ $roles = ['المشرف'];
           <div class="col-xl-4 col-lg-6 col-md-6 ">
               <div class="card" >
                 <div class="card-body">
-                  
+
                   <div class="d-flex justify-content-between align-items-end">
                     <div class="role-heading">
 

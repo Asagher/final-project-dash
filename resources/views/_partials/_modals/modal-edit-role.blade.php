@@ -21,16 +21,16 @@
                         <h4>صلاحيات الدور</h4>
                         <!-- Permission table -->
 
-                          <div class="d-flex flex-wrap row gx-4 row gap-2">
-                            @foreach ($permissions as $permission)
-                            <div class="form-check me-3 me-lg-5 item col">
-                                <input class="form-check-input " type="checkbox"id="editCheckbox"  name="editCheckbox[]" value="{{$permission->name}}"/>
-                                <label class="form-check-label" for="userManagementRead">
-                                    {{$permission->name}}
-                                </label>
+                        <div class="d-flex flex-wrap row gx-4 gap-2">
+                          @foreach ($permissions as $permission)
+                            <div class="form-check me-3 me-lg-3 item col">
+                              <input class="form-check-input" type="checkbox" id="editCheckbox" name="editCheckbox[]" value="{{$permission->name}}"/>
+                              <label class="form-check-label" for="userManagementRead">
+                                {{$permission->name}}
+                              </label>
                             </div>
-                            @endforeach
-                          </div>
+                          @endforeach
+                        </div>
 
                         <!-- Permission table -->
                     </div>

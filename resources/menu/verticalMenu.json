@@ -8,7 +8,7 @@
       "name": "Users",
 
       "icon": "menu-icon tf-icons bx bx-user",
-      "slug": "app",
+      "slug": "app-users",
       "submenu": [
         {
           "url": "user-management",
@@ -25,26 +25,48 @@
     {
       "menuHeader": ""
     },
+    {
+      "name": "Roles & Permissions",
+      "icon": "menu-icon tf-icons bx bx-check-shield",
+      "slug": "app-access",
+      "submenu": [
         {
-          "name": "Products and Categories",
-          "slug": "app-ecommerce-product",
-          "icon": "menu-icon tf-icons bx bx-cart-alt",
-
-          "submenu": [
-            {
-              "url": "app/ecommerce/product/list",
-              "name": "Product Management",
-              "slug": "app-ecommerce-product-list"
-            },
-            {
-              "url": "app/ecommerce/product/category",
-              "name": "Category Management",
-              "slug": "app-ecommerce-product-category"
-            }
-          ]
-
+          "url": "app/access-permission",
+          "name": "Permission Management",
+          "slug": "app-access-permission"
+        },
+        {
+          "url": "app/access-roles",
+          "name": "Roles Management",
+          "slug": "app-access-roles"
+        }
+      ]
+    }
+    ,
+    {
+      "menuHeader": ""
     },
     {
+      "name": "Products and Categories",
+      "slug": "app-ecommerce-product",
+      "icon": "menu-icon tf-icons bx bx-cart-alt",
+
+      "submenu": [
+        {
+          "url": "app/ecommerce/product/category",
+          "name": "Category Management",
+          "slug": "app-ecommerce-product-category"
+        },
+        {
+          "url": "app/ecommerce/product/list",
+          "name": "Product Management",
+          "slug": "app-ecommerce-product-list"
+        }
+      ]
+
+    }
+    ,
+{
       "menuHeader": ""
     },
     {
@@ -63,6 +85,16 @@
           "slug": "app-logistics-fleet"
         }
       ]
+    }
+    ,
+    {
+      "menuHeader": ""
+    },
+    {
+      "name": "Manage shipping orders",
+      "icon": "menu-icon tf-icons bx bx-carousel",
+      "slug": "form-wizard-icons",
+      "url": "form/wizard-icons"
     },
     {
       "menuHeader": ""
@@ -73,35 +105,7 @@
       "icon": "menu-icon tf-icons bx bx-food-menu",
       "slug": "app-invoice-list"
     },
-    {
-      "menuHeader": ""
-    },
-    {
-      "name": "Roles & Permissions",
-      "icon": "menu-icon tf-icons bx bx-check-shield",
-      "slug": "app-access",
-      "submenu": [
-        {
-          "url": "app/access-roles",
-          "name": "Roles Management",
-          "slug": "app-access-roles"
-        },
-        {
-          "url": "app/access-permission",
-          "name": "Permission Management",
-          "slug": "app-access-permission"
-        }
-      ]
-    },
-    {
-      "menuHeader": ""
-    },
-    {
-      "name": "Manage shipping orders",
-      "icon": "menu-icon tf-icons bx bx-carousel",
-      "slug": "form-wizard-icons",
-      "url": "form/wizard-icons"
-    },
+
     {
       "menuHeader": ""
     },

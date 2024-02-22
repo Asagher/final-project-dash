@@ -47,9 +47,6 @@ $roles = ['المشرف', 'موظف خدمات'];
 @endphp
 @if (Auth::user()->hasRole($roles))
   @section('content')
-    <h4 class="py-3 mb-4">
-      <span class="text-muted fw-light">التجارة الإلكترونية/المنتجات و الأصناف /</span>  قائمة الأصناف
-    </h4>
 
     <div class="col-xl-4 col-lg-6 col-md-6"id="cardsContainer">
       <div class="card h-100">

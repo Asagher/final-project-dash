@@ -78,7 +78,7 @@ $customizerHidden = 'customizer-hide';
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="remember-me" name="remember" {{ old('remember') ? 'checked' : '' }}>
               <label class="form-check-label" for="remember-me">
-                تذكرني
+              ذكرني
               </label>
             </div>
           </div>

@@ -354,7 +354,7 @@ $(function () {
               ]
             },
             {
-              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">إضافة مستخدم جديد</span>',
+              text: '<i class="bx bx-plus me-0 me-sm-2"></i><span class="d-none d-sm-inline-block">إضافة عميل جديد</span>',
               className: 'add-new btn btn-primary',
               attr: {
                 'data-bs-toggle': 'offcanvas',
@@ -400,9 +400,9 @@ $(function () {
       // changing the title
       $('.add-new').on('click', function () {
         $('#user_id').val(''); //reseting input field
-        $('#offcanvasAddUserLabel').html('إضافة مستخدم');
+        $('#offcanvasAddUserLabel').html('إضافة عميل');
       });
-  
+
 
   // Filter form control to default size
   // ? setTimeout used for multilingual table initialization
