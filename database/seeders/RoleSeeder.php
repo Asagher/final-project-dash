@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder {
     /**
@@ -12,9 +13,9 @@ class RoleSeeder extends Seeder {
     */
 
     public function run(): void {
-        Role::create( [ 'name'=>'المشرف' ] );
-        Role::create( [ 'name'=>'موظف إدارة الشحن' ] );
-      Role::create(['name'=>'موظف خدمات']);
+        Role::create( [ 'name'=>'المشرف' ] )->givePermissionTo(Permission::all());
+        Role::create( [ 'name'=>'موظف إدارة الشحن' ] )->givePermissionTo(['طلبات الشحن','إدارة العملاء']);
+        Role::create(['name'=>'موظف خدمات'])->givePermissionTo(['إدارة الأصناف','إدارة الطرود']);
         Role::create( [ 'name'=>'العميل' ] );
     }
 }

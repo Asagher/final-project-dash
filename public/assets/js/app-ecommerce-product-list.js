@@ -518,19 +518,20 @@ Swal.fire({
           // sweetalert
           Swal.fire({
             icon: 'success',
-            title: 'Successfully '.concat(status.message, '!'),
-            text: 'Permission '.concat(status.message, ' Successfully.'),
+            title: 'تمت عملية التحديث بنجاح ',
+            text: 'تم تحديث المنتج ',
             customClass: {
               confirmButton: 'btn btn-success'
             }
           });
+          //window.location.reload();
         },
         error: function error(err) {
           $('#editModal').modal('hide');
 
           Swal.fire({
-            title: 'Duplicate Entry!',
-            text: 'Your Permission should be unique.',
+            title: 'حدث خطأ',
+            text: 'لم يتم تحديث المنتج ',
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-success'

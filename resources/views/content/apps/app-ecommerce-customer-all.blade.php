@@ -31,9 +31,7 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">eCommerce /</span> All Customers
-</h4>
+
 
 
 <div class="row g-4 mb-4">
@@ -42,11 +40,10 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2" id="userCount">{{$totalUser}}</h3>              <small class="text-success">(100%)</small>
+              <h3 class="mb-0 me-2" id="userCount">{{$totalUser}}</h3>
             </div>
-            <small>Total Users</small>
+            <small>العدد الكلي للعملاء</small>
           </div>
           <span class="badge bg-label-primary rounded p-2">
             <i class="bx bx-user bx-sm"></i>
@@ -60,12 +57,10 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Verified Users</span>
             <div class="d-flex align-items-end mt-2">
               <h3 class="mb-0 me-2" id="userVerifiedCount">{{$verified}}</h3>
-              <small class="text-success">(+95%)</small>
             </div>
-            <small>Recent analytics </small>
+            <small>العدد الكلي للعملاء المتحقق منهم </small>
           </div>
           <span class="badge bg-label-success rounded p-2">
             <i class="bx bx-user-check bx-sm"></i>
@@ -98,7 +93,7 @@
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة مستخدم</h5>
+      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة عميل</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
@@ -145,22 +140,22 @@
 <!-- Offcanvas to edit new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" aria-labelledby="offcanvasEditUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasEditUserLabel" class="offcanvas-title">Edit User</h5>
+      <h5 id="offcanvasEditUserLabel" class="offcanvas-title">تعديل بيانات العميل</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
         <form class="add-new-user pt-0" id="editNewUserForm">
           <input type="text" hidden name="id" id="edit_id">
           <div class="mb-3">
-            <label class="form-label" for="add-user-fullname">Full Name</label>
+            <label class="form-label" for="add-user-fullname">الاسم الكامل</label>
             <input type="text" class="form-control" id="edit-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe" />
           </div>
           <div class="mb-3">
-            <label class="form-label" for="add-user-email">Email</label>
+            <label class="form-label" for="add-user-email">الايميل</label>
             <input type="text" id="edit-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email" />
           </div>
           <div class="mb-3">
-            <label class="form-label" for="add-user-contact">Contact</label>
+            <label class="form-label" for="add-user-contact">الرقم</label>
             <input type="text" id="edit-contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="contact" />
           </div>
           <div class="mb-3">
@@ -174,8 +169,8 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+          <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">تأكيد</button>
+          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">إلغاء</button>
         </form>
       </div>
     </div>

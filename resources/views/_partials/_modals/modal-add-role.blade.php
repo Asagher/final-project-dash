@@ -13,7 +13,6 @@
           @csrf
           <div class="col-12 mb-4">
             <label class="form-label" for="modalRoleName">اسم الدور</label>
-            <input type="hidden" id="modalRoleId" name="modalRoleId">
             <input type="text" id="modalRoleName" name="modalRoleName" class="form-control" placeholder="ادخل اسم الدور " tabindex="-1" />
           </div>
           <div class="col-12">
@@ -21,7 +20,7 @@
             <!-- Permission table -->
                 <div class="d-flex flex-wrap row gx-4 row gap-2">
                       @foreach ($permissions as $permission)
-                        <div class="form-check me-3 me-lg-5 item col">
+                        <div class="form-check me-3 me-lg-3 item col">
                           <input class="form-check-input" type="checkbox" id="permission_role" name="permission_role[]" value="{{$permission->name}}" />
                           <label class="form-check-label" for="permission">
                             {{$permission->name}}

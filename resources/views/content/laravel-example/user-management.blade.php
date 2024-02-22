@@ -36,11 +36,10 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Users</span>
             <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2" id="userCount">{{$totalUser}}</h3>              <small class="text-success">(100%)</small>
+              <h3 class="mb-0 me-2" id="userCount">{{$totalUser}}</h3>
             </div>
-            <small>Total Users</small>
+            <small>العدد الكلي للموظفين</small>
           </div>
           <span class="badge bg-label-primary rounded p-2">
             <i class="bx bx-user bx-sm"></i>
@@ -54,53 +53,13 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Verified Users</span>
             <div class="d-flex align-items-end mt-2">
               <h3 class="mb-0 me-2" id="userVerifiedCount">{{$verified}}</h3>
-              <small class="text-success">(+95%)</small>
             </div>
-            <small>Recent analytics </small>
+            <small>العدد الكلي للموظفين المتحقق منهم </small>
           </div>
           <span class="badge bg-label-success rounded p-2">
             <i class="bx bx-user-check bx-sm"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-xl-3">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex align-items-start justify-content-between">
-          <div class="content-left">
-            <span>Duplicate Users</span>
-            <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2">{{$userDuplicates}}</h3>
-              <small class="text-success">(0%)</small>
-            </div>
-            <small>Recent analytics</small>
-          </div>
-          <span class="badge bg-label-danger rounded p-2">
-            <i class="bx bx-group bx-sm"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-xl-3">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex align-items-start justify-content-between">
-          <div class="content-left">
-            <span>Verification Pending</span>
-            <div class="d-flex align-items-end mt-2">
-              <h3 class="mb-0 me-2">{{$notVerified}}</h3>
-              <small class="text-danger">(+6%)</small>
-            </div>
-            <small>Recent analytics</small>
-          </div>
-          <span class="badge bg-label-warning rounded p-2">
-            <i class="bx bx-user-voice bx-sm"></i>
           </span>
         </div>
       </div>
@@ -131,7 +90,7 @@
   <!-- Offcanvas to add new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddUser" aria-labelledby="offcanvasAddUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة مستخدم</h5>
+      <h5 id="offcanvasAddUserLabel" class="offcanvas-title">إضافة موظف</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
@@ -180,22 +139,22 @@
 <!-- Offcanvas to edit new user -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditUser" aria-labelledby="offcanvasEditUserLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasEditUserLabel" class="offcanvas-title">Edit User</h5>
+      <h5 id="offcanvasEditUserLabel" class="offcanvas-title">تعديل بيانات الموظف</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
       <form class="add-new-user pt-0" id="editNewUserForm">
         <input type="text" hidden name="id" id="edit_id">
         <div class="mb-3">
-          <label class="form-label" for="add-user-fullname">Full Name</label>
+          <label class="form-label" for="add-user-fullname">الاسم الكامل</label>
           <input type="text" class="form-control" id="edit-user-fullname" placeholder="John Doe" name="name" aria-label="John Doe" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="add-user-email">Email</label>
+          <label class="form-label" for="add-user-email">الايميل</label>
           <input type="text" id="edit-user-email" class="form-control" placeholder="john.doe@example.com" aria-label="john.doe@example.com" name="email" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="add-user-contact">Contact</label>
+          <label class="form-label" for="add-user-contact">الرقم</label>
           <input type="text" id="edit-contact" class="form-control phone-mask" placeholder="+1 (609) 988-44-11" aria-label="john.doe@example.com" name="contact" />
         </div>
         <div class="mb-3">
@@ -211,8 +170,8 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Submit</button>
-        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">تأكيد</button>
+        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">إلغاء</button>
       </form>
     </div>
   </div>

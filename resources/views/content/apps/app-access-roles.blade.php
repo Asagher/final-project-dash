@@ -43,26 +43,7 @@ $roles = ['المشرف'];
           <div class="col-xl-4 col-lg-6 col-md-6 ">
               <div class="card" >
                 <div class="card-body">
-                  <div class="d-flex justify-content-between mb-2">
-                    <h6 class="fw-normal">العدد الكلي {{$role['count'] }}</h6>
-                    <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                      <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Jimmy Ressula" class="avatar avatar-sm pull-up">
-                        <img class="rounded-circle" src="{{asset('assets/img/avatars/4.png')}}" alt="Avatar">
-                      </li>
-                      <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="John Doe" class="avatar avatar-sm pull-up">
-                        <img class="rounded-circle" src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar">
-                      </li>
-                      <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kristi Lawker" class="avatar avatar-sm pull-up">
-                        <img class="rounded-circle" src="{{asset('assets/img/avatars/2.png')}}" alt="Avatar">
-                      </li>
-                      <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kaith D'souza" class="avatar avatar-sm pull-up">
-                        <img class="rounded-circle" src="{{asset('assets/img/avatars/15.png')}}" alt="Avatar">
-                      </li>
-                      <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Danny Paul" class="avatar avatar-sm pull-up">
-                        <img class="rounded-circle" src="{{asset('assets/img/avatars/7.png')}}" alt="Avatar">
-                      </li>
-                    </ul>
-                  </div>
+
                   <div class="d-flex justify-content-between align-items-end">
                     <div class="role-heading">
 

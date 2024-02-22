@@ -246,7 +246,7 @@ Route::middleware([
   Route::get('app/ecommerce/order/details', [EcommerceOrderDetails::class, 'index'])->name(
     'app-ecommerce-order-details'
   );
-  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'UserManagement']);
+  Route::get('/app/ecommerce/customer/all', [EcommerceCustomerAll::class, 'UserManagement'])->name('app-users-customer-all');
   Route::resource('/customer/all',EcommerceCustomerAll::class);
   Route::get('app/ecommerce/customer/details/overview', [EcommerceCustomerDetailsOverview::class, 'index'])->name(
     'app-ecommerce-customer-details-overview'
