@@ -3,12 +3,11 @@
 return [
   'creatorUrl' => '',
   'templateName' => 'SwiftShip',
-  'templateSuffix' => 'Bootstrap 5 HTML Admin Template - Pro',
+  'templateSuffix' => 'SwiftShip',
   'templateVersion' => '2.2.0',
   'templateFree' => false,
-  'templateDescription' =>
-    'Most Powerful & Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!',
-  'templateKeyword' => 'dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5',
+  'templateDescription' => 'SwiftShip',
+  'templateKeyword' => 'SwiftShip',
   'licenseUrl' => '',
   'livePreview' => '',
   'productPage' => '',

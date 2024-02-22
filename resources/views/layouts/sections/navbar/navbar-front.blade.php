@@ -23,7 +23,7 @@
         </button>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link fw-medium" aria-current="page" href="{{url('front-pages/landing')}}#landingHero">الصفحة الرئيسية</a>
+            <a class="nav-link fw-medium" aria-current="page" href="{{url('/ ')}}">الصفحة الرئيسية</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFeatures">ميزات</a>
@@ -210,7 +210,7 @@
 
         <li>
           <!-- Mobile menu toggle: End-->
-          <a href="{{url('front-pages/landing')}}" class="app-brand-link">
+          <a href="{{url('/')}}" class="app-brand-link">
             <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">SwiftShip
             </span>
             <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'var(--bs-primary)'])</span>

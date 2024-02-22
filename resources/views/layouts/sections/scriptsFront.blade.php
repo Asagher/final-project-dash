@@ -2,7 +2,6 @@
 <!-- BEGIN: Vendor JS-->
 <script src="{{asset('assets/vendor/js/dropdown-hover.js')}}"></script>
 <script src="{{asset('assets/vendor/js/mega-dropdown.js')}}"></script>
-<script src="{{ asset(mix('assets/vendor/js/bootstrap.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/libs/jquery/jquery.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/libs/popper/popper.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/js/bootstrap.js')) }}"></script>
@@ -16,6 +15,7 @@
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
+
 <script src="{{ asset(mix('assets/js/front-main.js')) }}"></script>
 <!-- END: Theme JS-->
 <!-- Pricing Modal JS-->
