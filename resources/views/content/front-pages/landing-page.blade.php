@@ -194,7 +194,6 @@
 }
 
 .services .box {
-    background-color: #FFFBF5;
     box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.13), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
     counter-increment: services;
     transition: var(--main-trans);
@@ -225,7 +224,6 @@
     margin: 40px auto 20px;
     display: block;
     text-align: center;
-    color: #B6BBC4;
 }
 
 .services .box>h3 {
@@ -238,7 +236,6 @@
 .services .box .info {
     padding: 15px;
     position: relative;
-    background-color: #F0ECE5;
     text-align: right;
 }
 
@@ -288,8 +285,8 @@
 .services .box .info::before {
     content: '0' counter(services);
     position: absolute;
-    background-color: #e7e7ff;
-    color: #696cff;
+    background-color: #9798b7;
+    color: #c8cdd6;
     left: 0;
     top: 0;
     height: 100%;

@@ -91,7 +91,7 @@
       "menuHeader": ""
     },
     {
-      "name": "Manage shipping orders",
+      "name": "Create shipping orders",
       "icon": "menu-icon tf-icons bx bx-carousel",
       "slug": "form-wizard-icons",
       "url": "form/wizard-icons"
