@@ -419,7 +419,7 @@ $configData = Helper::appClasses();
               <i class="bx bxs-map bx-lg me-2"></i>
               <h3>الفروع</h3>
               <div class="info">
-                  <a href="#">تفاصيل</a>
+                  <a  href="{{ Route('address-page') }}">تفاصيل</a>
               </div>
           </div>
         </div>

@@ -47,17 +47,17 @@
               <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
                 <li>
                   <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                    <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+                    <span class="align-middle"><i class='bx bx-sun me-2'></i>فاتح</span>
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                    <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                    <span class="align-middle"><i class="bx bx-moon me-2"></i>غامق</span>
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                    <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                    <span class="align-middle"><i class="bx bx-desktop me-2"></i>وضع النظام</span>
                   </a>
                 </li>
               </ul>
