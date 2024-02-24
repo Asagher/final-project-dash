@@ -23,16 +23,10 @@
         </button>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link fw-medium" aria-current="page" href="{{url('/ ')}}">الصفحة الرئيسية</a>
+            <a class="nav-link fw-medium " aria-current="page" href="{{url('/ ')}}">الصفحة الرئيسية</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingFeatures">ميزات</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingTeam">الفريق</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-medium" href="{{url('front-pages/landing')}}#landingContact">تواصل معنا</a>
+            <a class="nav-link fw-medium active" href="{{url('front-pages/landing')}}#landingFeatures">الاستعلام</a>
           </li>
 
           <li class="nav-item">
@@ -72,7 +66,7 @@
 
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <div class="avatar avatar-online">
+              <div class="avatar ">
                 <img src="{{ Auth::user() ? Auth::user()->profile_photo_url : asset('assets/img/Profile-PNG-Images.png') }}" alt class="w-px-40 h-auto rounded-circle">
               </div>
             </a>

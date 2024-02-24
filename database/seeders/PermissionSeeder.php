@@ -20,7 +20,8 @@ class PermissionSeeder extends Seeder
       'إدارة الصلاحيات',
       'طلبات الشحن',
       'إدارة بيانات الموظفين',
-  'إدارة العملاء'];
+  'إدارة العملاء',
+'إدارة الشاحنات'];
       foreach($permissions as $permission){
           Permission::create( [ 'name'=>$permission] );
       }

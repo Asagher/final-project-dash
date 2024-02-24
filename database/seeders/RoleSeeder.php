@@ -16,6 +16,7 @@ class RoleSeeder extends Seeder {
         Role::create( [ 'name'=>'المشرف' ] )->givePermissionTo(Permission::all());
         Role::create( [ 'name'=>'موظف إدارة الشحن' ] )->givePermissionTo(['طلبات الشحن','إدارة العملاء']);
         Role::create(['name'=>'موظف خدمات'])->givePermissionTo(['إدارة الأصناف','إدارة الطرود']);
+        Role::create(['name'=>'موظف خدمات اللوجستية'])->givePermissionTo(['إدارة الشاحنات']);
         Role::create( [ 'name'=>'العميل' ] );
     }
 }

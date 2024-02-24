@@ -112,7 +112,7 @@ $configData = Helper::appClasses();
       <div class="row justify-content-center">
         <div class="">
           <div class="card mb-4">
-            <h5 class="card-header">مصاريف الشحن</h5>
+            <h5 class="card-header">أجور الشحن</h5>
 
             <div class="m-3 d-flex justify-center items-center">
                   {{-- my form --}}
@@ -120,7 +120,6 @@ $configData = Helper::appClasses();
                 <div id="address" class="content">
                   <div class="content-header justify-content-between mb-3 d-flex">
                     <div>
-                      <h6 class="mb-0">الشحنة</h6>
                       <small>أدخل معلومات الشحنة.</small>
                     </div>
 
@@ -128,15 +127,6 @@ $configData = Helper::appClasses();
                   </div>
                   <div class="row g-3">
 
-                    <div class="col-sm-4">
-                      <label class="form-label" for="address">وجهة الشحن</label>
-                      <select class="form-select   myAddress" name="address" >
-                        <option label=" "></option>
-                        {{-- @foreach ($addresses as $address )
-                        <option value="{{$address->id}}" label=" ">{{ $address->location}}</option>
-                        @endforeach --}}
-                      </select>
-                    </div>
                    <div class="row g-3 shipment-line" >
 
                     <div class="col-sm-4">

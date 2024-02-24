@@ -406,7 +406,7 @@ $configData = Helper::appClasses();
   <!-- Useful features: Start -->
   <section id="landingReviews" class="section-py bg-body landing-reviews pb-0">
     <div class="services" id="services">
-        <h2 class="main-title ">الإستعلام</h2>
+        <h2 class="main-title ">الاستعلام</h2>
         <div class="container1">
           <div class="box">
               <i class="bx bxs-file bx-lg me-2"></i>
