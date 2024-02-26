@@ -177,7 +177,7 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('js/demo-ship.js')}}"></script>
+<script src="{{asset('js/flat.js')}}"></script>
 
 <script src="{{asset('assets/js/app-logistics-fleet.js')}}"></script>
 @endsection
