@@ -491,6 +491,6 @@ Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show
 Route::get('/address-page', [Categories::class, 'address'])->name('address-page');
 Route::get('/fletmap-page', [Categories::class, 'fletmap'])->name('fletmap-page');
 
-Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
+Route::get('/shipping-price-page/{id}', [ShippingpriceController::class, 'categoryDetail'])->name('shipping-price'); /////shiping prices page
 
 ////////////////

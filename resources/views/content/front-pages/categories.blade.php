@@ -196,7 +196,7 @@ $configData = Helper::appClasses();
     <h1 class="main-title">الأصناف الموجودة</h1>
     <div class="container1 ">
         @foreach ($categories as $category)
-        <a href="{{ Route('shipping-price') }}">
+        <a href="{{ Route('shipping-price' ,$category->category_id )}}">
         <div class="box ">
             <div class="data ">
                 <img src="{{asset('assets/img/category/'.$category->photo)}}" alt=" ">

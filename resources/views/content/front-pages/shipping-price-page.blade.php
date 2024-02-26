@@ -132,11 +132,11 @@ $configData = Helper::appClasses();
                     <div class="col-sm-4">
                       <label class="form-label" for="category">فئات الشحن</label>
                       <select class="form-select   myCategory" name="category" id="category_shipment">
-                        <option value="">اختر الفئة</option>
 
                         @foreach ($categories as $category )
-                        <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
-
+                          @if($category->category_id == $id)
+                            <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
+                          @endif
                         @endforeach
                       </select>
                     </div>
@@ -145,19 +145,24 @@ $configData = Helper::appClasses();
                       <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
 
                         <option >اختر تفاصيل الفئة</option>
+                        @foreach ($category->categoryDetail as $c )
 
+                          <option value="{{ $c->id}}" label=" ">{{ $c->type}}</option>
+
+                        @endforeach
 
 
                       </select>
                     </div>
                     <div class="col-sm-4">
+
                       <label class="form-label" for="quantity">الكمية</label>
                       <input type="text" name="quantity" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
                     </div>
 
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
+                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="Birmingham">
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>
