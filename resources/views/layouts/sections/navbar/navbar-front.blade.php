@@ -31,7 +31,7 @@
 
           <li class="nav-item">
             @php
-                $roles = ['المشرف', 'موظف إدارة الشحن'];
+                $roles = ['المشرف', 'موظف إدارة الشحن','موظف خدمات','موظف خدمات اللوجستية'];
             @endphp
             @if (Auth::check())
               @if (Auth::user()->hasRole($roles))

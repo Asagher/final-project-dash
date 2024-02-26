@@ -178,7 +178,7 @@ Route::middleware([
   'auth:sanctum',
   config('jetstream.auth_session'),
   'verified',
-  'role:المشرف|موظف إدارة الشحن',
+  'role:المشرف|موظف إدارة الشحن|موظف خدمات اللوجستية|موظف خدمات',
   'auth',
 ])->group(function () {
   Route::get('/dashboard/analytics', [Analytics::class, 'index'])->name('dashboard-analytics');

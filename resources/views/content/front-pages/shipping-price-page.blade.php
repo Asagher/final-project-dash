@@ -149,16 +149,16 @@ $configData = Helper::appClasses();
                     <div class="col-sm-4">
 
                       <label class="form-label" for="quantity">الكمية</label>
-                      <input type="text" name="quantity" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
+                      <input type="number" name="quantity" class="form-control calculate-cost quantity" id="quantity" placeholder=" عدد الطرود المراد شحنها">
                     </div>
 
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="Birmingham">
+                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="السعر">
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>
-                      <input type="text" name="total_wight" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
+                      <input type="text" name="total_wight" class="form-control calculate-cost total_wight" readonly id="total_wight" placeholder="الكلفة الكلية">
                     </div>
 
                             {{-- <hr> --}}
