@@ -23,6 +23,17 @@ class Categories extends Controller
     $pageConfigs = ['myLayout' => 'front'];
     return view('content.front-pages.address', ['pageConfigs' => $pageConfigs, 'categories' => $categories]);
   }
+  public function address_center_a()
+  {
+    return view('content.front-pages.address_center.Aleppo');
+  }
+  public function address_center_h()
+  {
+    return view('content.front-pages.address_center.hama');
+  }public function address_center_d()
+  {
+    return view('content.front-pages.address_center.damascus');
+  }
   public function fletmap()
   {
     $categories = ShipmentCategory::orderBy('category_id', 'DESC')->get();

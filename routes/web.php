@@ -490,6 +490,9 @@ Route::delete('/categories-page/{id}', [Categories::class, 'destroy'])->name('ca
 Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show'); ///show notification new invoice to sender
 Route::get('/address-page', [Categories::class, 'address'])->name('address-page');
 Route::get('/fletmap-page', [Categories::class, 'fletmap'])->name('fletmap-page');
+Route::get('/address-page-a', [Categories::class, 'address_center_a'])->name('address-page-a');
+Route::get('/address-page-h', [Categories::class, 'address_center_h'])->name('address-page-h');
+Route::get('/address-page-d', [Categories::class, 'address_center_d'])->name('address-page-d');
 
 Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
 
