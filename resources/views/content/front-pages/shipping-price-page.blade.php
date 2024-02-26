@@ -158,7 +158,7 @@ $configData = Helper::appClasses();
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>
-                      <input type="text" name="total_wight" class="form-control calculate-cost total_wight" readonly id="total_wight" placeholder="الكلفة الكلية">
+                      <input type="text" name="total_wight" class="form-control calculate-cost total_wight" readonly id="total_wight" placeholder="الوزن ان وجد">
                     </div>
 
                             {{-- <hr> --}}
