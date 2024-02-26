@@ -435,33 +435,40 @@ $(function () {
     });
 
     // show price in category
-    function attachChangeHandler() {
+    function attachChangeHandler(container = document) {
       // Event listeners
+      container.addEventListener('change', function (event) {
+        if (event.target.matches('#category-detail')) {
+          const categoryName = event.target.options[event.target.selectedIndex].text;
+          const row = event.target.closest('.shipment-line');
+          // ... (rest of the code remains the same)
 
-      $('.shipment-line').on('change', '#category-detail', function () {
-        var categoryName = $(this).find(':selected').text();
-        var row = $(this).closest('.shipment-line');
-        $.ajax({
-          type: 'POST',
-          url: ''.concat(baseUrl, 'form/wizard-icons/price'),
-          data: {
-            categoryName: categoryName
-          },
-          success: function (response) {
-            row.find('.price_for_wight').val(response.price);
-            if (response.weight) {
-              row.find('.total_wight').val(response.weight);
-            } else {
-              row.find('.total_wight').val('لا يوجد وزن');
-            }
-            $('.quantity').on('change', function () {
-              var quantity = parseFloat(row.find('.quantity').val()) || 1;
-              var priceForWeight = parseFloat(row.find('.price_for_wight').val());
-              var total = priceForWeight * quantity;
-              row.find('.line_total_cost').val(total);
+          $('.shipment-line').on('change', '#category-detail', function () {
+            var categoryName = $(this).find(':selected').text();
+            var row = $(this).closest('.shipment-line');
+            $.ajax({
+              type: 'POST',
+              url: ''.concat(baseUrl, 'form/wizard-icons/price'),
+              data: {
+                categoryName: categoryName
+              },
+              success: function (response) {
+                row.find('.price_for_wight').val(response.price);
+                if (response.weight) {
+                  row.find('.total_wight').val(response.weight);
+                } else {
+                  row.find('.total_wight').val('لا يوجد وزن');
+                }
+                $('.quantity').on('change', function () {
+                  var quantity = parseFloat(row.find('.quantity').val()) || 1;
+                  var priceForWeight = parseFloat(row.find('.price_for_wight').val());
+                  var total = priceForWeight * quantity;
+                  row.find('.line_total_cost').val(total);
+                });
+              }
             });
-          }
-        });
+          });
+        }
       });
     }
     attachChangeHandler();
@@ -602,30 +609,60 @@ $(function () {
     const shipmentLine = document.querySelector('.shipment-line');
     const shipmentLineTemplate = shipmentLine.cloneNode(true);
 
+    function initializeNewRow(newShipmentLine) {
+      const categoryShipment = newShipmentLine.querySelector('.myCategory');
+      const categoryDetail = newShipmentLine.querySelector('.myCategorydetaile');
+
+      // Populate category details when category changes
+      categoryShipment.addEventListener('change', function () {
+        const categoryID = $(this).val();
+
+        $.ajax({
+          url: `${baseUrl}get-category-details/${categoryID}`,
+          type: 'GET',
+          success: function (data) {
+            categoryDetail.innerHTML = '<option value="">اختر نوع الطرد </option>';
+            data.forEach(function (detail) {
+              const option = document.createElement('option');
+              option.value = detail.id;
+              option.textContent = detail.type;
+              categoryDetail.appendChild(option);
+            });
+          }
+        });
+      });
+
+      attachChangeHandler(newShipmentLine);
+    }
+
     function addNewRow() {
       const newShipmentLine = shipmentLineTemplate.cloneNode(true);
       shipmentLine.after(newShipmentLine);
       const deleteButtonContainer = document.createElement('div');
       deleteButtonContainer.className = 'col-sm-12 d-flex justify-content-between';
+
       // Add a delete button to the new row
       const deleteButton = document.createElement('button');
       deleteButton.innerHTML = '<i class="fas fa-times"></i>';
-
       deleteButton.className = 'btn btn-danger removeRowBtn';
       deleteButton.addEventListener('click', function () {
         newShipmentLine.remove(); // Remove the row when the button is clicked
       });
+
       const h6container = document.createElement('div');
       const smallTag = document.createElement('small');
-      smallTag.textContent = 'Extra odrder info';
+      smallTag.textContent = 'Extra order info';
       const h6Tag = document.createElement('h6');
       h6Tag.textContent = 'Extra Order';
       h6Tag.className = 'm-0'; // Adjust the margin as needed
       h6container.append(h6Tag, smallTag);
       deleteButtonContainer.append(h6container, deleteButton);
+
       // Prepend the delete button container to the new row
       newShipmentLine.prepend(deleteButtonContainer);
-      attachChangeHandler();
+
+      // Re-initialize the event handlers for the new row
+      initializeNewRow(newShipmentLine);
     }
     attachChangeHandler();
     $('.addRowBtn').on('click', addNewRow);

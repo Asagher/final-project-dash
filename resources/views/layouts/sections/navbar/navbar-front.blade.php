@@ -23,10 +23,10 @@
         </button>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link fw-medium " aria-current="page" href="{{url('/ ')}}">الصفحة الرئيسية</a>
+            <a class="nav-link fw-medium active " aria-current="page" href="{{url('/ ')}}">الصفحة الرئيسية</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium active" href="{{url('front-pages/landing')}}#landingFeatures">الاستعلام</a>
+            <a class="nav-link fw-medium " href="{{ Route('categories') }}">الاستعلام</a>
           </li>
 
           <li class="nav-item">
