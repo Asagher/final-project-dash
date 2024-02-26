@@ -89,11 +89,11 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
 
 @endsection
-
+{{--
 @section('page-script')
 <script src="{{asset('js/demo-ship.js')}}"></script>
 
-@endsection
+@endsection --}}
 
 @section('content')
 <section class="heroImge">
@@ -106,7 +106,7 @@ $configData = Helper::appClasses();
   <div id="landingHero" class="pt-5 position-relative">
     <div class="container">
       <div class="hero-text-box text-center">
-        <h1 class="text-primary hero-title display-4 fw-bold">الاستعلام عن تكاليف الشحن حسب</h1>
+        <h1 class="text-primary hero-title display-4 fw-bold"> الاستعلام عن تكاليف الشحن حسب الصنف</h1>
         <br>
       </div>
       <div class="row justify-content-center">
@@ -132,42 +132,35 @@ $configData = Helper::appClasses();
                     <div class="col-sm-4">
                       <label class="form-label" for="category">فئات الشحن</label>
                       <select class="form-select   myCategory" name="category" id="category_shipment">
-                        <option value="">اختر الفئة</option>
-
-                        @foreach ($categories as $category )
-                        <option value="{{ $category->category_id}}" label=" ">{{ $category->category_name}}</option>
-
-                        @endforeach
+                            <option value="{{ $category_Detail->category_id}}" label=" ">{{ $category_Detail->category_name}}</option>
                       </select>
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label"  for="category-detail"> تفاصيل فئات الشحن </label>
                       <select class="form-select myCategorydetaile" id="category-detail" name="category_detail" >
-
                         <option >اختر تفاصيل الفئة</option>
-
-
-
+                        @foreach ($category_Detail->categoryDetail as $c )
+                          @if($c->category_id == $id)
+                            <option value="{{$c->id}}" label=" ">{{$c->type}}</option>
+                          @endif
+                        @endforeach
                       </select>
                     </div>
                     <div class="col-sm-4">
+
                       <label class="form-label" for="quantity">الكمية</label>
                       <input type="text" name="quantity" class="form-control calculate-cost quantity" id="quantity" placeholder="Borough bridge">
                     </div>
 
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" id="price_for_wight" placeholder="Birmingham">
+                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="Birmingham">
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>
                       <input type="text" name="total_wight" class="form-control calculate-cost total_wight" id="total_wight" placeholder="658921">
                     </div>
 
-                    <div>
-                      <label for="description" class="form-label">تفاصيل عن الشحنة</label>
-                      <textarea class="form-control description" name="description" id="description" rows="3"></textarea>
-                    </div>
                             {{-- <hr> --}}
                   </div>
                     <div class="col-12 d-flex justify-content-center">

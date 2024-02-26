@@ -10,12 +10,11 @@ use App\Models\ShipmentCategory;
 class ShippingpriceController extends Controller
 {
 
-  public function index()
+  public function categoryDetail($id)
   {
 
     $pageConfigs = ['myLayout' => 'front'];
-    $categories = ShipmentCategory::all();
-
-    return view('content.front-pages.shipping-price-page', ['pageConfigs' => $pageConfigs,'categories'=> $categories]);
+    $category_Detail=ShipmentCategory::with('categoryDetail')->find($id);
+    return view('content.front-pages.shipping-price-page', ['pageConfigs' => $pageConfigs ,'id'=>$id,'category_Detail'=>$category_Detail]);
   }
 }

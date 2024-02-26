@@ -494,6 +494,6 @@ Route::get('/address-page-a', [Categories::class, 'address_center_a'])->name('ad
 Route::get('/address-page-h', [Categories::class, 'address_center_h'])->name('address-page-h');
 Route::get('/address-page-d', [Categories::class, 'address_center_d'])->name('address-page-d');
 
-Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
+Route::get('/shipping-price-page/{id}', [ShippingpriceController::class, 'categoryDetail'])->name('shipping-price'); /////shiping prices page
 
 ////////////////

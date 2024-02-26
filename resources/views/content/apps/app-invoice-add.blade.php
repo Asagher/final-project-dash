@@ -225,6 +225,12 @@
         <div class="row py-sm-3 justify-content-between d-flex">
           <div class="col-md-6 mb-md-0 mb-3">
             <p>جميع الحقوق محفوظة لشركة</p>
+
+            <h6>اسم محرر الاشعار : {{ Auth::user()->name }}</h6>
+            <h6>الايميل {{ Auth::user()->email }}</h6>
+            <h6>رقم التواصل {{ Auth::user()->contact }}</h6>
+
+
           </div>
           <div class="col-md-6 mb-md-0 mb-3 justify-content-end d-flex">
 
