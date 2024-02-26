@@ -21,7 +21,7 @@
 
 @section('content')
 <h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Invoice /</span> List
+  الفواتير:
 </h4>
 
 <!-- Invoice List Widget -->
