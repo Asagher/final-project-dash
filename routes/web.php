@@ -488,7 +488,8 @@ Route::get('markAsRead', function () {
 })->name('markRead'); ///////make all notification read
 Route::delete('/categories-page/{id}', [Categories::class, 'destroy'])->name('category-destroy'); ///destroy notification
 Route::get('/invoices-page/{id}', [Invoices::class, 'show'])->name('invoice-show'); ///show notification new invoice to sender
-Route::get('/address-page', [Categories::class, 'address'])->name('address-page'); ////welcome page
+Route::get('/address-page', [Categories::class, 'address'])->name('address-page');
+Route::get('/fletmap-page', [Categories::class, 'fletmap'])->name('fletmap-page');
 
 Route::get('/shipping-price-page', [ShippingpriceController::class, 'index'])->name('shipping-price'); /////shiping prices page
 

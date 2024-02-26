@@ -23,6 +23,13 @@ class Categories extends Controller
     $pageConfigs = ['myLayout' => 'front'];
     return view('content.front-pages.address', ['pageConfigs' => $pageConfigs, 'categories' => $categories]);
   }
+  public function fletmap()
+  {
+    $categories = ShipmentCategory::orderBy('category_id', 'DESC')->get();
+    $pageConfigs = ['myLayout' => 'front'];
+    return view('content.front-pages.fletmap-page', ['pageConfigs' => $pageConfigs, 'categories' => $categories]);
+  }
+
   public function show($id)
   {
     $notification_id = DB::table('notifications')

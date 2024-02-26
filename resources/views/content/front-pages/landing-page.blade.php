@@ -408,6 +408,7 @@ $configData = Helper::appClasses();
     <div class="services" id="services">
         <h2 class="main-title ">الاستعلام</h2>
         <div class="container1">
+
           <div class="box">
               <i class="bx bxs-file bx-lg me-2"></i>
               <h3>أسعار الشحن</h3>
@@ -416,12 +417,20 @@ $configData = Helper::appClasses();
               </div>
           </div>
           <div class="box">
+            <i class="bx bxs-map-pin bx-lg me-2"></i>
+            <h3>تتبع الشحنة</h3>
+            <div class="info">
+              <a href="{{ Route('fletmap-page') }}">تفاصيل</a>
+            </div>
+         </div>
+          <div class="box">
               <i class="bx bxs-map bx-lg me-2"></i>
               <h3>الفروع</h3>
               <div class="info">
                   <a  href="{{ Route('address-page') }}">تفاصيل</a>
               </div>
           </div>
+
         </div>
       </div>
   </section>
@@ -760,12 +769,12 @@ $configData = Helper::appClasses();
                 <img src="{{asset('assets/img/front-pages/icons/paper-airplane.png')}}" alt="paper airplane icon" class="mb-4 pb-2 scaleX-n1-rtl" />
                 <h4 class="mb-1">اساسي</h4>
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="price-monthly h1 text-primary fw-bold mb-0">$19</span>
-                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$14</span>
+                  <span class="price-monthly h1 text-primary fw-bold mb-0">19</span>
+                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">14</span>
                   <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
-                  <div class="price-yearly text-muted price-yearly-toggle d-none">$ 168 / year</div>
+                  <div class="price-yearly text-muted price-yearly-toggle d-none"> 168 / year</div>
                 </div>
               </div>
             </div>
@@ -818,12 +827,12 @@ $configData = Helper::appClasses();
                 <img src="{{asset('assets/img/front-pages/icons/plane.png')}}" alt="plane icon" class="mb-4 pb-2 scaleX-n1-rtl" />
                 <h4 class="mb-1">فريق</h4>
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="price-monthly h1 text-primary fw-bold mb-0">$29</span>
-                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$22</span>
+                  <span class="price-monthly h1 text-primary fw-bold mb-0">29</span>
+                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">22</span>
                   <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
-                  <div class="price-yearly text-muted price-yearly-toggle d-none">$ 264 / year</div>
+                  <div class="price-yearly text-muted price-yearly-toggle d-none"> 264 / year</div>
                 </div>
               </div>
             </div>
@@ -876,12 +885,12 @@ $configData = Helper::appClasses();
                 <img src="{{asset('assets/img/front-pages/icons/shuttle-rocket.png')}}" alt="shuttle rocket icon" class="mb-4 pb-2 scaleX-n1-rtl" />
                 <h4 class="mb-1">مشروع</h4>
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="price-monthly h1 text-primary fw-bold mb-0">$49</span>
-                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$37</span>
+                  <span class="price-monthly h1 text-primary fw-bold mb-0">49</span>
+                  <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">37</span>
                   <sub class="h6 text-muted mb-0 ms-1">/شهريا</sub>
                 </div>
                 <div class="position-relative pt-2">
-                  <div class="price-yearly text-muted price-yearly-toggle d-none">$ 444 / year</div>
+                  <div class="price-yearly text-muted price-yearly-toggle d-none"> 444 / year</div>
                 </div>
               </div>
             </div>
@@ -1085,20 +1094,7 @@ $configData = Helper::appClasses();
   <!-- FAQ: End -->
 
   <!-- CTA: Start -->
-  <section id="landingCTA" class="section-py landing-cta p-lg-0 pb-0">
-    <div class="container">
-      <div class="row align-items-center gy-5 gy-lg-0">
-        <div class="col-lg-6 text-center text-lg-start">
-          <h6 class="h2 text-primary fw-bold mb-1">Ready to Get Started?</h6>
-          <p class="fw-medium mb-4">Start your project with a 14-day free trial</p>
-          <a href="{{url('/front-pages/payment')}}" class="btn btn-primary">Get Started</a>
-        </div>
-        {{-- <div class="col-lg-6 pt-lg-5 text-center text-lg-end">
-          <img src="{{asset('assets/img/front-pages/landing-page/cta-dashboard.png')}}" alt="cta dashboard" class="img-fluid" />
-        </div> --}}
-      </div>
-    </div>
-  </section>
+
   <!-- CTA: End -->
 
   <!-- Contact Us: Start -->

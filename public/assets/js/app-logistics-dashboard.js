@@ -321,15 +321,8 @@
 // --------------------------------------------------------------------
 $(function () {
   // Variable declaration for table
-  var dt_dashboard_table = $('.dt-route-vehicles'),
-    select2 = $('.select2');
-  if (select2.length) {
-    var $this = select2;
-    $this.wrap('<div class="position-relative"></div>').select2({
-      placeholder: 'Select Country',
-      dropdownParent: $this.parent()
-    });
-  }
+  var dt_dashboard_table = $('.dt-route-vehicles');
+
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
