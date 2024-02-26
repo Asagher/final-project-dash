@@ -14,8 +14,7 @@ class ShippingpriceController extends Controller
   {
 
     $pageConfigs = ['myLayout' => 'front'];
-    $categories = ShipmentCategory::all();
-    $categoryDetail=ShipmentCategory::with('categoryDetail')->find($id);
-    return view('content.front-pages.shipping-price-page', ['pageConfigs' => $pageConfigs,'categories'=> $categories ,'id'=>$id,'categoryDetail'=>$categoryDetail]);
+    $category_Detail=ShipmentCategory::with('categoryDetail')->find($id);
+    return view('content.front-pages.shipping-price-page', ['pageConfigs' => $pageConfigs ,'id'=>$id,'category_Detail'=>$category_Detail]);
   }
 }
