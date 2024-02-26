@@ -28,7 +28,7 @@
 .item .container1 {
     padding: 0 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
 }
 
@@ -97,6 +97,19 @@
 .item .container1 .box:hover .info h3 {
     color: #777;
 }
+/* @media(max-width:768px) {
+  .item .container1 .box::before,
+.item .container1 .box::after {
+    content: '';
+    position: absolute;
+    background-color: #f3f3f3;
+    right: 0;
+    top: 0;
+    height: 450px;
+    border-radius: 10px;
+    transition: var(--main-trans);
+}
+} */
 /* hero */
 .heroImge{
     margin-top: 100px;
@@ -193,7 +206,7 @@ $configData = Helper::appClasses();
   </div>
 </section>
 <section>
-  <div class="item " id="item">
+{{-- <div class="item " id="item">
     <h1 class="main-title">المركز الرئيسي </h1>
     <center>
     <p class="item  fw-bolder display-4">دمشق شارع بارون</ح>
@@ -224,9 +237,50 @@ $configData = Helper::appClasses();
         </div>
         </a>
         @endforeach
-    </div> --}}
+    </div> 
+</div> --}}
+<section>
+  <div class="item " id="item">
+    {{-- <h1 class="main-title">المركز الرئيسي</h1>
+    <p style="text-align: center">دمشق شارع بارون</p> --}}
+    <h1 class="main-title">الفروع</h1>
+    <div class="container1 ">
+        <a href="{{ Route('address-page-a') }}">
+        <div class="box ">
+            <div class="data ">
+                <img src="{{asset('assets/img/category/images.jpeg')}}" alt=" ">
+            </div>
+            <div class="info ">
+                <h3>حلب</h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        </a>
+        <a href="{{ Route('address-page-h') }}">
+          <div class="box ">
+              <div class="data ">
+                  <img src="{{asset('assets/img/category/hama.jpeg')}}" alt=" ">
+              </div>
+              <div class="info ">
+                  <h3>حماة</h3>
+                  <p class="card-text"></p>
+              </div>
+          </div>
+          </a>
+          <a href="{{ Route('address-page-d') }}">
+            <div class="box ">
+                <div class="data ">
+                    <img src="{{asset('assets/img/category/dam.jpg')}}" alt=" ">
+                </div>
+                <div class="info ">
+                    <h3>دمشق</h3>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+            </a>
+    </div>
 </div>
-
+</section>
 
 <div class="row mt-5 justify-content-center d-flex w-100 my-5 item "  id="item">
   <h1 class="main-title">تواصل معنا  </h1>

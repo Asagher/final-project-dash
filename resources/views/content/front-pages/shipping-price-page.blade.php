@@ -89,11 +89,11 @@ $configData = Helper::appClasses();
 <script src="{{asset('assets/vendor/libs/swiper/swiper.js')}}"></script>
 
 @endsection
-{{--
+
 @section('page-script')
 <script src="{{asset('js/demo-ship.js')}}"></script>
 
-@endsection --}}
+@endsection
 
 @section('content')
 <section class="heroImge">
@@ -154,7 +154,7 @@ $configData = Helper::appClasses();
 
                     <div class="col-sm-4">
                       <label class="form-label" for="price_for_wight">السعر للفئة</label>
-                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="السعر">
+                      <input type="text" name="price_for_wight"   class="form-control price_for_wight calculate-cost" readonly id="price_for_wight" placeholder="Birmingham">
                     </div>
                     <div class="col-sm-4">
                       <label class="form-label" for="total_wight">اجمالي الوزن</label>

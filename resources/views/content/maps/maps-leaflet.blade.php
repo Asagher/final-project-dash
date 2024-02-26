@@ -15,8 +15,7 @@
 @endsection
 
 @section('content')
-<h4 class="py-3 mb-4">
-  <span class="text-muted fw-light">Maps /</span> Leaflet
+<h4 class="py-3 mb-4">خرائط
 </h4>
 
 <div class="row">
