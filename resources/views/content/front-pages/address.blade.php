@@ -237,7 +237,7 @@ $configData = Helper::appClasses();
         </div>
         </a>
         @endforeach
-    </div> 
+    </div>
 </div> --}}
 <section>
   <div class="item " id="item">
@@ -279,9 +279,15 @@ $configData = Helper::appClasses();
             </div>
             </a>
     </div>
+    <br>
+    <h1 class="main-title">  مواعيد الدوام:
+    </h1>
+    <center>
+      <h3 class="card-title text-primary">10:00am-2:00pm</h3>
+    </center>
+    </div>
 </div>
 </section>
-
 <div class="row mt-5 justify-content-center d-flex w-100 my-5 item "  id="item">
   <h1 class="main-title">تواصل معنا  </h1>
   <div class="demo-vertical-spacing demo-only-element col-md-8 mt-5 ">
